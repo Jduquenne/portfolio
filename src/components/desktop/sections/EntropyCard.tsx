@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { passions } from "@/lib/data/passions";
 
 const sectionVariants = {
@@ -18,6 +19,8 @@ const cardVariants = {
 };
 
 export function EntropyCard() {
+  const t = useTranslations("entropy");
+
   return (
     <section id="entropy" className="min-h-screen px-16 py-16">
       <motion.div
@@ -31,14 +34,14 @@ export function EntropyCard() {
           variants={cardVariants}
           className="font-mono text-xs text-accent tracking-widest uppercase"
         >
-          // entropy
+          {t("section_label")}
         </motion.p>
 
         <motion.h2
           variants={cardVariants}
-          className="font-mono text-2xl font-bold text-contrast max-w-sm"
+          className="font-mono text-2xl font-bold text-contrast max-w-lg"
         >
-          A 90s kid with too many passions to pick one.
+          {t("headline")}
         </motion.h2>
 
         <div className="grid grid-cols-3 gap-4">
@@ -59,7 +62,6 @@ export function EntropyCard() {
                   </span>
                 )}
               </div>
-
               <div className="flex flex-col gap-2">
                 <span className="font-mono text-base font-bold text-contrast group-hover:text-accent transition-colors">
                   {passion.title}

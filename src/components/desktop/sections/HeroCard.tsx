@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -17,6 +18,8 @@ const itemVariants = {
 };
 
 export function HeroCard() {
+  const t = useTranslations("hero");
+
   return (
     <section
       id="hero"
@@ -29,7 +32,7 @@ export function HeroCard() {
         animate="visible"
         className="font-mono text-xs text-accent tracking-widest uppercase mb-8"
       >
-        ● Available for work
+        {t("available")}
       </motion.p>
 
       <motion.h1
@@ -49,7 +52,7 @@ export function HeroCard() {
         animate="visible"
         className="font-sans text-xl text-contrast/60 max-w-xl mb-4"
       >
-        Fullstack developer. 3D / Three.js. Game dev.
+        {t("tagline")}
       </motion.p>
 
       <motion.p
@@ -57,9 +60,9 @@ export function HeroCard() {
         variants={itemVariants}
         initial="hidden"
         animate="visible"
-        className="font-sans text-contrast/32 max-w-lg mb-16"
+        className="font-sans text-base text-contrast/32 max-w-lg mb-16"
       >
-        Building precise, human software. Autodidact. JavaScript at heart.
+        {t("description")}
       </motion.p>
 
       <motion.div
@@ -73,13 +76,13 @@ export function HeroCard() {
           href="#logic"
           className="font-mono text-sm px-8 py-4 bg-accent text-base hover:bg-accent/90 transition-colors"
         >
-          View Work
+          {t("view_work")}
         </a>
         <a
           href="#contact"
           className="font-mono text-sm px-8 py-4 border border-white/16 text-contrast/60 hover:text-contrast hover:border-white/32 transition-colors"
         >
-          Contact
+          {t("contact")}
         </a>
       </motion.div>
     </section>

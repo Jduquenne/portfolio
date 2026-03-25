@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink, GitBranch, Star } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { stack } from "@/lib/data/stack";
 import type { GitHubRepo } from "@/types";
 
@@ -24,6 +25,8 @@ interface LogicCardProps {
 }
 
 export function LogicCard({ repos }: LogicCardProps) {
+  const t = useTranslations("logic");
+
   return (
     <section id="logic" className="min-h-screen px-16 py-16">
       <motion.div
@@ -37,14 +40,13 @@ export function LogicCard({ repos }: LogicCardProps) {
           variants={itemVariants}
           className="font-mono text-xs text-accent tracking-widest uppercase"
         >
-          // logic
+          {t("section_label")}
         </motion.p>
 
         <div className="grid grid-cols-2 gap-16">
-          {/* Stack */}
           <motion.div variants={itemVariants} className="flex flex-col gap-8">
             <h2 className="font-mono text-2xl font-bold text-contrast">
-              Stack
+              {t("stack_title")}
             </h2>
             <div className="flex flex-col gap-8">
               {stack.map((category) => (
@@ -67,16 +69,13 @@ export function LogicCard({ repos }: LogicCardProps) {
             </div>
           </motion.div>
 
-          {/* Projects */}
           <motion.div variants={itemVariants} className="flex flex-col gap-8">
             <h2 className="font-mono text-2xl font-bold text-contrast">
-              Projects
+              {t("projects_title")}
             </h2>
             {repos.length === 0 ? (
               <p className="font-mono text-xs text-contrast/32">
-                Add the{" "}
-                <span className="text-accent">portfolio</span> topic to your
-                GitHub repos to display them here.
+                {t("empty_repos", { topic: "portfolio" })}
               </p>
             ) : (
               <div className="flex flex-col gap-4">

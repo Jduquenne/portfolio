@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "hero": "Accueil",
+    "logic": "Logic",
+    "entropy": "Entropy",
+    "contact": "Contact"
+  },
+  "hero": {
+    "available": "● Disponible",
+    "tagline": "Développeur fullstack. 3D / Three.js.",
+    "description": "Concevoir des logiciels précis et humains. Autodidacte. JavaScript dans l'âme.",
+    "view_work": "Voir mes projets",
+    "contact": "Contact"
+  },
+  "logic": {
+    "section_label": "// logic",
+    "stack_title": "Stack",
+    "projects_title": "Projets",
+    "empty_repos": "Ajoutez le topic {topic} à vos dépôts GitHub pour les afficher ici."
+  },
+  "entropy": {
+    "section_label": "// entropy",
+    "headline": "Un enfant des années 90 avec trop de passions pour n'en choisir qu'une."
+  },
+  "contact": {
+    "section_label": "// contact",
+    "headline": "Construisons quelque chose.",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  }
+}

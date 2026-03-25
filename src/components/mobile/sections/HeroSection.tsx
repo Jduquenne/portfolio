@@ -1,13 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 const containerVariants = {
   hidden: {},
   visible: {
-    transition: {
-      staggerChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.1 },
   },
 };
 
@@ -25,6 +24,8 @@ const itemVariants = {
 };
 
 export function HeroSection() {
+  const t = useTranslations("hero");
+
   return (
     <section
       id="hero"
@@ -40,21 +41,21 @@ export function HeroSection() {
           variants={itemVariants}
           className="font-mono text-xs text-accent tracking-widest uppercase"
         >
-          ● Available for work
+          {t("available")}
         </motion.p>
 
         <motion.h1
           variants={itemVariants}
           className="font-mono text-6xl font-bold text-contrast leading-none tracking-tight"
         >
-          Jason D.
+          Jason Duquenne
         </motion.h1>
 
         <motion.p
           variants={itemVariants}
           className="font-sans text-base text-contrast/60 max-w-xs"
         >
-          Fullstack developer. 3D / Three.js. Game dev.
+          {t("tagline")}
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex gap-4 pt-4">
@@ -62,13 +63,13 @@ export function HeroSection() {
             href="#logic"
             className="font-mono text-sm px-6 py-4 bg-accent text-base"
           >
-            View Work
+            {t("view_work")}
           </a>
           <a
             href="#contact"
             className="font-mono text-sm px-6 py-4 border border-white/16 text-contrast/60"
           >
-            Contact
+            {t("contact")}
           </a>
         </motion.div>
       </motion.div>

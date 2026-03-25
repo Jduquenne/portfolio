@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "hero": "Home",
+    "logic": "Logic",
+    "entropy": "Entropy",
+    "contact": "Contact"
+  },
+  "hero": {
+    "available": "● Available for work",
+    "tagline": "Fullstack developer. 3D / Three.js.",
+    "description": "Building precise, human software. Autodidact. JavaScript at heart.",
+    "view_work": "View Work",
+    "contact": "Contact"
+  },
+  "logic": {
+    "section_label": "// logic",
+    "stack_title": "Stack",
+    "projects_title": "Projects",
+    "empty_repos": "Add the {topic} topic to your GitHub repos to display them here."
+  },
+  "entropy": {
+    "section_label": "// entropy",
+    "headline": "A 90s kid with too many passions to pick one."
+  },
+  "contact": {
+    "section_label": "// contact",
+    "headline": "Let's build something.",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  }
+}

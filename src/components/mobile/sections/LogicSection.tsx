@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink, GitBranch, Star } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { stack } from "@/lib/data/stack";
 import type { GitHubRepo } from "@/types";
 
@@ -24,6 +25,8 @@ interface LogicSectionProps {
 }
 
 export function LogicSection({ repos }: LogicSectionProps) {
+  const t = useTranslations("logic");
+
   return (
     <section
       id="logic"
@@ -40,12 +43,13 @@ export function LogicSection({ repos }: LogicSectionProps) {
           variants={itemVariants}
           className="font-mono text-xs text-accent tracking-widest uppercase"
         >
-          // logic
+          {t("section_label")}
         </motion.p>
 
-        {/* Stack */}
         <motion.div variants={itemVariants} className="flex flex-col gap-6">
-          <h2 className="font-mono text-xl font-bold text-contrast">Stack</h2>
+          <h2 className="font-mono text-xl font-bold text-contrast">
+            {t("stack_title")}
+          </h2>
           <div className="flex flex-col gap-6">
             {stack.map((category) => (
               <div key={category.label} className="flex flex-col gap-2">
@@ -67,15 +71,13 @@ export function LogicSection({ repos }: LogicSectionProps) {
           </div>
         </motion.div>
 
-        {/* Projects */}
         <motion.div variants={itemVariants} className="flex flex-col gap-6">
           <h2 className="font-mono text-xl font-bold text-contrast">
-            Projects
+            {t("projects_title")}
           </h2>
           {repos.length === 0 ? (
             <p className="font-mono text-xs text-contrast/32">
-              Add the <span className="text-accent">portfolio</span> topic to
-              your GitHub repos.
+              {t("empty_repos", { topic: "portfolio" })}
             </p>
           ) : (
             <div className="flex flex-col gap-4">

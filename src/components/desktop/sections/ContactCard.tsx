@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { contact } from "@/lib/data/contact";
 
 const sectionVariants = {
@@ -19,6 +20,8 @@ const itemVariants = {
 };
 
 export function ContactCard() {
+  const t = useTranslations("contact");
+
   return (
     <section
       id="contact"
@@ -35,16 +38,14 @@ export function ContactCard() {
           variants={itemVariants}
           className="font-mono text-xs text-accent tracking-widest uppercase"
         >
-          // contact
+          {t("section_label")}
         </motion.p>
 
         <motion.h2
           variants={itemVariants}
           className="font-mono text-6xl font-bold text-contrast leading-tight"
         >
-          Let's build
-          <br />
-          something.
+          {t("headline")}
         </motion.h2>
 
         <motion.a
@@ -66,7 +67,7 @@ export function ContactCard() {
             rel="noopener noreferrer"
             className="font-mono text-xs text-contrast/32 hover:text-contrast tracking-widest uppercase transition-colors"
           >
-            GitHub
+            {t("github")}
           </a>
           <span className="text-contrast/16 font-mono">—</span>
           <a
@@ -75,7 +76,7 @@ export function ContactCard() {
             rel="noopener noreferrer"
             className="font-mono text-xs text-contrast/32 hover:text-contrast tracking-widest uppercase transition-colors"
           >
-            LinkedIn
+            {t("linkedin")}
           </a>
         </motion.div>
       </motion.div>

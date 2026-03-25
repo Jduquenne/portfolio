@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { passions } from "@/lib/data/passions";
 
 const containerVariants = {
@@ -18,6 +19,8 @@ const itemVariants = {
 };
 
 export function EntropySection() {
+  const t = useTranslations("entropy");
+
   return (
     <section
       id="entropy"
@@ -34,14 +37,14 @@ export function EntropySection() {
           variants={itemVariants}
           className="font-mono text-xs text-accent tracking-widest uppercase"
         >
-          // entropy
+          {t("section_label")}
         </motion.p>
 
         <motion.h2
           variants={itemVariants}
           className="font-mono text-xl font-bold text-contrast"
         >
-          A 90s kid with too many passions to pick one.
+          {t("headline")}
         </motion.h2>
 
         <div className="flex flex-col gap-4">

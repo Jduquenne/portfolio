@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jason D. — Fullstack Developer",
+  title: "Jason Duquenne — Fullstack Developer",
   description:
     "Fullstack developer, 3D / Three.js, game dev. Building precise, human software.",
 };
@@ -25,7 +25,6 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
       className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
