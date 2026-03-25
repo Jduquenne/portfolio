@@ -60,7 +60,7 @@ export function HeroCard() {
         variants={itemVariants}
         initial="hidden"
         animate="visible"
-        className="font-sans text-base text-contrast/32 max-w-lg mb-16"
+        className="font-sans text-contrast/32 max-w-lg mb-16"
       >
         {t("description")}
       </motion.p>

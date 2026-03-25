@@ -53,7 +53,7 @@ export function HeroSection() {
 
         <motion.p
           variants={itemVariants}
-          className="font-sans text-base text-contrast/60 max-w-xs"
+          className="font-sans text-contrast/60 max-w-xs"
         >
           {t("tagline")}
         </motion.p>
