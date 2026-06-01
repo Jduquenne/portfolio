@@ -12,7 +12,7 @@ interface AdventureRouterProps {
 export function AdventureRouter({ repos }: AdventureRouterProps) {
   const { isDesktop } = useDevice();
 
-  if (isDesktop === null) return null;
+  if (isDesktop === null) return <div className="h-full bg-base" />;
 
   return isDesktop ? (
     <DesktopLayout repos={repos} />

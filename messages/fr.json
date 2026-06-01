@@ -1,14 +1,13 @@
 {
   "nav": {
-    "hero": "Accueil",
-    "logic": "Logic",
-    "entropy": "Entropy",
-    "contact": "Contact"
+    "profile": "Profil",
+    "experience": "XP",
+    "stack": "Stack",
+    "projects": "Projets",
+    "entropy": "Entropy"
   },
   "hero": {
     "available": "● Disponible",
-    "tagline": "Développeur fullstack. 3D / Three.js.",
-    "description": "Concevoir des logiciels précis et humains. Autodidacte. JavaScript dans l'âme.",
     "view_work": "Voir mes projets",
     "contact": "Contact"
   },
@@ -20,7 +19,11 @@
   },
   "entropy": {
     "section_label": "// entropy",
-    "headline": "Un enfant des années 90 avec trop de passions pour n'en choisir qu'une."
+    "headline": "Trois spécialisations. Un seul profil."
+  },
+  "experience": {
+    "section_label": "// expérience",
+    "present": "Présent"
   },
   "contact": {
     "section_label": "// contact",

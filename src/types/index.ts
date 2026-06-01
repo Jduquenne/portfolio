@@ -1,4 +1,7 @@
-export type SectionId = "hero" | "logic" | "entropy" | "contact";
+export type Locale = "en" | "fr";
+export type LocalizedString = Record<Locale, string>;
+
+export type SectionId = "profile" | "experience" | "stack" | "projects" | "entropy";
 
 export interface Section {
   id: SectionId;
@@ -11,13 +14,6 @@ export interface Project {
   stack: string[];
   url?: string;
   repo?: string;
-}
-
-export interface Passion {
-  title: string;
-  stat: string;
-  label: string;
-  year?: number;
 }
 
 export interface GitHubRepo {

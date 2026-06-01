@@ -1,8 +1,9 @@
 import { BottomNav } from "@/components/mobile/BottomNav";
-import { HeroSection } from "@/components/mobile/sections/HeroSection";
-import { LogicSection } from "@/components/mobile/sections/LogicSection";
+import { ProfileSection } from "@/components/mobile/sections/ProfileSection";
+import { ExperienceSection } from "@/components/mobile/sections/ExperienceSection";
+import { StackSection } from "@/components/mobile/sections/StackSection";
+import { ProjectsSection } from "@/components/mobile/sections/ProjectsSection";
 import { EntropySection } from "@/components/mobile/sections/EntropySection";
-import { ContactSection } from "@/components/mobile/sections/ContactSection";
 import type { GitHubRepo } from "@/types";
 
 interface MobileLayoutProps {
@@ -13,10 +14,11 @@ export function MobileLayout({ repos }: MobileLayoutProps) {
   return (
     <>
       <main className="h-screen overflow-y-scroll snap-y snap-mandatory bg-base text-contrast font-sans">
-        <HeroSection />
-        <LogicSection repos={repos} />
+        <ProfileSection />
+        <ExperienceSection />
+        <StackSection />
+        <ProjectsSection repos={repos} />
         <EntropySection />
-        <ContactSection />
       </main>
       <BottomNav />
     </>
