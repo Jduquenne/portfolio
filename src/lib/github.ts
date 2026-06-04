@@ -7,8 +7,8 @@ function getHeaders(): HeadersInit {
     Accept: "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
   };
-  if (process.env.GITHUB_TOKEN) {
-    headers["Authorization"] = `Bearer ${process.env.GITHUB_TOKEN}`;
+  if (process.env.GH_TOKEN) {
+    headers["Authorization"] = `Bearer ${process.env.GH_TOKEN}`;
   }
   return headers;
 }
@@ -65,7 +65,7 @@ interface PinnedRepoNode {
 }
 
 async function fetchPinnedRepos(username: string): Promise<GitHubRepo[]> {
-  const token = process.env.GITHUB_TOKEN;
+  const token = process.env.GH_TOKEN;
   if (!token) return [];
 
   const res = await fetch(`${BASE_URL}/graphql`, {
@@ -129,7 +129,7 @@ async function fetchByTopic(username: string): Promise<GitHubRepo[]> {
 }
 
 export async function fetchPortfolioRepos(): Promise<GitHubRepo[]> {
-  const username = process.env.GITHUB_USERNAME;
+  const username = process.env.GH_USERNAME;
   if (!username) return [];
 
   const pinned = await fetchPinnedRepos(username);
