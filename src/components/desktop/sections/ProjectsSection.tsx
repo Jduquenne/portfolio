@@ -47,7 +47,7 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
     >
       <motion.div variants={itemVariants} className="flex items-center gap-4 mb-8">
         <span className="font-mono text-xs text-accent tracking-widest uppercase shrink-0">
-          {t("section_label")}
+          {t("projects_title")}
         </span>
         <div className="flex-1 h-px bg-white/8" />
       </motion.div>

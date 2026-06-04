@@ -37,11 +37,13 @@ export function Sidebar() {
     >
       {/* Avatar + identity */}
       <motion.div variants={itemVariants} className="flex flex-col gap-4">
-        <div className="relative w-24 h-24 shrink-0">
-          <div className="w-full h-full border border-white/12 bg-base flex items-center justify-center">
-            <span className="font-mono text-2xl font-bold text-accent/40">
-              {cv.identity.initials}
-            </span>
+        <div className="relative w-40 h-40 shrink-0">
+          <div className="w-full h-full border border-white/12 overflow-hidden">
+            <img
+              src="/avatar.png"
+              alt={cv.identity.name}
+              className="w-full h-full object-cover"
+            />
           </div>
           <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-accent/60" />
           <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-accent/60" />
@@ -50,7 +52,7 @@ export function Sidebar() {
         </div>
 
         <div className="flex flex-col gap-1">
-          <h1 className="font-mono text-base font-bold text-contrast leading-tight">
+          <h1 className="font-mono font-bold text-contrast leading-tight">
             {cv.identity.name}
           </h1>
           <p className="font-sans text-xs text-contrast/50 leading-relaxed">

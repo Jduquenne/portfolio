@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { cv, localize } from "@/lib/data/cv";
+import { formatDuration } from "@/lib/utils";
 
 const sectionVariants = {
   hidden: {},
@@ -53,17 +54,31 @@ export function ExperienceSection() {
               </div>
               <div className="flex-1 pb-8">
                 <span className="font-mono text-xs text-contrast/24 mb-1 block">
-                  {exp.current
-                    ? `${exp.period} — ${t("present")}`
-                    : exp.period}
+                  {exp.current ? `${exp.period} — ${t("present")}` : exp.period}
+                  {!exp.current && formatDuration(exp.period, locale) && (
+                    <span className="text-accent/50">
+                      {" · "}{formatDuration(exp.period, locale)}
+                    </span>
+                  )}
                 </span>
                 <div className="flex flex-col mb-2">
                   <span className="font-mono text-sm font-bold text-contrast">
                     {localize(exp.role, locale)}
                   </span>
-                  <span className="font-mono text-xs text-contrast/40">
-                    @ {exp.company}
-                  </span>
+                  {exp.website ? (
+                    <a
+                      href={exp.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono text-xs text-contrast/40 hover:text-accent transition-colors"
+                    >
+                      @ {exp.company}
+                    </a>
+                  ) : (
+                    <span className="font-mono text-xs text-contrast/40">
+                      @ {exp.company}
+                    </span>
+                  )}
                 </div>
                 <p className="font-sans text-sm text-contrast/55 leading-relaxed mb-3">
                   {localize(exp.description, locale)}

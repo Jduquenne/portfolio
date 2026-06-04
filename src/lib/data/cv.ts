@@ -1,8 +1,11 @@
 import type { Locale, LocalizedString } from "@/types";
 
-export function localize(value: LocalizedString | string, locale: string): string {
+export function localize(
+  value: LocalizedString | string,
+  locale: string,
+): string {
   if (typeof value === "string") return value;
-  return value[(locale as Locale)] ?? value.en;
+  return value[locale as Locale] ?? value.en;
 }
 
 interface CVIdentity {
@@ -22,6 +25,7 @@ interface CVContact {
 
 interface CVExperience {
   company: string;
+  website?: string;
   role: LocalizedString;
   period: string;
   current?: boolean;
@@ -54,12 +58,12 @@ export const cv: CV = {
     name: "Jason Duquenne",
     initials: "JD",
     subtitle: {
-      en: "Fullstack Developer · 3D / Three.js",
-      fr: "Développeur Fullstack · 3D / Three.js",
+      en: "Fullstack Developer · Javascript",
+      fr: "Développeur Fullstack · Javascript",
     },
     tagline: {
-      en: "Fullstack developer. 3D / Three.js.",
-      fr: "Développeur fullstack. 3D / Three.js.",
+      en: "Fullstack Developer · Javascript.",
+      fr: "Développeur Fullstack · Javascript.",
     },
     description: {
       en: "Building precise, human software. Autodidact. JavaScript at heart.",
@@ -70,39 +74,48 @@ export const cv: CV = {
 
   // ─── Contact ─────────────────────────────────────────────────────────────────
   contact: {
-    email: "your@email.com",
-    github: "https://github.com/YOUR_GITHUB_USERNAME",
-    linkedin: "https://linkedin.com/in/YOUR_LINKEDIN",
+    email: "duquennejason@gmail.com",
+    github: "https://github.com/Jduquenne",
+    linkedin: "https://linkedin.com/in/jasonduquenne",
   },
 
   // ─── Experience ──────────────────────────────────────────────────────────────
   experiences: [
     {
-      company: "Nom de l'entreprise",
+      company: "Dagoma",
+      website: "https://www.dagoma3d.com/",
       role: {
         en: "Fullstack Developer",
         fr: "Développeur Fullstack",
       },
-      period: "2023",
-      current: true,
+      period: "2021 - 2024",
       description: {
-        en: "Describe your mission here. What you built, the impact, key responsibilities. Two sentences is enough.",
-        fr: "Décris ta mission ici. Ce que tu as construit, l'impact, les responsabilités clés. Deux phrases suffisent.",
+        en: "Real-time supervision of an industrial 3D printer farm and embedded control interface for professional machines, built fullstack",
+        fr: "Supervision temps réel d’une ferme d’imprimantes 3D industrielles et interface de contrôle embarquée des machines professionnelles, développées fullstack",
       },
-      stack: ["Next.js", "TypeScript", "React", "Node.js"],
+      stack: [
+        "TypeScript",
+        "React",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Python",
+        "C++",
+      ],
     },
     {
-      company: "Entreprise précédente",
+      company: "Codecare",
+      website: "https://www.codecare.fr/fr/",
       role: {
-        en: "Frontend Developer",
-        fr: "Développeur Frontend",
+        en: "Application Developer - C# - JS",
+        fr: "Développeur d’application - C# - JS",
       },
-      period: "2021 — 2023",
+      period: "2020 — 2021",
       description: {
-        en: "Describe your mission here. Technologies used, notable projects, team.",
-        fr: "Décris ta mission ici. Technologies utilisées, projets marquants, équipe.",
+        en: "Maintenance and evolution of 3 business applications in parallel — C#/.Net backend, Vue.js and Quasar cross-platform interfaces.",
+        fr: "Maintenance et évolution de 3 applications métier en parallèle — C#/.Net côté back, Vue.js et Quasar côté interfaces cross-platform.",
       },
-      stack: ["React", "JavaScript", "Tailwind CSS"],
+      stack: ["VueJs", "Quasar", "Typescript", "C#", ".Net"],
     },
   ],
 
@@ -110,42 +123,32 @@ export const cv: CV = {
   stack: [
     {
       label: "Frontend",
-      items: ["JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS"],
+      items: [
+        "JavaScript",
+        "TypeScript",
+        "Next.js",
+        "React",
+        "Vue.js",
+        "Angular",
+        "Tailwind CSS",
+      ],
     },
     {
       label: "Backend",
-      items: ["Node.js", "Python", "C", "C++"],
+      items: ["Node.js", "Go", "Python", "C", "C++"],
+    },
+    {
+      label: "Tools & Others",
+      items: ["Github", "Gitlab", "Docker", "MongoDB", "SQL", "Linux"],
     },
     {
       label: "3D / Games",
-      items: ["Three.js", "C#", "WebGL"],
+      items: ["Three.js", "WebGL", "Monogame", "Godot", "C#"],
     },
   ],
 
   // ─── Passions / Entropy ──────────────────────────────────────────────────────
   passions: [
-    {
-      stat: "3D",
-      title: {
-        en: "Three.js & WebGL",
-        fr: "Three.js & WebGL",
-      },
-      label: {
-        en: "3D rendering · Shaders · Interactive",
-        fr: "Rendu 3D · Shaders · Interactif",
-      },
-    },
-    {
-      stat: "C#",
-      title: {
-        en: "Game Development",
-        fr: "Développement de jeux",
-      },
-      label: {
-        en: "C# · Simulation · Game design",
-        fr: "C# · Simulation · Game design",
-      },
-    },
     {
       stat: "∞",
       title: {
@@ -153,8 +156,30 @@ export const cv: CV = {
         fr: "Autodidacte",
       },
       label: {
-        en: "JavaScript · Fullstack · Autodidact",
-        fr: "JavaScript · Fullstack · Autodidacte",
+        en: "Dev - Tech - Photography - Electronics - Watchmaking",
+        fr: "Dev - Informatique - Photographie - Electronique - Horlogerie",
+      },
+    },
+    {
+      stat: "3D",
+      title: {
+        en: "Blender & Three.js & WebGL",
+        fr: "Blender & Three.js & WebGL",
+      },
+      label: {
+        en: "3D rendering · Shaders · Interactive",
+        fr: "Rendu 3D · Shaders · Interactif",
+      },
+    },
+    {
+      stat: "6 ans",
+      title: {
+        en: "3D Printing",
+        fr: "Impression 3D",
+      },
+      label: {
+        en: "FDM · CAD · Prototyping · Materials",
+        fr: "FDM · CAO · Prototypage · Matériaux",
       },
     },
   ],
