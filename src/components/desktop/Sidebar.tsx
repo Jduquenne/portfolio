@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
 import { cv, localize } from "@/lib/data/cv";
@@ -39,9 +40,11 @@ export function Sidebar() {
       <motion.div variants={itemVariants} className="flex flex-col gap-4">
         <div className="relative w-40 h-40 shrink-0">
           <div className="w-full h-full border border-white/12 overflow-hidden">
-            <img
+            <Image
               src="/avatar.png"
               alt={cv.identity.name}
+              width={160}
+              height={160}
               className="w-full h-full object-cover"
             />
           </div>
