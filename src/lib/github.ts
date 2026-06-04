@@ -78,7 +78,7 @@ async function fetchPinnedRepos(username: string): Promise<GitHubRepo[]> {
       query: PINNED_REPOS_QUERY,
       variables: { login: username },
     }),
-    next: { revalidate: 3600 },
+    cache: "force-cache",
   });
 
   if (!res.ok) return [];
@@ -115,7 +115,7 @@ async function fetchByTopic(username: string): Promise<GitHubRepo[]> {
     `${BASE_URL}/search/repositories?q=user:${username}+topic:portfolio&sort=updated&per_page=12`,
     {
       headers: getHeaders(),
-      next: { revalidate: 3600 },
+      cache: "force-cache",
     }
   );
 
