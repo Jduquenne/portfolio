@@ -42,7 +42,7 @@ export function ProfileSection() {
           <div className="relative w-40 h-40 shrink-0">
             <div className="w-full h-full border border-white/12 overflow-hidden">
               <Image
-                src="/avatar.png"
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/avatar.png`}
                 alt={cv.identity.name}
                 width={160}
                 height={160}
