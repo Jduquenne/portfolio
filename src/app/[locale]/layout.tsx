@@ -47,7 +47,7 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body className="h-full" suppressHydrationWarning>
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
       </body>

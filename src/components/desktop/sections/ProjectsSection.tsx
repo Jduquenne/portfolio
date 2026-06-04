@@ -161,7 +161,7 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
                   ) : (
                     <span />
                   )}
-                  <span className="font-mono text-[10px] text-contrast/24">
+                  <span suppressHydrationWarning className="font-mono text-[10px] text-contrast/24">
                     {relativeTime(repo.updated_at, locale)}
                   </span>
                 </div>
