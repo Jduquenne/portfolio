@@ -4,20 +4,21 @@ import { ExperienceSection } from "@/components/mobile/sections/ExperienceSectio
 import { StackSection } from "@/components/mobile/sections/StackSection";
 import { ProjectsSection } from "@/components/mobile/sections/ProjectsSection";
 import { PassionsSection } from "@/components/mobile/sections/PassionsSection";
-import type { GitHubRepo } from "@/types";
+import type { GitHubRepo, RepoStats } from "@/types";
 
 interface MobileLayoutProps {
   repos: GitHubRepo[];
+  stats: RepoStats | null;
 }
 
-export function MobileLayout({ repos }: MobileLayoutProps) {
+export function MobileLayout({ repos, stats }: MobileLayoutProps) {
   return (
     <>
       <main className="h-screen overflow-y-scroll snap-y snap-mandatory bg-base text-contrast font-sans">
         <ProfileSection />
         <ExperienceSection />
         <StackSection />
-        <ProjectsSection repos={repos} />
+        <ProjectsSection repos={repos} stats={stats} />
         <PassionsSection />
       </main>
       <BottomNav />

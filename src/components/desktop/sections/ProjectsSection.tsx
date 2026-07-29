@@ -3,9 +3,10 @@
 import { motion } from "framer-motion";
 import { ExternalLink, GitBranch, Globe, Star } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import type { GitHubRepo } from "@/types";
+import type { GitHubRepo, RepoStats } from "@/types";
 import { LANG_COLORS } from "@/lib/languages";
 import { relativeTime } from "@/lib/utils";
+import { RepoStatsReadout } from "@/components/shared/RepoStatsReadout";
 
 const sectionVariants = {
   hidden: {},
@@ -29,11 +30,26 @@ const accentBarVariants = {
   },
 };
 
+const topicsVariants = {
+  rest: { opacity: 1 },
+  hover: { opacity: 0, transition: { duration: 0.12 } },
+};
+
+const descriptionVariants = {
+  rest: { opacity: 0, y: 8 },
+  hover: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring" as const, stiffness: 260, damping: 26 },
+  },
+};
+
 interface ProjectsSectionProps {
   repos: GitHubRepo[];
+  stats: RepoStats | null;
 }
 
-export function ProjectsSection({ repos }: ProjectsSectionProps) {
+export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
   const t = useTranslations("logic");
   const locale = useLocale();
 
@@ -50,11 +66,12 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
           {t("projects_title")}
         </span>
         <div className="flex-1 h-px bg-white/8" />
+        {stats && <RepoStatsReadout stats={stats} className="shrink-0" />}
       </motion.div>
 
       {repos.length === 0 ? (
         <motion.p variants={itemVariants} className="font-mono text-xs text-contrast/24">
-          {t("empty_repos", { topic: "portfolio" })}
+          {t("empty_repos")}
         </motion.p>
       ) : (
         <motion.div variants={sectionVariants} className="grid grid-cols-2 gap-4">
@@ -63,7 +80,7 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
               <motion.div
                 initial="rest"
                 whileHover="hover"
-                className="relative h-full border border-white/8 hover:border-accent/20 bg-surface flex flex-col gap-3 p-4 overflow-hidden transition-colors duration-200"
+                className="relative h-44 border border-white/8 hover:border-accent/20 bg-surface flex flex-col gap-4 p-4 overflow-hidden transition-colors duration-200"
               >
                 {/* Spring bar on hover */}
                 <motion.div
@@ -74,14 +91,14 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
 
                 {/* Name + links */}
                 <div className="flex items-start justify-between gap-2">
-                  <div className="min-w-0 flex flex-col">
+                  <div className="min-w-0 flex items-baseline gap-2">
                     <p className="font-mono text-xs font-bold text-contrast leading-tight truncate">
                       {repo.name}
                     </p>
                     {repo.fork && (
-                      <p className="font-mono text-[10px] text-contrast/24 leading-none mt-1">
+                      <span className="font-mono text-[10px] text-contrast/24 shrink-0">
                         {t("fork")}
-                      </p>
+                      </span>
                     )}
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
@@ -95,20 +112,20 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
                       href={repo.html_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-contrast/24 hover:text-accent transition-colors"
+                      className="text-contrast/50 hover:text-accent transition-colors p-1 -m-1"
                       title={t("link_repo")}
                     >
-                      <GitBranch size={12} />
+                      <GitBranch size={14} />
                     </a>
                     {repo.pages_url && (
                       <a
                         href={repo.pages_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-contrast/24 hover:text-accent transition-colors"
+                        className="text-contrast/50 hover:text-accent transition-colors p-1 -m-1"
                         title={t("link_pages")}
                       >
-                        <Globe size={12} />
+                        <Globe size={14} />
                       </a>
                     )}
                     {repo.homepage && repo.homepage !== repo.pages_url && (
@@ -116,38 +133,44 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
                         href={repo.homepage}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-contrast/24 hover:text-accent transition-colors"
+                        className="text-contrast/50 hover:text-accent transition-colors p-1 -m-1"
                         title={t("link_live")}
                       >
-                        <ExternalLink size={12} />
+                        <ExternalLink size={14} />
                       </a>
                     )}
                   </div>
                 </div>
 
-                {/* Description */}
-                {repo.description && (
-                  <p className="font-sans text-xs text-contrast/50 leading-relaxed line-clamp-2">
-                    {repo.description}
-                  </p>
-                )}
-
-                {/* Topics */}
-                {repo.topics.length > 0 && (
-                  <div className="flex flex-wrap gap-1">
-                    {repo.topics.slice(0, 4).map((topic) => (
-                      <span
-                        key={topic}
-                        className="font-mono text-[10px] text-contrast/32 border border-white/8 px-2 py-px leading-4"
-                      >
-                        {topic}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                {/* Topics at rest, description on hover — same slot, fixed height */}
+                <div className="relative flex-1 overflow-hidden">
+                  {repo.topics.length > 0 && (
+                    <motion.div
+                      variants={repo.description ? topicsVariants : undefined}
+                      className="absolute inset-0 flex flex-wrap items-start content-start gap-1"
+                    >
+                      {repo.topics.slice(0, 4).map((topic) => (
+                        <span
+                          key={topic}
+                          className="font-mono text-[10px] text-contrast/32 border border-white/8 px-2 py-px leading-4"
+                        >
+                          {topic}
+                        </span>
+                      ))}
+                    </motion.div>
+                  )}
+                  {repo.description && (
+                    <motion.p
+                      variants={descriptionVariants}
+                      className="absolute inset-0 font-sans text-xs text-contrast/60 leading-relaxed line-clamp-3"
+                    >
+                      {repo.description}
+                    </motion.p>
+                  )}
+                </div>
 
                 {/* Footer: language + date */}
-                <div className="flex items-center justify-between mt-auto pt-2 border-t border-white/4">
+                <div className="flex items-center justify-between pt-2 border-t border-white/4">
                   {repo.language ? (
                     <span className="flex items-center gap-2 font-mono text-[10px] text-contrast/40">
                       <span
@@ -162,7 +185,7 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
                     <span />
                   )}
                   <span suppressHydrationWarning className="font-mono text-[10px] text-contrast/24">
-                    {relativeTime(repo.updated_at, locale)}
+                    {relativeTime(repo.pushed_at, locale)}
                   </span>
                 </div>
               </motion.div>

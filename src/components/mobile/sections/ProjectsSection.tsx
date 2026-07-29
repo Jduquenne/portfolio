@@ -3,9 +3,10 @@
 import { motion } from "framer-motion";
 import { ExternalLink, GitBranch, Globe, Star } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import type { GitHubRepo } from "@/types";
+import type { GitHubRepo, RepoStats } from "@/types";
 import { LANG_COLORS } from "@/lib/languages";
 import { relativeTime } from "@/lib/utils";
+import { RepoStatsReadout } from "@/components/shared/RepoStatsReadout";
 
 const sectionVariants = {
   hidden: {},
@@ -23,9 +24,10 @@ const itemVariants = {
 
 interface ProjectsSectionProps {
   repos: GitHubRepo[];
+  stats: RepoStats | null;
 }
 
-export function ProjectsSection({ repos }: ProjectsSectionProps) {
+export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
   const t = useTranslations("logic");
   const locale = useLocale();
 
@@ -46,9 +48,15 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
           <div className="flex-1 h-px bg-white/8" />
         </motion.div>
 
+        {stats && (
+          <motion.div variants={itemVariants}>
+            <RepoStatsReadout stats={stats} />
+          </motion.div>
+        )}
+
         {repos.length === 0 ? (
           <motion.p variants={itemVariants} className="font-mono text-xs text-contrast/24">
-            {t("empty_repos", { topic: "portfolio" })}
+            {t("empty_repos")}
           </motion.p>
         ) : (
           repos.map((repo) => (
@@ -81,7 +89,7 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
                       href={repo.html_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-contrast/32 active:text-accent transition-colors p-1 -m-1"
+                      className="text-contrast/50 active:text-accent transition-colors p-1 -m-1"
                       title={t("link_repo")}
                     >
                       <GitBranch size={16} />
@@ -91,7 +99,7 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
                         href={repo.pages_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-contrast/32 active:text-accent transition-colors p-1 -m-1"
+                        className="text-contrast/50 active:text-accent transition-colors p-1 -m-1"
                         title={t("link_pages")}
                       >
                         <Globe size={16} />
@@ -102,7 +110,7 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
                         href={repo.homepage}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-contrast/32 active:text-accent transition-colors p-1 -m-1"
+                        className="text-contrast/50 active:text-accent transition-colors p-1 -m-1"
                         title={t("link_live")}
                       >
                         <ExternalLink size={16} />
@@ -149,7 +157,7 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
                   <span />
                 )}
                 <span suppressHydrationWarning className="font-mono text-[10px] text-contrast/24">
-                  {relativeTime(repo.updated_at, locale)}
+                  {relativeTime(repo.pushed_at, locale)}
                 </span>
               </div>
             </motion.div>

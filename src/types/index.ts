@@ -16,6 +16,13 @@ export interface Project {
   repo?: string;
 }
 
+export interface RepoStats {
+  total: number;
+  public: number;
+  private: number;
+  forks: number;
+}
+
 export interface GitHubRepo {
   id: number;
   name: string;
@@ -26,6 +33,6 @@ export interface GitHubRepo {
   topics: string[];
   language: string | null;
   stargazers_count: number;
-  updated_at: string;
+  pushed_at: string;
   fork: boolean;
 }
