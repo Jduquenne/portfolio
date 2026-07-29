@@ -10,10 +10,11 @@ A portfolio that is not a simple showcase, but a demonstration of software engin
 
 | Layer      | Technology                                |
 | ---------- | ----------------------------------------- |
-| Framework  | Next.js 15 (App Router)                   |
+| Framework  | Next.js 16 (App Router)                   |
 | Language   | TypeScript (strict mode)                  |
 | Styling    | Tailwind CSS v4                           |
 | Animations | Framer Motion                             |
+| i18n       | next-intl — `fr` (default) + `en`         |
 | Fonts      | `next/font` — Geist Mono + Inter Variable |
 | Icons      | Lucide React                              |
 | Linting    | ESLint + Prettier                         |
@@ -89,12 +90,45 @@ Use Tailwind classes exclusively: `p-2` (8px), `p-4` (16px), `p-8` (32px), etc.
 
 ## 🧩 Portfolio Sections
 
-| Section     | Key Concept                                                        |
-| ----------- | ------------------------------------------------------------------ |
-| **Hero**    | Identity + instant hook, entrance animation                        |
-| **Logic**   | Tech stack, projects, GitHub Activity (custom 3D graph)            |
-| **Entropy** | Passions as data — numbers, sharp images, metadata. Zero long text |
-| **Contact** | Minimal CTA                                                        |
+| Section        | Key Concept                                                            |
+| -------------- | ---------------------------------------------------------------------- |
+| **Profile**    | Identity, availability, contact — sidebar on desktop, first card on mobile |
+| **Experience** | Timeline from `cv.ts` — roles, periods, stacks                         |
+| **Stack**      | Technical categories from `cv.ts`                                      |
+| **Projects**   | GitHub repos fetched at build time, most recently pushed first         |
+| **Passions**   | Specialities as data — numbers, metadata. Zero long text               |
+
+`SectionId` in `src/types/index.ts` is the single source of truth for section ids and
+must stay in sync with the `nav.*` translation keys.
+
+---
+
+## 🔌 Data & Deployment
+
+**Static export.** `output: "export"` in production, deployed to GitHub Pages under
+`basePath: /portfolio`. There is no server at runtime — everything resolves at build time.
+Anything that must stay fresh requires a redeploy.
+
+**CV data** lives in `src/lib/data/cv.ts`. Every translatable field is a
+`LocalizedString` (`{ en, fr }`) read through `localize()`.
+
+**GitHub data** is fetched at build time in `src/lib/github.ts`, in a single GraphQL
+request. The Projects section lists the `REPO_COUNT` most recently pushed repos — owned,
+public, forks excluded. The repo counters apply the same filters, so the displayed number
+always describes the listed set.
+
+| Variable      | Purpose                          |
+| ------------- | -------------------------------- |
+| `GH_USERNAME` | GitHub account to read           |
+| `GH_TOKEN`    | Fine-grained PAT (see below)     |
+
+Set both in `.env.local` locally and as Actions secrets for CI. The token needs
+**`Metadata: read-only`** (repo listing + public/private counters) and
+**`Deployments: read-only`** (resolves GitHub Pages URLs), on all repositories.
+Never grant `Contents` — the build has no reason to read source code.
+
+If the token is missing or rejected, the build falls back to an unauthenticated REST
+call and warns on stdout: repos still list, counters and Pages links disappear.
 
 ---
 
@@ -107,6 +141,7 @@ Use Tailwind classes exclusively: `p-2` (8px), `p-4` (16px), `p-8` (32px), etc.
 - **Animations:** All Framer Motion variants defined outside JSX (in `const` above the component)
 - **No `any`:** Strict TypeScript, zero compromise
 - **Language:** All code, comments, variable names, and commit messages must be written in English
+- **i18n:** No user-facing string in a component — UI text goes in `messages/{en,fr}.json` and is read with `useTranslations`; content data goes in `cv.ts` as `LocalizedString`. Both files must keep identical key sets. Use ICU plurals rather than building plurals in code
 
 ---
 
@@ -129,6 +164,8 @@ Use Tailwind classes exclusively: `p-2` (8px), `p-4` (16px), `p-8` (32px), etc.
 - Introduce global state without a clear reason
 - Mix desktop and mobile logic in the same component
 - Use spacing values outside the 8px grid (e.g. `p-3`, `mt-5`)
+- Hardcode user-facing text in a component, including `title` and `alt` attributes
+- Call `setState` inside an effect to mirror an external source — subscribe with `useSyncExternalStore` instead
 
 ### Development philosophy
 

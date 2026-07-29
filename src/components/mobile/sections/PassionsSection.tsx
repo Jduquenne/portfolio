@@ -46,9 +46,9 @@ export function PassionsSection() {
           <motion.div
             key={passion.stat}
             variants={itemVariants}
-            className="p-4 bg-surface border border-white/8 flex items-center gap-6"
+            className="p-4 bg-surface border border-white/8 flex items-center gap-4"
           >
-            <span className="font-mono text-4xl font-bold text-contrast leading-none w-16 shrink-0">
+            <span className="font-mono text-2xl font-bold text-contrast leading-none w-20 shrink-0 whitespace-nowrap">
               {passion.stat}
             </span>
             <div className="flex flex-col gap-1">
