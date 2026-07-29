@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import type { SectionId } from "@/types";
 
-const sectionIds: SectionId[] = ["profile", "experience", "stack", "projects", "entropy"];
+const sectionIds: SectionId[] = ["profile", "experience", "stack", "projects", "passions"];
 
 export function BottomNav() {
   const t = useTranslations("nav");

@@ -4,7 +4,7 @@
     "experience": "XP",
     "stack": "Stack",
     "projects": "Projects",
-    "entropy": "Entropy"
+    "passions": "Passions"
   },
   "hero": {
     "available": "● Available for work",
@@ -13,17 +13,23 @@
   },
   "logic": {
     "section_label": "// logic",
+    "stack_label": "// stack",
     "stack_title": "Stack",
     "projects_title": "Projects",
-    "empty_repos": "Add the {topic} topic to your GitHub repos to display them here."
+    "empty_repos": "Add the {topic} topic to your GitHub repos to display them here.",
+    "fork": "fork",
+    "link_repo": "GitHub repository",
+    "link_pages": "GitHub Pages",
+    "link_live": "Live site"
   },
-  "entropy": {
-    "section_label": "// entropy",
+  "passions": {
+    "section_label": "// passions",
     "headline": "Three specializations. One profile."
   },
   "experience": {
     "section_label": "// experience",
-    "present": "Present"
+    "present": "Present",
+    "duration": "{years, plural, one {# year} other {# years}}"
   },
   "contact": {
     "section_label": "// contact",

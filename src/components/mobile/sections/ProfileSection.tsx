@@ -47,6 +47,8 @@ export function ProfileSection() {
                 width={160}
                 height={160}
                 className="w-full h-full object-cover"
+                priority
+                loading="eager"
               />
             </div>
             <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-accent/60" />
@@ -78,7 +80,7 @@ export function ProfileSection() {
 
         <motion.div variants={itemVariants} className="flex flex-col gap-3">
           <span className="font-mono text-xs text-contrast/24 tracking-widest uppercase">
-            // contact
+            {tc("section_label")}
           </span>
           <a
             href={`mailto:${cv.contact.email}`}

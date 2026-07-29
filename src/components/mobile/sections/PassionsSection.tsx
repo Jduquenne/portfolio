@@ -18,13 +18,13 @@ const itemVariants = {
   },
 };
 
-export function EntropySection() {
+export function PassionsSection() {
   const locale = useLocale();
-  const t = useTranslations("entropy");
+  const t = useTranslations("passions");
 
   return (
     <motion.section
-      id="entropy"
+      id="passions"
       className="h-screen snap-start overflow-y-auto shrink-0 bento-scroll"
       variants={sectionVariants}
       initial="hidden"
@@ -46,7 +46,7 @@ export function EntropySection() {
           <motion.div
             key={passion.stat}
             variants={itemVariants}
-            className="p-5 bg-surface border border-white/8 flex items-center gap-6"
+            className="p-4 bg-surface border border-white/8 flex items-center gap-6"
           >
             <span className="font-mono text-4xl font-bold text-contrast leading-none w-16 shrink-0">
               {passion.stat}

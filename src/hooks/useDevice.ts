@@ -1,20 +1,37 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 const DESKTOP_BREAKPOINT = 1024;
+const QUERY = `(min-width: ${DESKTOP_BREAKPOINT}px)`;
+
+let mediaQueryList: MediaQueryList | null = null;
+
+function getMediaQueryList() {
+  mediaQueryList ??= window.matchMedia(QUERY);
+  return mediaQueryList;
+}
+
+function subscribe(onStoreChange: () => void) {
+  const mql = getMediaQueryList();
+  mql.addEventListener("change", onStoreChange);
+  return () => mql.removeEventListener("change", onStoreChange);
+}
+
+function getSnapshot(): boolean {
+  return getMediaQueryList().matches;
+}
+
+function getServerSnapshot(): boolean | null {
+  return null;
+}
 
 export function useDevice() {
-  const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    const mql = window.matchMedia(`(min-width: ${DESKTOP_BREAKPOINT}px)`);
-    setIsDesktop(mql.matches);
-
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
-    mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
-  }, []);
+  const isDesktop = useSyncExternalStore<boolean | null>(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
 
   return { isDesktop, isMobile: isDesktop === false };
 }

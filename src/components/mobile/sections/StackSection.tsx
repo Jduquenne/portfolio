@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
-import { cv } from "@/lib/data/cv";
+import { useLocale, useTranslations } from "next-intl";
+import { cv, localize } from "@/lib/data/cv";
 
 const sectionVariants = {
   hidden: {},
@@ -19,6 +19,7 @@ const itemVariants = {
 };
 
 export function StackSection() {
+  const locale = useLocale();
   const t = useTranslations("logic");
 
   return (
@@ -43,12 +44,12 @@ export function StackSection() {
 
         {cv.stack.map((category) => (
           <motion.div
-            key={category.label}
+            key={category.label.en}
             variants={itemVariants}
             className="flex flex-col gap-2"
           >
             <span className="font-mono text-xs text-contrast/24 tracking-widest uppercase">
-              {category.label}
+              {localize(category.label, locale)}
             </span>
             <div className="flex flex-wrap gap-2">
               {category.items.map((item) => (

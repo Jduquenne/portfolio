@@ -4,17 +4,14 @@ export function cn(
   return classes.filter(Boolean).join(" ");
 }
 
-export function formatDuration(period: string, locale: string): string | null {
+export function yearsBetween(period: string): number | null {
   const parts = period.split(/\s*[–—\-]+\s*/);
   if (parts.length !== 2) return null;
   const start = parseInt(parts[0]);
   const end = parseInt(parts[1]);
   if (isNaN(start) || isNaN(end)) return null;
   const years = end - start;
-  if (years <= 0) return null;
-  return locale === "fr"
-    ? `${years} an${years > 1 ? "s" : ""}`
-    : `${years} year${years > 1 ? "s" : ""}`;
+  return years > 0 ? years : null;
 }
 
 export function relativeTime(dateStr: string, locale: string): string {

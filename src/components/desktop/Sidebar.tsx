@@ -28,6 +28,7 @@ export function Sidebar() {
   const locale = useLocale();
   const t = useTranslations("hero");
   const tc = useTranslations("contact");
+  const tl = useTranslations("logic");
 
   return (
     <motion.aside
@@ -46,6 +47,8 @@ export function Sidebar() {
               width={160}
               height={160}
               className="w-full h-full object-cover"
+              priority
+              loading="eager"
             />
           </div>
           <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-accent/60" />
@@ -76,7 +79,7 @@ export function Sidebar() {
       {/* Contact */}
       <motion.div variants={itemVariants} className="flex flex-col gap-3">
         <span className="font-mono text-xs text-contrast/24 tracking-widest uppercase">
-          // contact
+          {tc("section_label")}
         </span>
         <div className="flex flex-col gap-2">
           <a
@@ -109,13 +112,13 @@ export function Sidebar() {
       {/* Stack */}
       <motion.div variants={itemVariants} className="flex flex-col gap-4">
         <span className="font-mono text-xs text-contrast/24 tracking-widest uppercase">
-          // stack
+          {tl("stack_label")}
         </span>
         <div className="flex flex-col gap-4">
           {cv.stack.map((category) => (
-            <div key={category.label} className="flex flex-col gap-2">
+            <div key={category.label.en} className="flex flex-col gap-2">
               <span className="font-mono text-xs text-contrast/24 uppercase tracking-widest">
-                {category.label}
+                {localize(category.label, locale)}
               </span>
               <div className="flex flex-wrap gap-1">
                 {category.items.map((item) => (

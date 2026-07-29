@@ -3,7 +3,7 @@ import { ProfileSection } from "@/components/mobile/sections/ProfileSection";
 import { ExperienceSection } from "@/components/mobile/sections/ExperienceSection";
 import { StackSection } from "@/components/mobile/sections/StackSection";
 import { ProjectsSection } from "@/components/mobile/sections/ProjectsSection";
-import { EntropySection } from "@/components/mobile/sections/EntropySection";
+import { PassionsSection } from "@/components/mobile/sections/PassionsSection";
 import type { GitHubRepo } from "@/types";
 
 interface MobileLayoutProps {
@@ -18,7 +18,7 @@ export function MobileLayout({ repos }: MobileLayoutProps) {
         <ExperienceSection />
         <StackSection />
         <ProjectsSection repos={repos} />
-        <EntropySection />
+        <PassionsSection />
       </main>
       <BottomNav />
     </>

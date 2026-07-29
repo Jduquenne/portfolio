@@ -1,12 +1,17 @@
-"use client";
+import { routing } from "@/i18n/routing";
 
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+const target = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/${routing.defaultLocale}/`;
 
 export default function RootPage() {
-  const router = useRouter();
-  useEffect(() => {
-    router.replace("/fr");
-  }, [router]);
-  return null;
+  return (
+    <html lang={routing.defaultLocale}>
+      <head>
+        <meta httpEquiv="refresh" content={`0; url=${target}`} />
+        <link rel="canonical" href={target} />
+      </head>
+      <body>
+        <a href={target}>Jason Duquenne — Portfolio</a>
+      </body>
+    </html>
+  );
 }

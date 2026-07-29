@@ -34,7 +34,7 @@ interface CVExperience {
 }
 
 interface CVStackCategory {
-  label: string;
+  label: LocalizedString;
   items: string[];
 }
 
@@ -122,7 +122,7 @@ export const cv: CV = {
   // ─── Stack ───────────────────────────────────────────────────────────────────
   stack: [
     {
-      label: "Frontend",
+      label: { en: "Frontend", fr: "Frontend" },
       items: [
         "JavaScript",
         "TypeScript",
@@ -134,20 +134,20 @@ export const cv: CV = {
       ],
     },
     {
-      label: "Backend",
+      label: { en: "Backend", fr: "Backend" },
       items: ["Node.js", "Go", "Python", "C", "C++"],
     },
     {
-      label: "Tools & Others",
+      label: { en: "Tools & Others", fr: "Outils & Autres" },
       items: ["Github", "Gitlab", "Docker", "MongoDB", "SQL", "Linux"],
     },
     {
-      label: "3D / Games",
+      label: { en: "3D / Games", fr: "3D / Jeux" },
       items: ["Three.js", "WebGL", "Monogame", "Godot", "C#"],
     },
   ],
 
-  // ─── Passions / Entropy ──────────────────────────────────────────────────────
+  // ─── Passions ────────────────────────────────────────────────────────────────
   passions: [
     {
       stat: "∞",

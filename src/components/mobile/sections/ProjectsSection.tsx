@@ -65,7 +65,7 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
                   </p>
                   {repo.fork && (
                     <span className="font-mono text-[10px] text-contrast/24 shrink-0">
-                      fork
+                      {t("fork")}
                     </span>
                   )}
                 </div>
@@ -82,7 +82,7 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-contrast/32 active:text-accent transition-colors p-1 -m-1"
-                      title="GitHub"
+                      title={t("link_repo")}
                     >
                       <GitBranch size={16} />
                     </a>
@@ -92,7 +92,7 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-contrast/32 active:text-accent transition-colors p-1 -m-1"
-                        title="GitHub Pages"
+                        title={t("link_pages")}
                       >
                         <Globe size={16} />
                       </a>
@@ -103,7 +103,7 @@ export function ProjectsSection({ repos }: ProjectsSectionProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-contrast/32 active:text-accent transition-colors p-1 -m-1"
-                        title="Live"
+                        title={t("link_live")}
                       >
                         <ExternalLink size={16} />
                       </a>

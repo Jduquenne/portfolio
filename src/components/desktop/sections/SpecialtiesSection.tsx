@@ -20,11 +20,11 @@ const itemVariants = {
 
 export function SpecialtiesSection() {
   const locale = useLocale();
-  const t = useTranslations("entropy");
+  const t = useTranslations("passions");
 
   return (
     <motion.section
-      id="entropy"
+      id="passions"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
