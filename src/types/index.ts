@@ -1,7 +1,13 @@
 export type Locale = "en" | "fr";
 export type LocalizedString = Record<Locale, string>;
 
-export type SectionId = "profile" | "experience" | "stack" | "projects" | "passions";
+export type SectionId =
+  | "profile"
+  | "experience"
+  | "stack"
+  | "projects"
+  | "passions"
+  | "play";
 
 export interface Section {
   id: SectionId;

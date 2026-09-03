@@ -4,13 +4,15 @@
     "experience": "XP",
     "stack": "Stack",
     "projects": "Projets",
-    "passions": "Passions"
+    "passions": "Passions",
+    "play": "Jouer"
   },
   "hero": {
     "available": "● Disponible",
     "view_work": "Voir mes projets",
     "contact": "Contact",
-    "latest_activity": "Dernière activité"
+    "latest_activity": "Dernière activité",
+    "back_to_top": "Retour en haut"
   },
   "logic": {
     "section_label": "// logic",
@@ -34,6 +36,18 @@
     "section_label": "// expérience",
     "present": "Présent",
     "duration": "{years, plural, one {# an} other {# ans}}"
+  },
+  "toy": {
+    "label": "// lights out",
+    "section_label": "// let's play",
+    "play": "Jouer",
+    "close": "Fermer",
+    "hint": "Éteins toutes les cases",
+    "moves": "{count, plural, one {# coup} other {# coups}}",
+    "solved": "Résolu en {count, plural, one {# coup} other {# coups}}",
+    "reset": "Mélanger",
+    "cell": "Ligne {row}, colonne {col}",
+    "size": "Grille {n}×{n}"
   },
   "contact": {
     "section_label": "// contact",
