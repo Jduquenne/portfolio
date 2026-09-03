@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
+import { ExperienceDescription } from "@/components/shared/ExperienceDescription";
 import { cv, localize } from "@/lib/data/cv";
-import { yearsBetween } from "@/lib/utils";
+import { experienceYears } from "@/lib/utils";
 
 const sectionVariants = {
   hidden: {},
@@ -43,7 +44,7 @@ export function ExperienceSection() {
 
       <div className="flex flex-col">
         {cv.experiences.map((exp, i) => {
-          const years = exp.current ? null : yearsBetween(exp.period);
+          const years = experienceYears(exp.period, exp.current);
 
           return (
             <motion.div key={i} variants={itemVariants} className="flex gap-6">
@@ -67,11 +68,11 @@ export function ExperienceSection() {
                         rel="noopener noreferrer"
                         className="font-mono text-xs text-contrast/32 hover:text-accent transition-colors"
                       >
-                        @ {exp.company}
+                        @ {localize(exp.company, locale)}
                       </a>
                     ) : (
                       <span className="font-mono text-xs text-contrast/32">
-                        @ {exp.company}
+                        @ {localize(exp.company, locale)}
                       </span>
                     )}
                   </div>
@@ -89,7 +90,10 @@ export function ExperienceSection() {
                 </div>
 
                 <p className="font-sans text-sm text-contrast/55 leading-relaxed mb-3">
-                  {localize(exp.description, locale)}
+                  <ExperienceDescription
+                    text={localize(exp.description, locale)}
+                    links={exp.links}
+                  />
                 </p>
 
                 <div className="flex flex-wrap gap-1">

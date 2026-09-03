@@ -14,6 +14,17 @@ export function yearsBetween(period: string): number | null {
   return years > 0 ? years : null;
 }
 
+export function experienceYears(
+  period: string,
+  current?: boolean,
+): number | null {
+  if (!current) return yearsBetween(period);
+  const start = parseInt(period);
+  if (isNaN(start)) return null;
+  const years = new Date().getFullYear() - start;
+  return years > 0 ? years : null;
+}
+
 export function relativeTime(dateStr: string, locale: string): string {
   const diff = Date.now() - new Date(dateStr).getTime();
   const rtf = new Intl.RelativeTimeFormat(locale, { numeric: "auto" });
