@@ -66,6 +66,14 @@ export function ProfileSection() {
           </div>
         </motion.div>
 
+        <motion.p
+          variants={itemVariants}
+          className="font-mono text-xl leading-[1.35] text-balance text-contrast"
+        >
+          {localize(cv.identity.description, locale)}
+          <span className="hero-caret" aria-hidden="true" />
+        </motion.p>
+
         <motion.div
           variants={itemVariants}
           className="flex items-center justify-between"

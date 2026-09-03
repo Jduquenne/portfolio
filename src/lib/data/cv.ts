@@ -72,8 +72,8 @@ export const cv: CV = {
       fr: "Développeur Fullstack · Javascript.",
     },
     description: {
-      en: "Building precise, human software. Autodidact. JavaScript at heart.",
-      fr: "Concevoir des logiciels précis et humains. Autodidacte. JavaScript dans l'âme.",
+      en: "An engineer's rigor, the intent to be useful. I build tools you use without thinking about them.",
+      fr: "La rigueur d'un ingénieur, l'intention de rendre service. Je construis des outils qu'on utilise sans y penser.",
     },
     available: true,
   },

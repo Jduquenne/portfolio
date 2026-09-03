@@ -9,7 +9,8 @@
   "hero": {
     "available": "● Available for work",
     "view_work": "View Work",
-    "contact": "Contact"
+    "contact": "Contact",
+    "latest_activity": "Latest activity"
   },
   "logic": {
     "section_label": "// logic",
