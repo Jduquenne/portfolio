@@ -8,11 +8,17 @@ export function localize(
   return value[locale as Locale] ?? value.en;
 }
 
+interface CVLanguage {
+  name: LocalizedString;
+  level: LocalizedString;
+}
+
 interface CVIdentity {
   name: string;
-  initials: string;
+  birthDate: string;
+  drivingLicence: string;
+  languages: CVLanguage[];
   subtitle: LocalizedString;
-  tagline: LocalizedString;
   description: LocalizedString;
   available: boolean;
 }
@@ -50,26 +56,40 @@ interface CVPassion {
   label: LocalizedString;
 }
 
+interface CVEducation {
+  title: LocalizedString;
+  school: string;
+  period: string;
+}
+
 interface CV {
   identity: CVIdentity;
   contact: CVContact;
   experiences: CVExperience[];
   stack: CVStackCategory[];
   passions: CVPassion[];
+  education: CVEducation[];
 }
 
 export const cv: CV = {
   // ─── Identity ────────────────────────────────────────────────────────────────
   identity: {
     name: "Jason Duquenne",
-    initials: "JD",
+    birthDate: "1992-09-14",
+    drivingLicence: "B",
+    languages: [
+      {
+        name: { en: "French", fr: "Français" },
+        level: { en: "Native", fr: "Maternelle" },
+      },
+      {
+        name: { en: "English", fr: "Anglais" },
+        level: { en: "B2", fr: "B2" },
+      },
+    ],
     subtitle: {
       en: "Fullstack Developer · Javascript",
       fr: "Développeur Fullstack · Javascript",
-    },
-    tagline: {
-      en: "Fullstack Developer · Javascript.",
-      fr: "Développeur Fullstack · Javascript.",
     },
     description: {
       en: "An engineer's rigor, the intent to be useful. I build tools you use without thinking about them.",
@@ -243,6 +263,42 @@ export const cv: CV = {
         en: "FDM · CAD · Prototyping · Materials",
         fr: "FDM · CAO · Prototypage · Matériaux",
       },
+    },
+  ],
+
+  // ─── Education ───────────────────────────────────────────────────────────────
+  education: [
+    {
+      title: {
+        en: "Frontend Developer — work-study",
+        fr: "Développeur frontend — alternance",
+      },
+      school: "OpenClassrooms",
+      period: "2020 — 2022",
+    },
+    {
+      title: {
+        en: "Fullstack Developer",
+        fr: "Développeur fullstack",
+      },
+      school: "Dawan",
+      period: "2019",
+    },
+    {
+      title: {
+        en: "3D Designer / Artist",
+        fr: "Concepteur / réalisateur 3D",
+      },
+      school: "Pôle 3D",
+      period: "2012 — 2014",
+    },
+    {
+      title: {
+        en: "Baccalauréat STI — Mechanical Engineering",
+        fr: "Bac STI Génie mécanique",
+      },
+      school: "",
+      period: "2012",
     },
   ],
 };

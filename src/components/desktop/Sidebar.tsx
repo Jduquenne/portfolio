@@ -4,21 +4,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
+import { Link } from "@/i18n/navigation";
 import { cv, localize } from "@/lib/data/cv";
+import { fadeInLeft, stagger } from "@/lib/motion";
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, x: -12 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { type: "spring" as const, stiffness: 100, damping: 20 },
-  },
-};
+const containerVariants = stagger(0.08);
 
 function Divider() {
   return <div className="border-t border-white/8" />;
@@ -38,7 +28,7 @@ export function Sidebar() {
       className="w-72 shrink-0 h-full overflow-y-auto bento-scroll bg-surface border-r border-white/8 flex flex-col gap-8 p-8"
     >
       {/* Avatar + identity */}
-      <motion.div variants={itemVariants} className="flex flex-col gap-4">
+      <motion.div variants={fadeInLeft} className="flex flex-col gap-4">
         <div className="relative w-40 h-40 shrink-0">
           <div className="w-full h-full border border-white/12 overflow-hidden">
             <Image
@@ -77,7 +67,7 @@ export function Sidebar() {
       <Divider />
 
       {/* Contact */}
-      <motion.div variants={itemVariants} className="flex flex-col gap-3">
+      <motion.div variants={fadeInLeft} className="flex flex-col gap-3">
         <span className="font-mono text-xs text-contrast/24 tracking-widest uppercase">
           {tc("section_label")}
         </span>
@@ -104,13 +94,19 @@ export function Sidebar() {
           >
             {tc("linkedin")}
           </a>
+          <Link
+            href="/cv"
+            className="font-mono text-xs text-contrast/50 hover:text-accent transition-colors"
+          >
+            {tc("cv")}
+          </Link>
         </div>
       </motion.div>
 
       <Divider />
 
       {/* Stack */}
-      <motion.div variants={itemVariants} className="flex flex-col gap-4">
+      <motion.div variants={fadeInLeft} className="flex flex-col gap-4">
         <span className="font-mono text-xs text-contrast/24 tracking-widest uppercase">
           {tl("stack_label")}
         </span>

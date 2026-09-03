@@ -1,54 +1,26 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { useTranslations } from "next-intl";
+import {
+  LIGHTS_OUT_DEFAULT_SIZE,
+  LIGHTS_OUT_SIZES,
+  type Grid,
+  isSolved,
+  press,
+  scramble,
+} from "@/lib/lightsOut";
 import { cn } from "@/lib/utils";
-
-const SIZES = [4, 5, 6] as const;
-const DEFAULT_SIZE = 5;
-const SCRAMBLE_CLICKS = 8;
-
-type Grid = boolean[];
-
-function emptyGrid(size: number): Grid {
-  return new Array(size * size).fill(false);
-}
-
-function press(size: number, grid: Grid, index: number): Grid {
-  const next = grid.slice();
-  const row = Math.floor(index / size);
-  const col = index % size;
-  const flip = (r: number, c: number) => {
-    if (r < 0 || r >= size || c < 0 || c >= size) return;
-    next[r * size + c] = !next[r * size + c];
-  };
-  flip(row, col);
-  flip(row - 1, col);
-  flip(row + 1, col);
-  flip(row, col - 1);
-  flip(row, col + 1);
-  return next;
-}
-
-function buildGrid(size: number, clicks: number[]): Grid {
-  return clicks.reduce((grid, index) => press(size, grid, index), emptyGrid(size));
-}
-
-function scramble(size: number): Grid {
-  const clicks = Array.from({ length: SCRAMBLE_CLICKS }, () =>
-    Math.floor(Math.random() * size * size),
-  );
-  const grid = buildGrid(size, clicks);
-  return grid.every((cell) => !cell) ? scramble(size) : grid;
-}
 
 export function LightsOut({ className }: { className?: string }) {
   const t = useTranslations("toy");
-  const [size, setSize] = useState<number>(DEFAULT_SIZE);
-  const [grid, setGrid] = useState<Grid>(() => scramble(DEFAULT_SIZE));
+  const [size, setSize] = useState<number>(LIGHTS_OUT_DEFAULT_SIZE);
+  const [grid, setGrid] = useState<Grid>(() =>
+    scramble(LIGHTS_OUT_DEFAULT_SIZE),
+  );
   const [moves, setMoves] = useState(0);
 
-  const solved = useMemo(() => grid.every((cell) => !cell), [grid]);
+  const solved = isSolved(grid);
 
   const handlePress = useCallback(
     (index: number) => {
@@ -87,7 +59,7 @@ export function LightsOut({ className }: { className?: string }) {
       </div>
 
       <div className="flex items-center gap-3 font-mono text-xs">
-        {SIZES.map((value) => (
+        {LIGHTS_OUT_SIZES.map((value) => (
           <button
             key={value}
             type="button"

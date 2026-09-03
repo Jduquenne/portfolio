@@ -3,20 +3,9 @@
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { cv, localize } from "@/lib/data/cv";
+import { fadeUp, stagger } from "@/lib/motion";
 
-const sectionVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring" as const, stiffness: 90, damping: 20 },
-  },
-};
+const sectionVariants = stagger(0.1);
 
 export function PassionsSection() {
   const locale = useLocale();
@@ -33,7 +22,7 @@ export function PassionsSection() {
     >
       <div className="flex flex-col gap-4 px-6 pt-12 pb-14">
         <motion.div
-          variants={itemVariants}
+          variants={fadeUp}
           className="flex items-center gap-4 mb-4"
         >
           <span className="font-mono text-xs text-accent tracking-widest uppercase shrink-0">
@@ -45,7 +34,7 @@ export function PassionsSection() {
         {cv.passions.map((passion) => (
           <motion.div
             key={passion.stat}
-            variants={itemVariants}
+            variants={fadeUp}
             className="p-4 bg-surface border border-white/8 flex items-center gap-4"
           >
             <span className="font-mono text-2xl font-bold text-contrast leading-none w-20 shrink-0 whitespace-nowrap">

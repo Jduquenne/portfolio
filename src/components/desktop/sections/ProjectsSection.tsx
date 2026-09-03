@@ -7,20 +7,9 @@ import type { GitHubRepo, RepoStats } from "@/types";
 import { LANG_COLORS } from "@/lib/languages";
 import { relativeTime } from "@/lib/utils";
 import { RepoStatsReadout } from "@/components/shared/RepoStatsReadout";
+import { fadeUp, stagger } from "@/lib/motion";
 
-const sectionVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.07 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring" as const, stiffness: 90, damping: 20 },
-  },
-};
+const sectionVariants = stagger(0.07);
 
 const accentBarVariants = {
   rest: { scaleY: 0 },
@@ -61,7 +50,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
       whileInView="visible"
       viewport={{ once: true, margin: "-64px" }}
     >
-      <motion.div variants={itemVariants} className="flex items-center gap-4 mb-8">
+      <motion.div variants={fadeUp} className="flex items-center gap-4 mb-8">
         <span className="font-mono text-xs text-accent tracking-widest uppercase shrink-0">
           {t("projects_title")}
         </span>
@@ -70,13 +59,13 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
       </motion.div>
 
       {repos.length === 0 ? (
-        <motion.p variants={itemVariants} className="font-mono text-xs text-contrast/24">
+        <motion.p variants={fadeUp} className="font-mono text-xs text-contrast/24">
           {t("empty_repos")}
         </motion.p>
       ) : (
         <motion.div variants={sectionVariants} className="grid grid-cols-2 gap-4">
           {repos.map((repo) => (
-            <motion.div key={repo.id} variants={itemVariants}>
+            <motion.div key={repo.id} variants={fadeUp}>
               <motion.div
                 initial="rest"
                 whileHover="hover"

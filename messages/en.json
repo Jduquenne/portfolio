@@ -9,7 +9,6 @@
   },
   "hero": {
     "available": "● Available for work",
-    "view_work": "View Work",
     "contact": "Contact",
     "latest_activity": "Latest activity",
     "back_to_top": "Back to top"
@@ -17,7 +16,6 @@
   "logic": {
     "section_label": "// logic",
     "stack_label": "// stack",
-    "stack_title": "Stack",
     "projects_title": "Projects",
     "empty_repos": "No public repositories to display yet.",
     "stat_repos": "{count, plural, one {# repo} other {# repos}}",
@@ -29,8 +27,7 @@
     "link_live": "Live site"
   },
   "passions": {
-    "section_label": "// passions",
-    "headline": "Three specializations. One profile."
+    "section_label": "// passions"
   },
   "experience": {
     "section_label": "// experience",
@@ -51,8 +48,28 @@
   },
   "contact": {
     "section_label": "// contact",
-    "headline": "Let's build something.",
     "github": "GitHub",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "cv": "CV"
+  },
+  "cv": {
+    "download": "Download CV",
+    "back": "Back to portfolio",
+    "loading": "Generating CV…",
+    "error": "The CV could not be generated.",
+    "age": "{years} years old",
+    "present": "Present",
+    "duration": "{years, plural, one {# year} other {# years}}",
+    "available": "● Available for work",
+    "licence": "Driving licence {cat}",
+    "projects_hint": "My project code is public at:",
+    "section_contact": "// contact",
+    "section_stack": "// stack",
+    "section_passions": "// passions",
+    "section_experience": "// experience",
+    "section_education": "// education",
+    "section_languages": "// languages",
+    "section_licence": "// licence",
+    "section_projects": "// projects"
   }
 }

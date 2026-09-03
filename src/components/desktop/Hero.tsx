@@ -6,22 +6,11 @@ import { Dice5 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { PlayModal } from "@/components/desktop/PlayModal";
 import { cv, localize } from "@/lib/data/cv";
+import { fadeUp, stagger } from "@/lib/motion";
 import { relativeTime } from "@/lib/utils";
 import type { GitHubRepo } from "@/types";
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { delayChildren: 0.1, staggerChildren: 0.1 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring" as const, stiffness: 90, damping: 20 },
-  },
-};
+const containerVariants = stagger(0.1, 0.1);
 
 interface HeroProps {
   latestRepo?: GitHubRepo;
@@ -43,7 +32,7 @@ export function Hero({ latestRepo }: HeroProps) {
       >
         <div className="flex flex-wrap items-start justify-between gap-x-8 gap-y-4">
           <motion.p
-            variants={itemVariants}
+            variants={fadeUp}
             className="min-w-0 max-w-[26ch] font-mono text-[2rem] leading-[1.18] tracking-tight text-balance text-contrast"
           >
             {localize(cv.identity.description, locale)}
@@ -52,7 +41,7 @@ export function Hero({ latestRepo }: HeroProps) {
 
           {latestRepo && (
             <motion.dl
-              variants={itemVariants}
+              variants={fadeUp}
               className="text-right font-mono text-xs leading-relaxed"
             >
               <dt className="text-contrast/40 tracking-widest uppercase">
@@ -67,7 +56,7 @@ export function Hero({ latestRepo }: HeroProps) {
         </div>
 
         <motion.div
-          variants={itemVariants}
+          variants={fadeUp}
           className="flex items-center gap-4"
         >
           <div className="h-px flex-1 bg-white/8" />

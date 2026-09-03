@@ -3,20 +3,9 @@
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { cv, localize } from "@/lib/data/cv";
+import { fadeUp, stagger } from "@/lib/motion";
 
-const sectionVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring" as const, stiffness: 90, damping: 20 },
-  },
-};
+const sectionVariants = stagger(0.08);
 
 export function StackSection() {
   const locale = useLocale();
@@ -33,7 +22,7 @@ export function StackSection() {
     >
       <div className="flex flex-col gap-6 px-6 pt-12 pb-14">
         <motion.div
-          variants={itemVariants}
+          variants={fadeUp}
           className="flex items-center gap-4"
         >
           <span className="font-mono text-xs text-accent tracking-widest uppercase shrink-0">
@@ -45,7 +34,7 @@ export function StackSection() {
         {cv.stack.map((category) => (
           <motion.div
             key={category.label.en}
-            variants={itemVariants}
+            variants={fadeUp}
             className="flex flex-col gap-2"
           >
             <span className="font-mono text-xs text-contrast/24 tracking-widest uppercase">

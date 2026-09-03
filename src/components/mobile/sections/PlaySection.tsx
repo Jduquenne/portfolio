@@ -3,20 +3,9 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { LightsOut } from "@/components/shared/LightsOut";
+import { fadeUp, stagger } from "@/lib/motion";
 
-const sectionVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring" as const, stiffness: 90, damping: 20 },
-  },
-};
+const sectionVariants = stagger(0.08);
 
 export function PlaySection() {
   const t = useTranslations("toy");
@@ -31,14 +20,14 @@ export function PlaySection() {
       viewport={{ once: true, margin: "-48px" }}
     >
       <div className="flex min-h-full flex-col justify-center gap-8 px-6 pt-12 pb-14">
-        <motion.div variants={itemVariants} className="flex items-center gap-4">
+        <motion.div variants={fadeUp} className="flex items-center gap-4">
           <span className="font-mono text-xs text-accent tracking-widest uppercase shrink-0">
             {t("section_label")}
           </span>
           <div className="flex-1 h-px bg-white/8" />
         </motion.div>
 
-        <motion.div variants={itemVariants}>
+        <motion.div variants={fadeUp}>
           <LightsOut />
         </motion.div>
       </div>

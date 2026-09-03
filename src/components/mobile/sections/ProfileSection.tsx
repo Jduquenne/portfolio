@@ -5,21 +5,11 @@ import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { ArrowUpRight } from "lucide-react";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
+import { Link } from "@/i18n/navigation";
 import { cv, localize } from "@/lib/data/cv";
+import { fadeUp, stagger } from "@/lib/motion";
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring" as const, stiffness: 90, damping: 20 },
-  },
-};
+const containerVariants = stagger(0.08);
 
 export function ProfileSection() {
   const locale = useLocale();
@@ -38,7 +28,7 @@ export function ProfileSection() {
         className="flex flex-col gap-6 px-6 pt-12 pb-14"
       >
         {/* Photo + identity */}
-        <motion.div variants={itemVariants} className="flex items-center gap-4">
+        <motion.div variants={fadeUp} className="flex items-center gap-4">
           <div className="relative w-40 h-40 shrink-0">
             <div className="w-full h-full border border-white/12 overflow-hidden">
               <Image
@@ -67,7 +57,7 @@ export function ProfileSection() {
         </motion.div>
 
         <motion.p
-          variants={itemVariants}
+          variants={fadeUp}
           className="font-mono text-xl leading-[1.35] text-balance text-contrast"
         >
           {localize(cv.identity.description, locale)}
@@ -75,7 +65,7 @@ export function ProfileSection() {
         </motion.p>
 
         <motion.div
-          variants={itemVariants}
+          variants={fadeUp}
           className="flex items-center justify-between"
         >
           <span className="font-mono text-xs text-accent tracking-widest uppercase">
@@ -86,7 +76,7 @@ export function ProfileSection() {
 
         <div className="border-t border-white/8" />
 
-        <motion.div variants={itemVariants} className="flex flex-col gap-3">
+        <motion.div variants={fadeUp} className="flex flex-col gap-3">
           <span className="font-mono text-xs text-contrast/24 tracking-widest uppercase">
             {tc("section_label")}
           </span>
@@ -115,6 +105,13 @@ export function ProfileSection() {
             >
               {tc("linkedin")}
             </a>
+            <span className="text-contrast/16 font-mono text-xs">—</span>
+            <Link
+              href="/cv"
+              className="font-mono text-xs text-contrast/50 hover:text-accent transition-colors tracking-widest uppercase"
+            >
+              {tc("cv")}
+            </Link>
           </div>
         </motion.div>
       </motion.div>

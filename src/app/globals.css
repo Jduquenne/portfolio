@@ -94,6 +94,27 @@ body {
   }
 }
 
+/* CV PDF generation placeholder */
+.cv-loading {
+  animation: cv-loading-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes cv-loading-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-loading {
+    animation: none;
+  }
+}
+
 .bento-scroll {
   scrollbar-width: thin;
   scrollbar-color: rgba(56, 189, 248, 0.25) transparent;
