@@ -112,6 +112,14 @@ Anything that must stay fresh requires a redeploy.
 **CV data** lives in `src/lib/data/cv.ts`. Every translatable field is a
 `LocalizedString` (`{ en, fr }`) read through `localize()`.
 
+**The `/cv` page** serves a pre-rendered A4 CV. `npm run build:cv` (part of
+`npm run build`) renders `src/components/cv/CvDocument.tsx` to
+`public/cv-{fr,en}.pdf` + `public/cv-preview-{fr,en}.webp` via `scripts/build-cv.mts`.
+react-pdf and its tooling are **devDependencies** — never shipped to the client.
+After changing `cv.ts` or the `cv.*` translations, run `npm run build:cv` and commit
+the regenerated `public/cv-*` files (output is deterministic). CI regenerates them on
+every deploy regardless.
+
 **GitHub data** is fetched at build time in `src/lib/github.ts`, in a single GraphQL
 request. The Projects section lists the `REPO_COUNT` most recently pushed repos — owned,
 public, forks excluded. The repo counters apply the same filters, so the displayed number
