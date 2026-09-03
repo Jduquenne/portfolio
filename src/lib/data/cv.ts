@@ -96,8 +96,8 @@ export const cv: CV = {
       period: "2024",
       current: true,
       description: {
-        en: "Web products designed and shipped independently, end to end. Artemis FoodLab — a local-first meal planner (weekly menus, macros, recipe builder, linked shopping lists) running entirely in the browser on IndexedDB, no backend. Dofus Retro Craft Dashboard — a static-first utility hub with XP and craft calculators, an interactive map and profit-optimized job guides, everything computed client-side with no latency or external API. AI folded into the workflow — Claude Code and Gemini for brainstorming and delivery speed — with architecture, decisions and review kept firmly in hand.",
-        fr: "Produits web conçus et livrés en indépendant, de bout en bout. Artemis FoodLab — planificateur de repas local-first (menus de la semaine, macros, éditeur de recettes, listes de courses liées) qui tourne entièrement dans le navigateur sur IndexedDB, sans backend. Dofus Retro Craft Dashboard — hub d'outils static-first : calculateurs d'XP et de craft, carte interactive et guides de métiers optimisés au profit, tout calculé côté client, sans latence ni API externe. IA intégrée au workflow — Claude Code et Gemini pour le brainstorming et la vélocité — architecture, décisions et revue gardées fermement en main.",
+        en: "Web products designed and shipped independently, end to end. Artemis FoodLab — a local-first meal planner, fully in-browser on IndexedDB, no backend. Dofus Retro Craft Dashboard — a static-first utility hub: XP and craft calculators, interactive map and profitability guides, all client-side. AI integrated into the workflow (Claude Code, Gemini) for brainstorming and speed, architecture and review kept in hand.",
+        fr: "Produits web conçus et livrés en indépendant, de bout en bout. Artemis FoodLab — planificateur de repas local-first, entièrement dans le navigateur sur IndexedDB, sans backend. Dofus Retro Craft Dashboard — hub d'outils static-first : calculateurs d'XP et de craft, carte interactive et guides de rentabilité, tout côté client. IA intégrée au workflow (Claude Code, Gemini) pour le brainstorming et la vélocité, architecture et revue gardées en main.",
       },
       links: [
         {
@@ -154,8 +154,8 @@ export const cv: CV = {
       },
       period: "2021 — 2022",
       description: {
-        en: "Work-study placement alongside the OpenClassrooms frontend developer program. Led the frontend build of the 3D printer farm management dashboard — fully in React — with strong involvement in the Node.js / Express API.",
-        fr: "Alternance en parallèle de la formation développeur frontend OpenClassrooms. En charge de la mise en place du frontend du dashboard de gestion de la ferme d’imprimantes 3D — entièrement en React — avec une contribution soutenue à l’API Node.js / Express.",
+        en: "Led the frontend build of the 3D printer farm management dashboard — fully in React — with strong involvement in the Node.js / Express API.",
+        fr: "En charge de la mise en place du frontend du dashboard de gestion de la ferme d’imprimantes 3D — entièrement en React — avec une contribution soutenue à l’API Node.js / Express.",
       },
       stack: ["TypeScript", "React", "Node.js", "Express", "MongoDB"],
     },
@@ -168,8 +168,8 @@ export const cv: CV = {
       },
       period: "2020 — 2021",
       description: {
-        en: "Work-study placement (OpenClassrooms frontend developer program). Built hospital medication inventory applications: stock tracking, withdrawals handled by nursing staff, prescription creation and Kanban-based restocking. Modern dashboard in Vue.js and Quasar, C# / .NET backend.",
-        fr: "Alternance (formation développeur frontend OpenClassrooms). Développement d’applications de gestion d’inventaire de médicaments en milieu hospitalier : suivi des stocks, sorties assurées par le personnel infirmier, création d’ordonnances et réapprovisionnement en Kanban. Dashboard moderne en Vue.js et Quasar, back-end C# / .NET.",
+        en: "Built hospital medication inventory applications: stock tracking, withdrawals handled by nursing staff, prescription creation and Kanban-based restocking. Modern dashboard in Vue.js and Quasar, C# / .NET backend.",
+        fr: "Développement d’applications de gestion d’inventaire de médicaments en milieu hospitalier : suivi des stocks, sorties assurées par le personnel infirmier, création d’ordonnances et réapprovisionnement en Kanban. Dashboard moderne en Vue.js et Quasar, back-end C# / .NET.",
       },
       stack: ["Vue.js", "Quasar", "TypeScript", "C#", ".NET"],
     },
@@ -185,13 +185,15 @@ export const cv: CV = {
         "Next.js",
         "React",
         "Vue.js",
+        "Quasar",
         "Angular",
         "Tailwind CSS",
+        "Electron",
       ],
     },
     {
       label: { en: "Backend", fr: "Backend" },
-      items: ["Node.js", "Go", "Python", "C", "C++"],
+      items: ["Node.js", "Express", "Go", "Python", "C", "C++", ".NET"],
     },
     {
       label: { en: "Tools & Others", fr: "Outils & Autres" },
@@ -200,6 +202,10 @@ export const cv: CV = {
     {
       label: { en: "3D / Games", fr: "3D / Jeux" },
       items: ["Three.js", "WebGL", "Monogame", "Godot", "C#"],
+    },
+    {
+      label: { en: "AI", fr: "IA" },
+      items: ["Claude Code", "Gemini"],
     },
   ],
 
