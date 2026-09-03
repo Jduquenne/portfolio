@@ -26,7 +26,7 @@ export function StackSection() {
           className="flex items-center gap-4"
         >
           <span className="font-mono text-xs text-accent tracking-widest uppercase shrink-0">
-            {t("section_label")}
+            {t("stack_label")}
           </span>
           <div className="flex-1 h-px bg-white/8" />
         </motion.div>

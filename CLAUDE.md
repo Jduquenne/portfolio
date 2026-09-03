@@ -63,6 +63,12 @@ The breakpoint is **`lg` (1024px)**.
 - **UX Flow:** Linear snap navigation (`scroll-snap-type`). Each section is an autonomous "unit of thought".
 - **Satisfying Factor:** Haptic-mimicry — visual micro-animations and fluid transitions to simulate a native app feel.
 
+### 3. `/cv`: The Printed Sheet
+
+A third rendering of `cv.ts` — an A4 CV on light "paper" (dark ink, sky accent, same
+type and structural language as the portfolio). Generated as a static PDF at build
+time, not in the browser. See Data & Deployment.
+
 ---
 
 ## 🎨 Design System (Sober & IT-Centric)
@@ -93,13 +99,18 @@ Use Tailwind classes exclusively: `p-2` (8px), `p-4` (16px), `p-8` (32px), etc.
 | Section        | Key Concept                                                            |
 | -------------- | ---------------------------------------------------------------------- |
 | **Profile**    | Identity, availability, contact — sidebar on desktop, first card on mobile |
-| **Experience** | Timeline from `cv.ts` — roles, periods, stacks                         |
+| **Experience** | Timeline from `cv.ts` — roles, periods, stacks. Project names in a description become links (`ExperienceDescription`) |
 | **Stack**      | Technical categories from `cv.ts`                                      |
 | **Projects**   | GitHub repos fetched at build time, most recently pushed first         |
 | **Passions**   | Specialities as data — numbers, metadata. Zero long text               |
+| **Play**       | Mobile only — a Lights Out mini-game (`LightsOut`). Desktop opens it from a modal triggered in the Hero |
+
+Desktop also has a **Hero** above Experience: the `cv.identity.description` thesis in
+Geist Mono, a "latest activity" readout from the GitHub data, and the game entry point.
 
 `SectionId` in `src/types/index.ts` is the single source of truth for section ids and
-must stay in sync with the `nav.*` translation keys.
+must stay in sync with the `nav.*` translation keys. `/cv` is a separate route, not a
+section.
 
 ---
 
@@ -146,7 +157,7 @@ call and warns on stdout: repos still list, counters and Pages links disappear.
 - **Hooks:** `use` prefix (e.g. `useScrollSnap`)
 - **Types:** Prefer interfaces over `type` for objects, PascalCase
 - **Imports:** `@/` alias for all internal imports
-- **Animations:** All Framer Motion variants defined outside JSX (in `const` above the component)
+- **Animations:** Framer Motion variants defined outside JSX. Reuse the shared presets in `src/lib/motion.ts` (`fadeUp`, `fadeInLeft`, `stagger()`) rather than redefining them per component
 - **No `any`:** Strict TypeScript, zero compromise
 - **Language:** All code, comments, variable names, and commit messages must be written in English
 - **i18n:** No user-facing string in a component — UI text goes in `messages/{en,fr}.json` and is read with `useTranslations`; content data goes in `cv.ts` as `LocalizedString`. Both files must keep identical key sets. Use ICU plurals rather than building plurals in code
