@@ -1,0 +1,19 @@
+#!/bin/sh
+# Keep the committed CV PDF + preview in sync with their sources.
+# Runs only when CV inputs are part of the commit; regeneration is
+# deterministic, so it's a no-op when nothing relevant changed.
+
+staged=$(git diff --cached --name-only --diff-filter=ACM)
+
+case "$staged" in
+  *"src/lib/data/cv.ts"* | *"messages/fr.json"* | *"messages/en.json"*)
+    echo "> CV sources changed — regenerating PDF + preview"
+    if ! npm run --silent build:cv; then
+      echo "x build:cv failed — commit aborted" >&2
+      exit 1
+    fi
+    git add \
+      public/cv-fr.pdf public/cv-en.pdf \
+      public/cv-preview-fr.webp public/cv-preview-en.webp
+    ;;
+esac

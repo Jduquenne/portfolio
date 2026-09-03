@@ -7,7 +7,8 @@
     "build": "npm run build:cv && next build",
     "build:cv": "node scripts/cv.mjs",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "prepare": "git config core.hooksPath .githooks"
   },
   "dependencies": {
     "framer-motion": "^12.40.0",

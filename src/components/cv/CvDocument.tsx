@@ -252,12 +252,19 @@ function SectionLabel({ text }: { text: string }) {
   );
 }
 
+// Fixed so identical inputs produce a byte-identical PDF.
+const STAMP = new Date("2024-01-01T00:00:00Z");
+
 export function CvDocument({ data }: { data: CvData }) {
   return (
     <Document
       title={`${data.name} — CV`}
       author={data.name}
       subject={data.subtitle}
+      creator="portfolio-jd"
+      producer="portfolio-jd"
+      creationDate={STAMP}
+      modificationDate={STAMP}
     >
       <Page size="A4" style={s.page}>
         <View style={s.header}>
