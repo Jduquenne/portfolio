@@ -92,8 +92,8 @@ export const cv: CV = {
       fr: "Développeur Fullstack · Javascript",
     },
     description: {
-      en: "An engineer's rigor, the intent to be useful. I build tools you use without thinking about them.",
-      fr: "La rigueur d'un ingénieur, l'intention de rendre service. Je construis des outils qu'on utilise sans y penser.",
+      en: "A rigorous developer, driven by the desire to be useful. I build tools that fade into the background through sheer efficiency.",
+      fr: "Développeur rigoureux, guidé par l'envie d'être utile. Je conçois des outils qui se font oublier par leur efficacité.",
     },
     available: true,
   },
