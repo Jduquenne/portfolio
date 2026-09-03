@@ -55,12 +55,10 @@
   "cv": {
     "download": "Download CV",
     "back": "Back to portfolio",
-    "loading": "Generating CV…",
-    "error": "The CV could not be generated.",
     "age": "{years} years old",
     "present": "Present",
     "duration": "{years, plural, one {# year} other {# years}}",
-    "available": "● Available for work",
+    "available": "Available for work",
     "licence": "Driving licence {cat}",
     "projects_hint": "My project code is public at:",
     "section_contact": "// contact",

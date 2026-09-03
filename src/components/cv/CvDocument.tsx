@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Document,
   Font,
@@ -11,7 +9,9 @@ import {
   View,
 } from "@react-pdf/renderer";
 
-const FONT_BASE = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/fonts`;
+// This document is rendered only at build time (see scripts/build-cv.mts),
+// so fonts are read from a local directory rather than a served URL.
+const FONT_BASE = process.env.CV_FONT_DIR ?? "scripts/fonts";
 
 Font.register({
   family: "Geist Mono",
@@ -148,13 +148,19 @@ const s = StyleSheet.create({
   passionTitle: { fontFamily: "Geist Mono", fontWeight: 700, fontSize: 8 },
   passionLabel: { fontSize: 7, color: C.muted, lineHeight: 1.4, marginTop: 1 },
   headerMain: { flex: 1, flexDirection: "row", alignItems: "flex-start", gap: 12 },
+  availableRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+    marginTop: 3,
+  },
+  availableDot: { width: 4, height: 4, backgroundColor: C.accent },
   available: {
     fontFamily: "Geist Mono",
     fontSize: 7.5,
     textTransform: "uppercase",
     letterSpacing: 1.2,
     color: C.accent,
-    marginTop: 3,
   },
   expItem: { flexDirection: "row", gap: 7, marginBottom: 11 },
   expDot: { width: 4, height: 4, backgroundColor: C.accent, marginTop: 3.5 },
@@ -272,7 +278,10 @@ export function CvDocument({ data }: { data: CvData }) {
               <Text style={s.meta}>{data.age}</Text>
               <Text style={s.thesis}>{data.thesis}</Text>
             </View>
-            <Text style={s.available}>{data.labels.available}</Text>
+            <View style={s.availableRow}>
+              <View style={s.availableDot} />
+              <Text style={s.available}>{data.labels.available}</Text>
+            </View>
           </View>
         </View>
 

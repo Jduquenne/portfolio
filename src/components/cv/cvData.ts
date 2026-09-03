@@ -9,7 +9,11 @@ export interface CvTranslator {
 }
 
 /** Flattens the localized `cv.ts` source into the plain strings the PDF needs. */
-export function buildCvData(locale: string, t: CvTranslator): CvData {
+export function buildCvData(
+  locale: string,
+  t: CvTranslator,
+  avatarSrc: string,
+): CvData {
   const experiencePeriod = (
     period: string,
     current: boolean | undefined,
@@ -24,7 +28,7 @@ export function buildCvData(locale: string, t: CvTranslator): CvData {
     subtitle: localize(cv.identity.subtitle, locale),
     age: t("age", { years: age(cv.identity.birthDate) }),
     thesis: localize(cv.identity.description, locale),
-    avatarSrc: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/avatar.png`,
+    avatarSrc,
     contact: {
       email: cv.contact.email,
       github: cv.contact.github,
