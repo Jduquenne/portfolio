@@ -27,6 +27,7 @@ export function buildCvData(
     name: cv.identity.name,
     subtitle: localize(cv.identity.subtitle, locale),
     age: t("age", { years: age(cv.identity.birthDate) }),
+    city: cv.identity.city,
     thesis: localize(cv.identity.description, locale),
     avatarSrc,
     contact: {

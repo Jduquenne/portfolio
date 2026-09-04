@@ -208,6 +208,7 @@ export interface CvData {
   name: string;
   subtitle: string;
   age: string;
+  city: string;
   thesis: string;
   avatarSrc: string;
   contact: {
@@ -282,7 +283,7 @@ export function CvDocument({ data }: { data: CvData }) {
             <View style={{ flex: 1 }}>
               <Text style={s.name}>{data.name}</Text>
               <Text style={s.subtitle}>{data.subtitle}</Text>
-              <Text style={s.meta}>{data.age}</Text>
+              <Text style={s.meta}>{`${data.age} · ${data.city}`}</Text>
               <Text style={s.thesis}>{data.thesis}</Text>
             </View>
             <View style={s.availableRow}>

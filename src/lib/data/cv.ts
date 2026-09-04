@@ -16,6 +16,7 @@ interface CVLanguage {
 interface CVIdentity {
   name: string;
   birthDate: string;
+  city: string;
   drivingLicence: string;
   languages: CVLanguage[];
   subtitle: LocalizedString;
@@ -76,6 +77,7 @@ export const cv: CV = {
   identity: {
     name: "Jason Duquenne",
     birthDate: "1992-09-14",
+    city: "Bailleul",
     drivingLicence: "B",
     languages: [
       {

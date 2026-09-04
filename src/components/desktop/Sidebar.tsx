@@ -7,6 +7,7 @@ import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
 import { Link } from "@/i18n/navigation";
 import { cv, localize } from "@/lib/data/cv";
 import { fadeInLeft, stagger } from "@/lib/motion";
+import { age } from "@/lib/utils";
 
 const containerVariants = stagger(0.08);
 
@@ -19,6 +20,7 @@ export function Sidebar() {
   const t = useTranslations("hero");
   const tc = useTranslations("contact");
   const tl = useTranslations("logic");
+  const tcv = useTranslations("cv");
 
   return (
     <motion.aside
@@ -53,6 +55,9 @@ export function Sidebar() {
           </h1>
           <p className="font-sans text-xs text-contrast/50 leading-relaxed">
             {localize(cv.identity.subtitle, locale)}
+          </p>
+          <p className="font-mono text-xs text-contrast/40">
+            {tcv("age", { years: age(cv.identity.birthDate) })}
           </p>
         </div>
 
