@@ -18,16 +18,46 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = "https://jduquenne.github.io/portfolio/";
-
-export const metadata: Metadata = {
-  title: "Jason Duquenne — Fullstack Developer",
-  description:
-    "Fullstack developer, 3D / Three.js, game dev. Building precise, human software.",
-};
+const siteUrl = "https://jduquenne.github.io/portfolio";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const { title, description } = (locale === "fr" ? fr : en).meta;
+  const pageUrl = `${siteUrl}/${locale}/`;
+  const ogImage = `${siteUrl}/og.png`;
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title,
+    description,
+    alternates: {
+      canonical: pageUrl,
+      languages: { fr: `${siteUrl}/fr/`, en: `${siteUrl}/en/` },
+    },
+    openGraph: {
+      type: "website",
+      siteName: "Jason Duquenne",
+      title,
+      description,
+      url: pageUrl,
+      locale: locale === "fr" ? "fr_FR" : "en_US",
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
 }
 
 export default async function LocaleLayout({
@@ -47,12 +77,19 @@ export default async function LocaleLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Jason Duquenne",
-    url: siteUrl,
+    url: `${siteUrl}/${locale}/`,
     jobTitle: "Fullstack Developer",
-    description: "Fullstack developer, 3D / Three.js, game dev. Building precise, human software.",
+    description: messages.meta.description,
+    image: `${siteUrl}/og.png`,
     email: cv.contact.email,
     sameAs: [cv.contact.github, cv.contact.linkedin],
-    knowsAbout: ["TypeScript", "Next.js", "Three.js", "Game Development", "React"],
+    knowsAbout: [
+      "TypeScript",
+      "Next.js",
+      "Three.js",
+      "Game Development",
+      "React",
+    ],
   };
 
   return (

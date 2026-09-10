@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run build:cv && next build",
+    "build": "npm run build:cv && npm run build:og && next build",
     "build:cv": "node scripts/cv.mjs",
+    "build:og": "node scripts/build-og.mjs",
     "start": "next start",
     "lint": "eslint"
   },
