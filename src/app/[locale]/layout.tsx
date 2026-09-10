@@ -83,13 +83,7 @@ export default async function LocaleLayout({
     image: `${siteUrl}/og.png`,
     email: cv.contact.email,
     sameAs: [cv.contact.github, cv.contact.linkedin],
-    knowsAbout: [
-      "TypeScript",
-      "Next.js",
-      "Three.js",
-      "Game Development",
-      "React",
-    ],
+    knowsAbout: ["TypeScript", "Next.js", "React", "Three.js", "WebGL"],
   };
 
   return (

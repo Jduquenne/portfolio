@@ -26,7 +26,7 @@ const COLORS = {
 const NAME = "Jason Duquenne";
 const SUBTITLE = "Fullstack Developer · JavaScript";
 const TAGLINE =
-  "3D / Three.js and game dev. Building precise, human software that fades into the background through sheer efficiency.";
+  "Into 3D and Three.js. Building precise, human software that fades into the background through sheer efficiency.";
 const URL = "jduquenne.github.io/portfolio";
 
 const [mono500, mono700] = await Promise.all([
