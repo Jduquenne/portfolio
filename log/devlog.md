@@ -3,6 +3,27 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: UX additions from the skill
+
+**Done**
+- `useActiveSection` (`useSyncExternalStore` over an `IntersectionObserver` on `#main`):
+  `BottomNav` marks the section in view (`aria-current`, accent colour).
+- `<MotionConfig reducedMotion="user">` in `AdventureRouter`: all Framer Motion animations
+  honour `prefers-reduced-motion`.
+- Global press feedback in `globals.css` (`scale: 0.98` on `button` and `a[href]`, motion-safe).
+- `--default-transition-duration: 200ms`: Tailwind's default is 150ms, so every bare
+  `transition-colors` was under the 200ms minimum.
+- `AdventureSkeleton` replaces the blank placeholder while the device is detected.
+- `LanguageSwitcher`: `aria-label` and `lang` (key `language.switch` in both message files).
+
+**Checked**
+- `tsc`, `lint` and `next build` pass; the compiled CSS contains the 200ms default and the
+  `scale` rule. Not seen in a browser.
+
+**Still open**
+- Try it on a phone and a desktop: the section highlight, the skeleton flash, the press feel.
+- UX ideas not done are listed in `docs/roadmap.md`.
+
 ## 2026-10-27: Design rules from the skill, and code fixes
 
 **Done**

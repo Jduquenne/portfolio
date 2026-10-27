@@ -49,17 +49,27 @@ Loaded with `next/font` in `src/app/fonts.ts`.
 
 - Entrance and hover reactions keep the spring physics of `src/lib/motion.ts` (the skill's
   cubic-bezier curve was rejected).
-- No transition shorter than 200ms (`duration-200`, `duration: 0.2`).
+- No transition shorter than 200ms. `--default-transition-duration` is set to 200ms in
+  `globals.css` (Tailwind's default is 150ms), so a bare `transition-colors` complies. Framer
+  Motion durations are written as `duration: 0.2` at least.
 - Respect `prefers-reduced-motion`: replace movement with a plain opacity change, or none.
-  Currently covered: the hero caret (`globals.css`) and `useCountUp`.
+  Covered: the hero caret (`globals.css`), `useCountUp`, and every Framer Motion animation
+  through `<MotionConfig reducedMotion="user">` in `AdventureRouter`.
 - Trigger scroll reveals with `whileInView` or `IntersectionObserver`, once. Never attach
   unthrottled work to a `scroll` listener (`ScrollToTop` uses a passive listener).
 - Animate `transform` and `opacity`, not `top`, `left`, `width`, `height`.
 
 ## States and accessibility (D-008)
 
-- Every interactive element has hover, active, and a **visible focus ring**. A global
-  `:focus-visible` outline (2px accent, 2px offset) is set in `globals.css`.
+- Every interactive element has hover, active, and a **visible focus ring**. Both are global
+  in the `base` layer of `globals.css`: a `:focus-visible` outline (2px accent, 2px offset)
+  and a `scale: 0.98` press feedback on `button` and `a[href]` (motion-safe only).
+- The mobile bottom nav marks the section in view (`aria-current` and accent colour), driven
+  by `useActiveSection`.
+- Before the device is known, `AdventureSkeleton` is shown (sidebar and cards shape, pulse
+  only when motion is allowed). It uses `lg:` classes, which is acceptable for a placeholder
+  that renders neither adventure.
+- Controls without a visible name get an `aria-label` from `messages/` (`LanguageSwitcher`).
 - Loading states are skeletons shaped like the real layout, never spinners. Empty states
   are composed views, never a blank panel. Errors are inline and specific, never
   `window.alert()`.

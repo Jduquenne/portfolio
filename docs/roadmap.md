@@ -15,7 +15,7 @@ focus here.
 - ✅ `npm run lint`, `npx tsc --noEmit` and `npx next build` pass (2026-10-27, after the
   D-008 design fixes). `npm run build` (with `build:cv` and `build:og`) was not run.
 - ⬜ No automated tests exist (no test script in `package.json`).
-- ⬜ The design fixes of 2026-10-27 were not looked at in a browser.
+- ⬜ The design fixes and UX additions of 2026-10-27 were not looked at in a browser.
 
 ## Known debt
 
@@ -33,10 +33,11 @@ short transitions) were fixed on 2026-10-27, see the devlog.
 - ⬜ **`Cv.tsx`** gives the CV preview image the PDF file name as `alt`
   (`Jason_Duquenne_CV_FR.pdf`). A translated description needs a new `cv.*` key, hence a
   `build:cv` run.
-- ⬜ **Not audited:** hover/active/loading/empty states on every element, `alt` text and
-  semantic HTML across the site, `animate` limited to `transform` and `opacity`, and
-  `prefers-reduced-motion` for the Framer Motion animations (only the hero caret and
-  `useCountUp` are covered).
+- ⬜ **Not audited:** hover, loading and empty states on every element, `alt` text and
+  semantic HTML across the site, and `animate` limited to `transform` and `opacity`.
+- ⬜ **UX ideas not done:** a single clear primary call to action, 40px touch targets on
+  mobile chips and the language switcher, a wording review of `messages/` and `cv.ts`
+  against the skill's content rules.
 
 ## Ideas / later
 

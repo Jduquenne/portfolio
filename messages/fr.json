@@ -81,5 +81,8 @@
     "title": "Page introuvable",
     "description": "Cette page n’existe pas ou a été déplacée.",
     "back": "Retour au portfolio"
+  },
+  "language": {
+    "switch": "Changer de langue"
   }
 }

@@ -81,5 +81,8 @@
     "title": "Page not found",
     "description": "This page does not exist or has moved.",
     "back": "Back to the portfolio"
+  },
+  "language": {
+    "switch": "Switch language"
   }
 }

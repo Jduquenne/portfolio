@@ -10,6 +10,9 @@
   /* Typography */
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
+
+  /* Tailwind defaults to 150ms; no transition should be shorter than 200ms */
+  --default-transition-duration: 200ms;
 }
 
 :root {
@@ -41,6 +44,13 @@ body {
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    button:not(:disabled):active,
+    a[href]:active {
+      scale: 0.98;
+    }
   }
 }
 

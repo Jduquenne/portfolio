@@ -68,10 +68,10 @@ src/
 │   │   └── sections/             # Experience, Projects, Specialties
 │   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, sections/
 │   │   └── sections/             # Profile, Experience, Stack, Projects, Passions, Play
-│   ├── shared/                   # AdventureRouter, ExperienceDescription,
+│   ├── shared/                   # AdventureRouter, AdventureSkeleton, ExperienceDescription,
 │   │                             #   LanguageSwitcher, LightsOut, RepoStatsReadout
 │   └── cv/                       # CvDocument (react-pdf), cvData (cv.ts -> plain strings), Cv (page UI)
-├── hooks/                        # useDevice, useCountUp
+├── hooks/                        # useDevice, useCountUp, useActiveSection
 ├── i18n/                         # routing, navigation, request (next-intl)
 ├── lib/
 │   ├── data/cv.ts                # CV content, LocalizedString fields, localize()
