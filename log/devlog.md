@@ -3,6 +3,25 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Portfolio clip redone from the current site
+
+**Done**
+- The portfolio's own clip had been recorded before the `theme-park-map` and `portfolio` previews existed, so
+  its project grid showed cards without an image that now have one, and it showed the old sidebar. Redone from
+  a fresh production build, in two passes so that the card of the portfolio inside the clip shows the new
+  thumbnail rather than the previous one.
+- The new tour: home with the new sidebar, the dot grid under the cursor, the sidebar scrolled to the stack,
+  React pinned (the experiences that use it light up), Vue.js, then the main area down to the projects, the
+  Dofus card playing its own clip, `Ctrl K` filtering "pro", and back to the top. 14.6 s, 152 KiB.
+- Only `tierlist-creator` still has no media in the grid (owner decision).
+
+**Rule learned**
+- This clip shows the site itself, so it goes stale whenever the interface changes (sidebar, grid, previews,
+  stack). Redo it last, after the other previews and the visible changes are done, and in two passes.
+
+**Still open**
+- Whether to give the cards without media a placeholder so the one gap stops standing out.
+
 ## 2026-10-27: Shorter hint above the stack
 
 - The line shown before any technology is hovered was too long ("Survoler une technologie pour voir où elle a

@@ -59,8 +59,10 @@ short transitions) were fixed on 2026-10-27, see the devlog.
   eight most recent (`job-lens`, `amusement-park-website`). No placeholder exists yet for cards without media. On desktop the text column next to a
   thumbnail is narrow (the name truncates, the description is cut at 3 lines).
 - ⬜ **The clips go stale**: each one shows the project as it was recorded. Redo a clip when its project
-  changes visually. The `daily-drawing` clip shows an Unsplash photo (credited inside the app, not in the
-  thumbnail); the `artemis-foodlab` clip shows its public demo account and its "demo mode" banner.
+  changes visually. The `portfolio` clip shows this very site (sidebar, grid, other previews), so it is the one
+  to redo last, in two passes (see the devlog). The `daily-drawing` clip shows an Unsplash photo (credited
+  inside the app, not in the thumbnail); the `artemis-foodlab` clip shows its public demo account and its
+  "demo mode" banner.
 - ⬜ **Thumbnail on a 1x screen** shows a slight grid pattern: the map's own grid lines at 224px.
 
 ## Observed in the visual check (2026-10-27, headless Chrome, desktop 1440x900 and mobile 390x844)
