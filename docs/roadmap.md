@@ -36,8 +36,12 @@ short transitions) were fixed on 2026-10-27, see the devlog.
   `build:cv` run.
 - ⬜ **Not audited:** hover, loading and empty states on every element, `alt` text and
   semantic HTML across the site, and `animate` limited to `transform` and `opacity`.
-- ⬜ **UX ideas not done:** a wording review of `messages/` and `cv.ts` against the skill's content
-  rules, and touch targets for the inline links (experience descriptions, company name) on mobile.
+- ⬜ **UX ideas not done:** touch targets for the inline links (experience descriptions, company name)
+  on mobile.
+- ⬜ **Wording, owner input needed:** "Disponible" alone (FR, and the CV) does not say available for what
+  (the English "Available for work" does; the sidebar is too narrow for a longer French label); the hero
+  thesis is abstract (a concrete version exists, but it would make the hero about three lines longer); the
+  experiences carry no figures (users, duration, fleet size), none were invented.
 
 ## Observed in the visual check (2026-10-27, headless Chrome, desktop 1440x900 and mobile 390x844)
 

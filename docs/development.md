@@ -50,6 +50,9 @@ esbuild into the git-ignored `scripts/dist/` (react-pdf ships ESM-only subpath e
 that trip on-the-fly TS loaders) and runs it. It renders
 `src/components/cv/CvDocument.tsx` to PDF and a WebP preview per locale.
 
+The avatar is passed to react-pdf as a `file:` URL (`pathToFileURL`): react-pdf reads a Windows path such
+as `E:...` as a remote URL and fails with "fetch failed", leaving an empty photo frame.
+
 react-pdf and its tooling are **devDependencies**: never shipped to the client. After
 changing `src/lib/data/cv.ts` or the `cv.*` translations, run `npm run build:cv` and
 commit the regenerated `public/cv-*` files (output is deterministic). CI regenerates them

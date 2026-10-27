@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Jason Duquenne — Développeur Fullstack",
-    "description": "Développeur fullstack (JavaScript, TypeScript, Next.js), passionné de 3D et de Three.js. Je conçois des outils précis et humains qui se font oublier par leur efficacité."
+    "description": "Développeur fullstack (TypeScript, Next.js), passionné de 3D. J’ai conçu l’écran de contrôle d’imprimantes 3D professionnelles et un planificateur de repas hors ligne."
   },
   "nav": {
     "profile": "Profil",
@@ -20,7 +20,7 @@
   "logic": {
     "section_label": "// logic",
     "stack_label": "// stack",
-    "projects_title": "Projets",
+    "projects_title": "// projets",
     "empty_repos": "Aucun dépôt public à afficher pour le moment.",
     "stat_repos": "{count, plural, one {# dépôt} other {# dépôts}}",
     "stat_public": "{count, plural, one {# public} other {# publics}}",
@@ -40,7 +40,7 @@
   },
   "toy": {
     "label": "// lights out",
-    "section_label": "// let's play",
+    "section_label": "// jeu",
     "play": "Jouer",
     "close": "Fermer",
     "hint": "Éteins toutes les cases",
@@ -55,10 +55,10 @@
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "cv": "CV",
-    "write": "Écrire à Jason",
+    "write": "M’écrire",
     "copy": "Copier l’adresse email",
     "copied": "Copié",
-    "copy_failed": "Copie impossible"
+    "copy_failed": "Copie impossible :"
   },
   "cv": {
     "download": "Télécharger le CV",
@@ -93,7 +93,7 @@
     "open": "Commandes",
     "shortcut": "Ctrl K",
     "label": "Palette de commandes",
-    "placeholder": "Tapez une commande…",
+    "placeholder": "Saisir une commande…",
     "empty": "Aucune commande correspondante",
     "hint": "↑↓ naviguer · Entrée valider · Échap fermer",
     "group_navigate": "Naviguer",
@@ -106,7 +106,7 @@
     "play": "Jouer à Lights Out",
     "copy_email": "Copier l’adresse email",
     "email_copied": "Adresse email copiée",
-    "copy_failed": "Copie impossible",
+    "copy_failed": "Copie impossible :",
     "open_cv": "Ouvrir la page CV",
     "open_cv_pdf": "Ouvrir le CV (PDF)"
   }

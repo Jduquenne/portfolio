@@ -6,6 +6,7 @@
  */
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 import { createElement } from "react";
 import { renderToBuffer } from "@react-pdf/renderer";
 import * as mupdf from "mupdf";
@@ -13,7 +14,8 @@ import sharp from "sharp";
 import { buildCvData, type CvTranslator } from "../src/components/cv/cvData";
 import { routing } from "../src/i18n/routing";
 
-const AVATAR = resolve("public/avatar.png");
+// A file URL, not a path: react-pdf reads "E:\..." as a remote URL on Windows and fetches it
+const AVATAR = pathToFileURL(resolve("public/avatar.png")).href;
 /** Render scale for the preview raster, then downscaled to this width. */
 const PREVIEW_SCALE = 2;
 const PREVIEW_WIDTH = 900;

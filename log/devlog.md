@@ -3,6 +3,32 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Wording review fixes
+
+**Done**
+- Bug: the English page showed "6 ans" on the 3D printing card. `stat` is now a `LocalizedString`
+  ("6 years" / "6 ans"); the two passions components localize it.
+- Consistency: titles all follow `// name` (Projects had none), "// let's play" is "// jeu" in French,
+  separators are " · " (were " - "), "Électronique" accented, GitHub/GitLab/JavaScript spelled correctly,
+  straight apostrophes became `’` in the French strings, palette placeholder is neutral ("Saisir une
+  commande…") while the game keeps `tu`.
+- Precision: meta description now names two real things built (the 3D printer control screen, an offline meal
+  planner); dropped "moderne" and "vélocité"; the Dagoma line says "développement" like its English twin.
+  Contact button is first person: "M’écrire" / "Email me".
+- Failed copy: the address is shown (selectable) next to the message, in the contact block and in the palette,
+  since it is not displayed otherwise.
+- Documented the rules in `docs/conventions.md` (Wording).
+- CV: regenerated the PDFs and previews (the committed ones still said "33 years old"). `build-cv.mts` now
+  passes the avatar as a `file:` URL: on Windows react-pdf treated `E:...` as a remote URL and the photo
+  came out blank ("fetch failed").
+
+**Checked**
+- `tsc`, `lint`, `next build` pass. FR and EN pages read in headless Chrome: passions, section titles,
+  contact button, subtitle, failed-copy line. Both CV previews looked at (photo present, 34 ans / years).
+
+**Still open**
+- "Disponible", hero thesis and figures: owner input (see `docs/roadmap.md`).
+
 ## 2026-10-27: Scroll-to-top only when scrolling up
 
 **Done**

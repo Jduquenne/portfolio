@@ -90,7 +90,7 @@ function PaletteDialog({ onOpenChange, onPlay, pendingRef }: PaletteDialogProps)
       await navigator.clipboard.writeText(cv.contact.email);
       setNotice(t("email_copied"));
     } catch {
-      setNotice(t("copy_failed"));
+      setNotice(`${t("copy_failed")} ${cv.contact.email}`);
     }
   };
 

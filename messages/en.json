@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Jason Duquenne — Fullstack Developer",
-    "description": "Fullstack developer (JavaScript, TypeScript, Next.js), into 3D and Three.js. I build precise, human software that fades into the background through sheer efficiency."
+    "description": "Fullstack developer (TypeScript, Next.js) into 3D. I built the control screen of professional 3D printers and an offline meal planner."
   },
   "nav": {
     "profile": "Profile",
@@ -20,7 +20,7 @@
   "logic": {
     "section_label": "// logic",
     "stack_label": "// stack",
-    "projects_title": "Projects",
+    "projects_title": "// projects",
     "empty_repos": "No public repositories to display yet.",
     "stat_repos": "{count, plural, one {# repo} other {# repos}}",
     "stat_public": "{count} public",
@@ -55,10 +55,10 @@
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "cv": "CV",
-    "write": "Write to Jason",
+    "write": "Email me",
     "copy": "Copy email address",
     "copied": "Copied",
-    "copy_failed": "Copy failed"
+    "copy_failed": "Copy failed:"
   },
   "cv": {
     "download": "Download CV",
@@ -106,7 +106,7 @@
     "play": "Play Lights Out",
     "copy_email": "Copy email address",
     "email_copied": "Email address copied",
-    "copy_failed": "Copy failed",
+    "copy_failed": "Copy failed:",
     "open_cv": "Open the CV page",
     "open_cv_pdf": "Open the CV (PDF)"
   }

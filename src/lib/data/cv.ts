@@ -52,7 +52,7 @@ interface CVStackCategory {
 }
 
 interface CVPassion {
-  stat: string;
+  stat: LocalizedString;
   title: LocalizedString;
   label: LocalizedString;
 }
@@ -90,12 +90,12 @@ export const cv: CV = {
       },
     ],
     subtitle: {
-      en: "Fullstack Developer · Javascript",
-      fr: "Développeur Fullstack · Javascript",
+      en: "Fullstack Developer · JavaScript",
+      fr: "Développeur Fullstack · JavaScript",
     },
     description: {
       en: "A rigorous developer, driven by the desire to be useful. I build tools that fade into the background through sheer efficiency.",
-      fr: "Développeur rigoureux, guidé par l'envie d'être utile. Je conçois des outils qui se font oublier par leur efficacité.",
+      fr: "Développeur rigoureux, guidé par l’envie d’être utile. Je conçois des outils qui se font oublier par leur efficacité.",
     },
     available: true,
   },
@@ -119,7 +119,7 @@ export const cv: CV = {
       current: true,
       description: {
         en: "Web products designed and shipped independently, end to end. Artemis FoodLab — a local-first meal planner, fully in-browser on IndexedDB, no backend. Dofus Retro Craft Dashboard — a static-first utility hub: XP and craft calculators, interactive map and profitability guides, all client-side. AI integrated into the workflow (Claude Code, Gemini) for brainstorming and speed, architecture and review kept in hand.",
-        fr: "Produits web conçus et livrés en indépendant, de bout en bout. Artemis FoodLab — planificateur de repas local-first, entièrement dans le navigateur sur IndexedDB, sans backend. Dofus Retro Craft Dashboard — hub d'outils static-first : calculateurs d'XP et de craft, carte interactive et guides de rentabilité, tout côté client. IA intégrée au workflow (Claude Code, Gemini) pour le brainstorming et la vélocité, architecture et revue gardées en main.",
+        fr: "Produits web conçus et livrés en indépendant, de bout en bout. Artemis FoodLab — planificateur de repas local-first, entièrement dans le navigateur sur IndexedDB, sans backend. Dofus Retro Craft Dashboard — hub d’outils static-first : calculateurs d’XP et de craft, carte interactive et guides de rentabilité, tout côté client. IA intégrée au workflow (Claude Code, Gemini) pour le brainstorming et la rapidité, architecture et revue gardées en main.",
       },
       links: [
         {
@@ -152,7 +152,7 @@ export const cv: CV = {
       period: "2022 — 2024",
       description: {
         en: "Continued to build out the 3D printer farm dashboard and support its API. Embedded control screen for Dagoma's professional printers (Pro430, SigmaPro): a React interface under Electron, running on Raspbian on top of OctoPrint. Custom OctoPrint plugin in Python to bridge the machine with Dagoma's API and app, plus contributions to the Marlin firmware (C++).",
-        fr: "Poursuite de l’intégration du dashboard de la ferme d’imprimantes 3D et du support de son API. Écran de contrôle embarqué des imprimantes professionnelles Dagoma (Pro430, SigmaPro) : interface React sous Electron, tournant sur Raspbian au-dessus d’OctoPrint. Plugin OctoPrint sur mesure en Python pour relier la machine à l’API et à l’app Dagoma, et contribution au firmware Marlin (C++).",
+        fr: "Poursuite du développement du dashboard de la ferme d’imprimantes 3D et du support de son API. Écran de contrôle embarqué des imprimantes professionnelles Dagoma (Pro430, SigmaPro) : interface React sous Electron, tournant sur Raspbian au-dessus d’OctoPrint. Plugin OctoPrint sur mesure en Python pour relier la machine à l’API et à l’app Dagoma, et contribution au firmware Marlin (C++).",
       },
       stack: [
         "TypeScript",
@@ -190,8 +190,8 @@ export const cv: CV = {
       },
       period: "2020 — 2021",
       description: {
-        en: "Built hospital medication inventory applications: stock tracking, withdrawals handled by nursing staff, prescription creation and Kanban-based restocking. Modern dashboard in Vue.js and Quasar, C# / .NET backend.",
-        fr: "Développement d’applications de gestion d’inventaire de médicaments en milieu hospitalier : suivi des stocks, sorties assurées par le personnel infirmier, création d’ordonnances et réapprovisionnement en Kanban. Dashboard moderne en Vue.js et Quasar, back-end C# / .NET.",
+        en: "Built hospital medication inventory applications: stock tracking, withdrawals handled by nursing staff, prescription creation and Kanban-based restocking. Dashboard in Vue.js and Quasar, C# / .NET backend.",
+        fr: "Développement d’applications de gestion d’inventaire de médicaments en milieu hospitalier : suivi des stocks, sorties assurées par le personnel infirmier, création d’ordonnances et réapprovisionnement en Kanban. Dashboard en Vue.js et Quasar, back-end C# / .NET.",
       },
       stack: ["Vue.js", "Quasar", "TypeScript", "C#", ".NET"],
     },
@@ -219,7 +219,7 @@ export const cv: CV = {
     },
     {
       label: { en: "Tools & Others", fr: "Outils & Autres" },
-      items: ["Github", "Gitlab", "Docker", "MongoDB", "SQL", "Linux"],
+      items: ["GitHub", "GitLab", "Docker", "MongoDB", "SQL", "Linux"],
     },
     {
       label: { en: "3D / Games", fr: "3D / Jeux" },
@@ -234,18 +234,18 @@ export const cv: CV = {
   // ─── Passions ────────────────────────────────────────────────────────────────
   passions: [
     {
-      stat: "∞",
+      stat: { en: "∞", fr: "∞" },
       title: {
         en: "Self-taught",
         fr: "Autodidacte",
       },
       label: {
-        en: "Dev - Tech - Photography - Electronics - Watchmaking",
-        fr: "Dev - Informatique - Photographie - Electronique - Horlogerie",
+        en: "Dev · Tech · Photography · Electronics · Watchmaking",
+        fr: "Dev · Informatique · Photographie · Électronique · Horlogerie",
       },
     },
     {
-      stat: "3D",
+      stat: { en: "3D", fr: "3D" },
       title: {
         en: "Blender & Three.js & WebGL",
         fr: "Blender & Three.js & WebGL",
@@ -256,7 +256,7 @@ export const cv: CV = {
       },
     },
     {
-      stat: "6 ans",
+      stat: { en: "6 years", fr: "6 ans" },
       title: {
         en: "3D Printing",
         fr: "Impression 3D",

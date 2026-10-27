@@ -16,6 +16,18 @@
 - **Desktop and mobile:** never mix their logic in the same component. Shared logic goes
   in `src/components/shared/`, `src/hooks/` or `src/lib/`.
 
+## Wording
+
+- French uses the typographic apostrophe `’` (not `'`) and a space before `:`. English strings keep `'`.
+- Product names are written as their owners write them: GitHub, GitLab, JavaScript, TypeScript.
+- Lists and separators inside a label use ` · `, never ` - `.
+- Every section title follows the `// name` pattern.
+- Anything shown to the visitor is a `LocalizedString` or a `messages/` key, including figures with a unit
+  (`stat: { en: "6 years", fr: "6 ans" }`).
+- Say what is concrete (a product, a technology, a figure), avoid empty adjectives ("modern", "powerful").
+  An error says what failed and gives the next step (the failed copy shows the address).
+- Tone: the game speaks to the visitor with `tu`; the rest of the interface is neutral (infinitives).
+
 ## Animations
 
 - Use Framer Motion for any non-trivial animation.

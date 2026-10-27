@@ -33,12 +33,12 @@ export function PassionsSection() {
 
         {cv.passions.map((passion) => (
           <motion.div
-            key={passion.stat}
+            key={passion.stat.en}
             variants={fadeUp}
             className="p-4 bg-surface border border-white/8 flex items-center gap-4"
           >
             <span className="font-mono text-2xl font-bold text-contrast leading-none w-20 shrink-0 whitespace-nowrap">
-              {passion.stat}
+              {localize(passion.stat, locale)}
             </span>
             <div className="flex flex-col gap-1">
               <span className="font-mono text-sm font-bold text-contrast">
