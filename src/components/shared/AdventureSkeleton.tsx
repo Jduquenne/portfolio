@@ -5,6 +5,7 @@ export function AdventureSkeleton() {
   return (
     <div
       aria-hidden="true"
+      data-adventure-skeleton
       className="grid-backdrop flex h-full overflow-hidden"
     >
       <div className="hidden w-72 shrink-0 flex-col gap-4 border-r border-white/8 bg-surface p-8 lg:flex">

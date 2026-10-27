@@ -1,10 +1,10 @@
 import fr from "../../messages/fr.json";
 import { routing } from "@/i18n/routing";
+import { SITE_URL } from "@/lib/site";
 
-const siteUrl = "https://jduquenne.github.io/portfolio";
 const target = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/${routing.defaultLocale}/`;
-const canonical = `${siteUrl}/${routing.defaultLocale}/`;
-const ogImage = `${siteUrl}/og.png`;
+const canonical = `${SITE_URL}/${routing.defaultLocale}/`;
+const ogImage = `${SITE_URL}/og.png`;
 const { title, description } = fr.meta;
 
 /**

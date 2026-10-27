@@ -58,6 +58,13 @@ changing `src/lib/data/cv.ts` or the `cv.*` translations, run `npm run build:cv`
 commit the regenerated `public/cv-*` files (output is deterministic). CI regenerates them
 on every deploy regardless.
 
+## Sitemap
+
+`src/app/sitemap.ts` generates `sitemap.xml` (home and CV, in both languages, with `hreflang`
+alternates). There is no `robots.txt`: crawlers only read it at the root of the host, and
+`jduquenne.github.io` root belongs to the user site, not to this project page. Submit
+`https://jduquenne.github.io/portfolio/sitemap.xml` in Google Search Console if needed.
+
 ## Social preview image
 
 `npm run build:og` renders `public/og.png` (1200x630) from `scripts/build-og.mjs`. Per the

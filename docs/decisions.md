@@ -98,3 +98,18 @@ not documented. They are all `accepted` because the code implements them.
   gradients), part A (strategy and structure), the tagline reveal section.
 - **Consequences:** `docs/ui-design.md` carries the adopted rules. `SKILL.md` is not part
   of the agent context.
+
+## D-009: Text fallback in `<noscript>` and a sitemap
+
+- **Date:** 2026-10-27
+- **Status:** accepted
+- **Context:** the device layout is chosen in the browser, so the static HTML held no visible text and no
+  `<h1>` (checked on the live site). Link previews worked (they read the head), but tools that do not run
+  JavaScript saw an empty page.
+- **Decision:** render a plain semantic version of the content in a `<noscript>` block from the server page,
+  and generate a `sitemap.xml`. The public URL lives in `src/lib/site.ts`.
+- **Alternatives considered:** server-rendering the mobile feed (desktop visitors would see a flash);
+  rendering both layouts and hiding one with CSS (doubles the DOM, against the Two Adventures rule);
+  visually hidden duplicate text (read twice by screen readers).
+- **Consequences:** the text exists twice in the source (the app and the fallback) but both read `cv.ts`.
+  `robots.txt` is not possible on a project page.

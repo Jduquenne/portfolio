@@ -43,6 +43,9 @@ short transitions) were fixed on 2026-10-27, see the devlog.
   thesis is abstract (a concrete version exists, but it would make the hero about three lines longer); the
   experiences carry no figures (users, duration, fleet size), none were invented.
 
+- ⬜ **Crawler view not checked with a real crawler**: the fallback was verified in the generated HTML and
+  in Chrome with JavaScript off, not with Search Console or a link-preview tool.
+
 ## Observed in the visual check (2026-10-27, headless Chrome, desktop 1440x900 and mobile 390x844)
 
 - ✅ **Desktop project cards looked empty at rest** (description on hover only, and most repos have

@@ -109,5 +109,8 @@
     "copy_failed": "Copie impossible :",
     "open_cv": "Ouvrir la page CV",
     "open_cv_pdf": "Ouvrir le CV (PDF)"
+  },
+  "noscript": {
+    "notice": "JavaScript est désactivé : voici une version simplifiée du portfolio."
   }
 }

@@ -3,6 +3,26 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Text for crawlers and visitors without JavaScript
+
+**Done**
+- Checked on the live site first: the static HTML had no visible text, no `<h1>` and no sitemap (only the
+  head, with title and description, was readable).
+- `NoScriptContent` renders the identity, contact links, experiences, stack and projects in a `<noscript>`
+  from `[locale]/page.tsx`; keys `noscript.notice` in both message files. The skeleton is hidden when
+  scripts are off (`data-adventure-skeleton` + a `<noscript><style>` in the head).
+- `sitemap.xml` with `hreflang` alternates. No `robots.txt` (not possible under a project page).
+- `SITE_URL` now lives in `src/lib/site.ts` instead of two copies.
+- Decision D-009.
+
+**Checked**
+- `tsc`, `lint`, `next build` pass. Built HTML: "rigoureux" and `<h1` now present in both locales.
+  Chrome with JavaScript off: readable page, skeleton hidden. With JavaScript on: no console error or
+  warning, one `<main>`, nothing changes visually.
+
+**Still open**
+- Not verified with a real crawler. After deploy, `curl` the live page again to confirm.
+
 ## 2026-10-27: Wording review fixes
 
 **Done**

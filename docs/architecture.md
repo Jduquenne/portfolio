@@ -59,6 +59,7 @@ src/
 ├── app/
 │   ├── layout.tsx, page.tsx      # root redirect stub with Open Graph tags (see below)
 │   ├── not-found.tsx             # static 404.html, both locales
+│   ├── sitemap.ts                # sitemap.xml with fr/en alternates (force-static)
 │   ├── fonts.ts                  # next/font: Inter + Geist Mono
 │   ├── [locale]/                 # layout.tsx, page.tsx (home), cv/page.tsx
 │   ├── globals.css
@@ -68,7 +69,7 @@ src/
 │   │   └── sections/             # Experience, Projects, Specialties
 │   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, sections/
 │   │   └── sections/             # Profile, Experience, Stack, Projects, Passions, Play
-│   ├── shared/                   # AdventureRouter, AdventureSkeleton, ContactAction, ExperienceDescription,
+│   ├── shared/                   # AdventureRouter, AdventureSkeleton, ContactAction, NoScriptContent, ExperienceDescription,
 │   │                             #   LanguageSwitcher, LightsOut, RepoStatsReadout
 │   └── cv/                       # CvDocument (react-pdf), cvData (cv.ts -> plain strings), Cv (page UI)
 ├── hooks/                        # useDevice, useCountUp, useActiveSection
@@ -77,6 +78,7 @@ src/
 │   ├── data/cv.ts                # CV content, LocalizedString fields, localize()
 │   ├── github.ts                 # build-time GitHub fetch
 │   ├── motion.ts                 # shared Framer Motion presets
+│   ├── site.ts                   # SITE_URL, the one place the public URL is written
 │   ├── lightsOut.ts              # Lights Out game logic
 │   ├── languages.ts              # GitHub language colours
 │   └── utils.ts
@@ -126,5 +128,9 @@ messages/{en,fr}.json ──► next-intl (useTranslations)
 - **CV data** is in `src/lib/data/cv.ts`. Every translatable field is a
   `LocalizedString` (`{ en, fr }`) read through `localize()`.
 - **GitHub data** is fetched at build time. See [development.md](development.md).
+- **Crawlers and no-JavaScript:** the layout is chosen in the browser (`useDevice`), so the static HTML
+  alone would hold no text. `NoScriptContent` (server component, in `<noscript>`) renders the name,
+  headline, contact links, experiences, stack and projects; a `<noscript><style>` in the head hides the
+  skeleton when scripts are off. With scripts on, the browser does not build the `<noscript>` content.
 - **Static pages:** `[locale]/page.tsx` is `force-static`. Anything that must stay fresh
   requires a redeploy.

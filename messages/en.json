@@ -109,5 +109,8 @@
     "copy_failed": "Copy failed:",
     "open_cv": "Open the CV page",
     "open_cv_pdf": "Open the CV (PDF)"
+  },
+  "noscript": {
+    "notice": "JavaScript is disabled: this is a simplified version of the portfolio."
   }
 }

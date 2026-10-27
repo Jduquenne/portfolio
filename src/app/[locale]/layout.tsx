@@ -6,9 +6,8 @@ import en from "../../../messages/en.json";
 import { routing } from "@/i18n/routing";
 import { cv } from "@/lib/data/cv";
 import { geistMono, inter } from "@/app/fonts";
+import { SITE_URL } from "@/lib/site";
 import "../globals.css";
-
-const siteUrl = "https://jduquenne.github.io/portfolio";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -21,16 +20,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const { title, description } = (locale === "fr" ? fr : en).meta;
-  const pageUrl = `${siteUrl}/${locale}/`;
-  const ogImage = `${siteUrl}/og.png`;
+  const pageUrl = `${SITE_URL}/${locale}/`;
+  const ogImage = `${SITE_URL}/og.png`;
 
   return {
-    metadataBase: new URL(siteUrl),
+    metadataBase: new URL(SITE_URL),
     title,
     description,
     alternates: {
       canonical: pageUrl,
-      languages: { fr: `${siteUrl}/fr/`, en: `${siteUrl}/en/` },
+      languages: { fr: `${SITE_URL}/fr/`, en: `${SITE_URL}/en/` },
     },
     openGraph: {
       type: "website",
@@ -67,10 +66,10 @@ export default async function LocaleLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Jason Duquenne",
-    url: `${siteUrl}/${locale}/`,
+    url: `${SITE_URL}/${locale}/`,
     jobTitle: "Fullstack Developer",
     description: messages.meta.description,
-    image: `${siteUrl}/og.png`,
+    image: `${SITE_URL}/og.png`,
     email: cv.contact.email,
     sameAs: [cv.contact.github, cv.contact.linkedin],
     knowsAbout: ["TypeScript", "Next.js", "React", "Three.js", "WebGL"],
@@ -83,6 +82,9 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <head>
+        <noscript>
+          <style>{"[data-adventure-skeleton]{display:none}"}</style>
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
