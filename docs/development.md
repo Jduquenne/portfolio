@@ -64,6 +64,11 @@ on every deploy regardless.
    visual one last. Anything works: OBS, ScreenToGif, or a scripted headless Chrome. Visit every page once before
    recording so nothing loads during the clip, and move the mouse like a hand would (curved path, slow start and
    end, small pauses); a straight constant-speed drag looks like a bot. A visible cursor helps the viewer follow.
+   Some cases that came up: an app that keeps its data in the browser starts empty, so record from a clean
+   profile and enter a few plausible examples through its own interface before the clip starts; an app that
+   fetches content (a photo, an API) makes the clip depend on the network, so keep its responses during the
+   warm-up and serve them from memory while recording. A public demo mode, when the app has one, is the
+   simplest way to get data.
 2. Encode the clip with ffmpeg (about 14 s at most, no audio, 448px wide, `faststart` so it starts before it is
    fully downloaded):
    `ffmpeg -i <video> -t 14 -an -vf "fps=24,scale=448:-2:flags=lanczos" -c:v libx264 -preset slow -crf 28 -pix_fmt yuv420p -movflags +faststart public/previews/<repo>.mp4`

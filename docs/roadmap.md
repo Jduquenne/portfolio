@@ -52,9 +52,14 @@ short transitions) were fixed on 2026-10-27, see the devlog.
 - ⬜ **Crawler view not checked with a real crawler**: the fallback was verified in the generated HTML and
   in Chrome with JavaScript off, not with Search Console or a link-preview tool.
 
-- ⬜ **Project previews exist for one repo only** (`dofus-retro-craft-dashboard`, recorded as a test).
-  The other cards are text only; no placeholder yet. On desktop the text column next to a thumbnail is
-  narrow (the name truncates, the description is cut at 3 lines).
+- ⬜ **Project previews exist for six repos** (`portfolio`, `artemis-foodlab`, `sowftware`,
+  `torpheen-arena`, `daily-drawing`, `dofus-retro-craft-dashboard`). `theme-park-map` and
+  `tierlist-creator` (listed) and the repos outside the eight most recent (`job-lens`,
+  `amusement-park-website`) have none, and no placeholder exists yet. On desktop the text column next to a
+  thumbnail is narrow (the name truncates, the description is cut at 3 lines).
+- ⬜ **The clips go stale**: each one shows the project as it was recorded. Redo a clip when its project
+  changes visually. The `daily-drawing` clip shows an Unsplash photo (credited inside the app, not in the
+  thumbnail); the `artemis-foodlab` clip shows its public demo account and its "demo mode" banner.
 - ⬜ **Thumbnail on a 1x screen** shows a slight grid pattern: the map's own grid lines at 224px.
 
 ## Observed in the visual check (2026-10-27, headless Chrome, desktop 1440x900 and mobile 390x844)

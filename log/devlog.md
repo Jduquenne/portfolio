@@ -3,6 +3,36 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Previews for the other main projects
+
+**Done**
+- Clips and stills for `artemis-foodlab` (public demo account: week of menus, recipes, shopping list with two
+  items ticked, freezer, journal), `sowftware` (a plot and three plantings entered through the interface, then
+  catalogue, sowing calendar, three tomatoes placed on the garden plan, yield), `torpheen-arena` (eight spins
+  before recording so the inventory is full, then three spins and a rarity filter), `daily-drawing`
+  (welcome, a theme, the photo, the calendar, the badges) and `portfolio` itself (home, cursor glow, scroll to
+  the projects, hover on the Dofus card, `Ctrl K`, recorded from a production build). Each one starts on the
+  app's main page, which is also its still. 9 to 13 s, 60 to 160 KiB per clip.
+- Recording tooling kept outside the repo, with a shared kit: hand-like mouse, visible cursor, clean profile
+  per run (apps that keep state in the browser start the same way each time), and a network replay for
+  `daily-drawing` (its photo comes from the network: the responses are kept during the warm-up and served from
+  memory, so the clip shows no loading and always the same photo).
+
+**Problems met on the way**
+- A click on "Ail" ticked "Melon": the target finder picked a container that starts with the same text; it now
+  takes the smallest matching element. The demo state persisted between runs: profiles are now wiped first.
+- The replayed photo came back broken: the cross-origin body was recorded as 0 bytes (fetched again from Node),
+  and stale compression headers had to be dropped from the replayed responses.
+
+**Checked**
+- Frames of every encoded clip. In the page: at rest only the 448px thumbnails are requested and no `<video>`
+  exists; the grid shows six cards with a thumbnail. `tsc`, `lint` and `next build` pass.
+
+**Still open**
+- Look at the grid and the hover on each card, then decide: placeholder for the cards without media,
+  `theme-park-map`, `tierlist-creator`, and whether to add `job-lens` and `amusement-park-website` (they
+  only show once they are among the eight most recently pushed).
+
 ## 2026-10-27: Dofus clip redone as a tour
 
 **Done**
