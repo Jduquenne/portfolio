@@ -58,6 +58,8 @@ Verified against the code on 2026-10-27.
 src/
 ├── app/
 │   ├── layout.tsx, page.tsx      # root redirect stub with Open Graph tags (see below)
+│   ├── not-found.tsx             # static 404.html, both locales
+│   ├── fonts.ts                  # next/font: Inter + Geist Mono
 │   ├── [locale]/                 # layout.tsx, page.tsx (home), cv/page.tsx
 │   ├── globals.css
 │   └── icon.svg

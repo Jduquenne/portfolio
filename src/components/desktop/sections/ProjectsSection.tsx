@@ -21,7 +21,7 @@ const accentBarVariants = {
 
 const topicsVariants = {
   rest: { opacity: 1 },
-  hover: { opacity: 0, transition: { duration: 0.12 } },
+  hover: { opacity: 0, transition: { duration: 0.2 } },
 };
 
 const descriptionVariants = {
@@ -85,14 +85,14 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                       {repo.name}
                     </p>
                     {repo.fork && (
-                      <span className="font-mono text-[10px] text-contrast/24 shrink-0">
+                      <span className="font-mono text-xs text-contrast/24 shrink-0">
                         {t("fork")}
                       </span>
                     )}
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     {repo.stargazers_count > 0 && (
-                      <span className="flex items-center gap-1 font-mono text-[10px] text-contrast/40">
+                      <span className="flex items-center gap-1 font-mono text-xs text-contrast/40">
                         <Star size={9} />
                         {repo.stargazers_count}
                       </span>
@@ -141,7 +141,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                       {repo.topics.slice(0, 4).map((topic) => (
                         <span
                           key={topic}
-                          className="font-mono text-[10px] text-contrast/32 border border-white/8 px-2 py-px leading-4"
+                          className="font-mono text-xs text-contrast/32 border border-white/8 px-2 py-1"
                         >
                           {topic}
                         </span>
@@ -161,7 +161,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                 {/* Footer: language + date */}
                 <div className="flex items-center justify-between pt-2 border-t border-white/4">
                   {repo.language ? (
-                    <span className="flex items-center gap-2 font-mono text-[10px] text-contrast/40">
+                    <span className="flex items-center gap-2 font-mono text-xs text-contrast/40">
                       <span
                         className="w-2 h-2 rounded-full shrink-0"
                         style={{
@@ -173,7 +173,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                   ) : (
                     <span />
                   )}
-                  <span suppressHydrationWarning className="font-mono text-[10px] text-contrast/24">
+                  <span suppressHydrationWarning className="font-mono text-xs text-contrast/24">
                     {relativeTime(repo.pushed_at, locale)}
                   </span>
                 </div>

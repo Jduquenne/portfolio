@@ -73,5 +73,13 @@
     "section_languages": "// languages",
     "section_licence": "// licence",
     "section_projects": "// projects"
+  },
+  "a11y": {
+    "skip_to_content": "Skip to content"
+  },
+  "not_found": {
+    "title": "Page not found",
+    "description": "This page does not exist or has moved.",
+    "back": "Back to the portfolio"
   }
 }

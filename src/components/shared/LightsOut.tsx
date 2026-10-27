@@ -58,7 +58,7 @@ export function LightsOut({ className }: { className?: string }) {
         </span>
       </div>
 
-      <div className="flex items-center gap-3 font-mono text-xs">
+      <div className="flex items-center gap-4 font-mono text-xs">
         {LIGHTS_OUT_SIZES.map((value) => (
           <button
             key={value}
@@ -94,7 +94,7 @@ export function LightsOut({ className }: { className?: string }) {
             })}
             onClick={() => handlePress(index)}
             className={cn(
-              "aspect-square transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+              "aspect-square transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
               lit
                 ? "bg-accent shadow-[0_0_10px_rgba(56,189,248,0.35)]"
                 : "border border-white/8 bg-white/[0.03] hover:border-accent/30",

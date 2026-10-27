@@ -1,22 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import fr from "../../../messages/fr.json";
 import en from "../../../messages/en.json";
 import { routing } from "@/i18n/routing";
 import { cv } from "@/lib/data/cv";
+import { geistMono, inter } from "@/app/fonts";
 import "../globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const siteUrl = "https://jduquenne.github.io/portfolio";
 
@@ -99,6 +89,12 @@ export default async function LocaleLayout({
         />
       </head>
       <body className="h-full" suppressHydrationWarning>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-50 focus:bg-surface focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:text-accent"
+        >
+          {messages.a11y.skip_to_content}
+        </a>
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>

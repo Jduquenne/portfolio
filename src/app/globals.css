@@ -27,6 +27,23 @@ body {
   color: var(--color-contrast);
 }
 
+@layer base {
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
 /* Fixed ambient texture behind the app shell: dot grid, faint accent glow,
    and an edge vignette so the grid fades out of the way at the margins. */
 .grid-backdrop {

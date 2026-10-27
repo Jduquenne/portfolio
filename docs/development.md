@@ -84,7 +84,9 @@ daily at 05:00 UTC (scheduled redeploy to refresh the GitHub data).
 >   observed in a session. It is probably inactive, and its stdout would not reach the
 >   agent anyway. Not verified.
 > - The hook and `design-check.md` list `p-6`, `m-6`, `mt-6`, `gap-6`... as violations.
->   They are valid (24px). They also miss real violations such as `py-10` and `py-1.5`.
+>   They are valid (24px). They also miss real violations such as `py-1.5` and `py-0.5`.
+> - `design-check.md` § 4 and the type scale: it does not check the arbitrary text sizes,
+>   the 200ms minimum duration or the focus ring added by D-008.
 > - `new-component.md` lists a `ui` category, but `src/components/ui/` does not exist
 >   yet.
 

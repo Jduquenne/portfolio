@@ -63,7 +63,7 @@ export function ProfileSection() {
 
         <motion.p
           variants={fadeUp}
-          className="font-mono text-xl leading-[1.35] text-balance text-contrast"
+          className="font-mono text-xl text-balance text-contrast"
         >
           {localize(cv.identity.description, locale)}
           <span className="hero-caret" aria-hidden="true" />
@@ -81,7 +81,7 @@ export function ProfileSection() {
 
         <div className="border-t border-white/8" />
 
-        <motion.div variants={fadeUp} className="flex flex-col gap-3">
+        <motion.div variants={fadeUp} className="flex flex-col gap-4">
           <span className="font-mono text-xs text-contrast/24 tracking-widest uppercase">
             {tc("section_label")}
           </span>

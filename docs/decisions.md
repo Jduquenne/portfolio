@@ -77,3 +77,24 @@ not documented. They are all `accepted` because the code implements them.
 - **Decision:** `.github/workflows/deploy.yml` also runs on a daily cron (05:00 UTC).
 - **Alternatives considered:** not documented
 - **Consequences:** the "latest activity" readout and repo list refresh once a day.
+
+## D-008: Selective adoption of the `landing-page-design` skill
+
+- **Date:** 2026-10-27
+- **Status:** accepted
+- **Context:** a `SKILL.md` (visual system for landing pages) was compared with the
+  project's design rules. It targets conversion pages, the portfolio is a narrative.
+- **Decision:** adopt only the rules that do not contradict the project: Tailwind type
+  scale without arbitrary sizes, `text-wrap` balance and pretty, visible focus ring,
+  200ms minimum transition, `prefers-reduced-motion`, scroll reveals without unthrottled
+  listeners, the state set (hover, active, focus, loading, empty, error), a skip-to-content
+  link, a custom 404, alt text and semantic HTML. The 4px step stays allowed as an owner
+  exception to the 8px grid.
+- **Alternatives considered:** adopting the whole skill, rejected. It forbids Inter and
+  Lucide, imposes another spacing table, other dark backgrounds, a cubic-bezier curve
+  instead of spring physics, and a landing-page structure (CTA, FAQ, tagline reveal).
+  Not adopted: the spacing table, the single typeface, Phosphor/Solar/Iconamoon icons, the
+  skill's dark backgrounds, the no-gradient rule (the dot-grid backdrop uses radial
+  gradients), part A (strategy and structure), the tagline reveal section.
+- **Consequences:** `docs/ui-design.md` carries the adopted rules. `SKILL.md` is not part
+  of the agent context.

@@ -16,7 +16,7 @@ interface MobileLayoutProps {
 export function MobileLayout({ repos, stats }: MobileLayoutProps) {
   return (
     <>
-      <main className="grid-backdrop bento-scroll h-screen overflow-y-scroll snap-y snap-mandatory text-contrast font-sans">
+      <main id="main" className="grid-backdrop bento-scroll h-screen overflow-y-scroll snap-y snap-mandatory text-contrast font-sans">
         <ProfileSection />
         <ExperienceSection />
         <StackSection />

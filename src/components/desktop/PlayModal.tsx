@@ -11,6 +11,12 @@ interface PlayModalProps {
   onClose: () => void;
 }
 
+const backdropVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.2 } },
+  exit: { opacity: 0, transition: { duration: 0.2 } },
+};
+
 const panelVariants = {
   hidden: { opacity: 0, scale: 0.96, y: 8 },
   visible: {
@@ -19,7 +25,7 @@ const panelVariants = {
     y: 0,
     transition: { type: "spring" as const, stiffness: 240, damping: 24 },
   },
-  exit: { opacity: 0, scale: 0.96, y: 8, transition: { duration: 0.12 } },
+  exit: { opacity: 0, scale: 0.96, y: 8, transition: { duration: 0.2 } },
 };
 
 export function PlayModal({ open, onClose }: PlayModalProps) {
@@ -72,10 +78,10 @@ export function PlayModal({ open, onClose }: PlayModalProps) {
       {open && (
         <motion.div
           key="play-backdrop"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.15 }}
+          variants={backdropVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
           onClick={onClose}
           className="fixed inset-0 z-50 flex items-center justify-center bg-base/80 p-8 backdrop-blur-sm"
         >
@@ -97,7 +103,7 @@ export function PlayModal({ open, onClose }: PlayModalProps) {
               type="button"
               onClick={onClose}
               aria-label={t("close")}
-              className="absolute -right-3 -top-3 z-10 border border-white/8 bg-surface p-1.5 text-contrast/50 transition-colors hover:border-accent/30 hover:text-accent"
+              className="absolute -right-2 -top-2 z-10 border border-white/8 bg-surface p-2 text-contrast/50 transition-colors hover:border-accent/30 hover:text-accent"
             >
               <X size={14} />
             </button>

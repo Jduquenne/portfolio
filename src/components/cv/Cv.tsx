@@ -18,7 +18,7 @@ export function CvPage() {
   const fileName = `Jason_Duquenne_CV_${locale.toUpperCase()}.pdf`;
 
   return (
-    <div className="grid-backdrop min-h-screen w-full px-6 py-10">
+    <main id="main" className="grid-backdrop min-h-screen w-full px-6 py-10">
       <div className="mx-auto flex w-full max-w-[210mm] flex-col gap-4">
         <div className="flex items-center justify-between gap-4">
           <a
@@ -34,7 +34,7 @@ export function CvPage() {
             <a
               href={pdfUrl}
               download={fileName}
-              className={`${linkBase} border border-white/8 px-3 py-2 text-contrast/50 hover:border-accent/40 hover:text-accent`}
+              className={`${linkBase} border border-white/8 px-4 py-2 text-contrast/50 hover:border-accent/40 hover:text-accent`}
             >
               <Download size={14} />
               {t("download")}
@@ -58,6 +58,6 @@ export function CvPage() {
           />
         </a>
       </div>
-    </div>
+    </main>
   );
 }

@@ -33,7 +33,7 @@ export function Hero({ latestRepo }: HeroProps) {
         <div className="flex flex-wrap items-start justify-between gap-x-8 gap-y-4">
           <motion.p
             variants={fadeUp}
-            className="min-w-0 max-w-[26ch] font-mono text-[2rem] leading-[1.18] tracking-tight text-balance text-contrast"
+            className="min-w-0 max-w-[26ch] font-mono text-3xl tracking-tight text-balance text-contrast"
           >
             {localize(cv.identity.description, locale)}
             <span className="hero-caret" aria-hidden="true" />
@@ -63,7 +63,7 @@ export function Hero({ latestRepo }: HeroProps) {
           <button
             type="button"
             onClick={() => setPlayOpen(true)}
-            className="inline-flex items-center gap-2 border border-white/8 px-3 py-2 font-mono text-xs uppercase tracking-widest text-contrast/50 transition-colors hover:border-accent/40 hover:text-accent"
+            className="inline-flex items-center gap-2 border border-white/8 px-4 py-2 font-mono text-xs uppercase tracking-widest text-contrast/50 transition-colors hover:border-accent/40 hover:text-accent"
           >
             <Dice5 size={16} />
             {tToy("play")}

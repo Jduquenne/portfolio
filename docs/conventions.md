@@ -46,7 +46,8 @@ Conventional Commits.)
    `/new-component` command, but `src/components/ui/` does not exist yet).
 3. Create `ComponentName.tsx` with a named export (not default) and a props `interface`.
 4. Define animation variants above the component, or reuse `src/lib/motion.ts`.
-5. Colours from the palette, spacing on the 8px grid, see [ui-design.md](ui-design.md).
+5. Colours from the palette, spacing on the 8px grid, Tailwind type scale, 200ms minimum
+   transitions, hover/active/focus states, see [ui-design.md](ui-design.md).
 6. Put all UI text in `messages/{en,fr}.json`.
 7. `desktop`: no mobile logic, no `scroll-snap`, no `BottomNav`. `mobile`: no hover-only
    states, no `BentoGrid`.

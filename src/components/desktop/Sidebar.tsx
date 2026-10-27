@@ -72,7 +72,7 @@ export function Sidebar() {
       <Divider />
 
       {/* Contact */}
-      <motion.div variants={fadeInLeft} className="flex flex-col gap-3">
+      <motion.div variants={fadeInLeft} className="flex flex-col gap-4">
         <span className="font-mono text-xs text-contrast/24 tracking-widest uppercase">
           {tc("section_label")}
         </span>
@@ -125,7 +125,7 @@ export function Sidebar() {
                 {category.items.map((item) => (
                   <span
                     key={item}
-                    className="font-mono text-xs px-2 py-0.5 border border-white/8 text-contrast/50 hover:border-accent/30 hover:text-contrast transition-colors"
+                    className="font-mono text-xs px-2 py-1 border border-white/8 text-contrast/50 hover:border-accent/30 hover:text-contrast transition-colors"
                   >
                     {item}
                   </span>

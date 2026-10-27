@@ -44,7 +44,7 @@ export function StackSection() {
               {category.items.map((item) => (
                 <span
                   key={item}
-                  className="font-mono text-xs px-3 py-1.5 border border-white/8 text-contrast/60"
+                  className="font-mono text-xs px-4 py-2 border border-white/8 text-contrast/60"
                 >
                   {item}
                 </span>

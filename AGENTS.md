@@ -51,7 +51,7 @@ while telling a human story through a rigorous IT aesthetic.
 | `docs/architecture.md` | Code structure, Two Adventures, data flow, sections per device |
 | `docs/development.md` | Setup, commands, env variables, GitHub data, build and deploy, Claude tooling |
 | `docs/conventions.md` | Code style, motion, i18n, commits, "add a X" checklists |
-| `docs/ui-design.md` | 8px grid, palette, typography, known tooling gaps |
+| `docs/ui-design.md` | 8px grid, palette, typography, motion, states and accessibility, known tooling gaps |
 | `docs/spec-sections.md` | What each portfolio section must do |
 | `docs/roadmap.md` | Current focus, honest status, known debt, ideas |
 | `docs/decisions.md` | Why things are the way they are |
@@ -87,7 +87,9 @@ Details in `docs/conventions.md` and `docs/ui-design.md`.
 - Framer Motion variants are defined outside JSX, and the presets of `src/lib/motion.ts`
   (`fadeUp`, `fadeInLeft`, `stagger()`) are reused instead of redefined.
 - Spacing uses the 8px grid: Tailwind classes that are multiples of 8px
-  (`p-2`, `p-4`, `p-6`, `p-8`...). Never `p-3`, `mt-5`.
+  (`p-2`, `p-4`, `p-6`, `p-8`...), plus step 1 (4px) as micro-spacing. Never `p-3`, `mt-5`.
+- Text sizes use the Tailwind scale (no `text-[10px]`). Transitions last at least 200ms.
+  Every interactive element has a visible focus state (details in `docs/ui-design.md`).
 - Never call `setState` inside an effect to mirror an external source: use
   `useSyncExternalStore`.
 - Never write comments on self-evident code. Never introduce global state without a
