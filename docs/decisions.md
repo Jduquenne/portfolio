@@ -1,0 +1,79 @@
+# Decisions
+
+Format: Date, Status (accepted / proposed / superseded / rejected), Context, Decision,
+Alternatives considered, Consequences. Decisions D-001 to D-006 were recorded during the
+migration from the original `CLAUDE.md` and the code. Their dates and alternatives were
+not documented. They are all `accepted` because the code implements them.
+
+## D-001: Static export on GitHub Pages
+
+- **Date:** unknown, before migration
+- **Status:** accepted
+- **Context:** the portfolio needs no runtime server.
+- **Decision:** `output: "export"` in production, deployed to GitHub Pages under
+  `basePath: /portfolio`.
+- **Alternatives considered:** not documented
+- **Consequences:** everything resolves at build time. Anything that must stay fresh
+  requires a redeploy (see D-007).
+
+## D-002: GitHub data fetched at build time with one GraphQL request
+
+- **Date:** unknown, before migration
+- **Status:** accepted
+- **Context:** the Projects section and repo counters need GitHub data.
+- **Decision:** a single GraphQL request in `src/lib/github.ts`, with the `REPO_COUNT`
+  most recently pushed owned public non-fork repos. Unauthenticated REST fallback if the
+  token is missing or rejected. The token has `Metadata` and `Deployments` read-only,
+  never `Contents`.
+- **Alternatives considered:** not documented
+- **Consequences:** counters and Pages links disappear in the fallback. GitHub is the only
+  external API.
+
+## D-003: CV generated as a static PDF at build time
+
+- **Date:** unknown, before migration
+- **Status:** accepted
+- **Context:** a third rendering of `cv.ts` as an A4 sheet.
+- **Decision:** `scripts/build-cv.mts` renders `CvDocument.tsx` with react-pdf to
+  `public/cv-{fr,en}.pdf` and WebP previews. react-pdf and tooling are devDependencies.
+- **Alternatives considered:** not documented
+- **Consequences:** nothing ships to the client. Regenerated files are committed after a
+  change to `cv.ts` or the `cv.*` translations. CI regenerates them on every deploy.
+
+## D-004: Two Adventures
+
+- **Date:** unknown, before migration
+- **Status:** accepted
+- **Context:** the experience should be fundamentally different per device.
+- **Decision:** a desktop bento dashboard and a mobile snap feed, separated at `lg`
+  (1024px) and dispatched by `AdventureRouter`. No shared component mixes both.
+- **Alternatives considered:** responsive design (explicitly rejected in the original
+  `CLAUDE.md`)
+- **Consequences:** two component trees under `components/desktop/` and
+  `components/mobile/`, with `shared/` for common parts.
+
+## D-005: next-intl, French default
+
+- **Date:** unknown, before migration
+- **Status:** accepted
+- **Decision:** `fr` (default) and `en` through next-intl. UI text in `messages/`, content
+  data as `LocalizedString` in `cv.ts`.
+- **Alternatives considered:** not documented
+- **Consequences:** both message files keep identical key sets.
+
+## D-006: Lucide React for icons
+
+- **Date:** unknown, before migration
+- **Status:** accepted
+- **Decision:** Lucide React is the icon library (7 files import it).
+- **Alternatives considered:** not documented
+- **Consequences:** none documented.
+
+## D-007: Daily scheduled redeploy
+
+- **Date:** 2026-10 (commit `7d4be27`)
+- **Status:** accepted
+- **Context:** GitHub data is resolved at build time and goes stale.
+- **Decision:** `.github/workflows/deploy.yml` also runs on a daily cron (05:00 UTC).
+- **Alternatives considered:** not documented
+- **Consequences:** the "latest activity" readout and repo list refresh once a day.
