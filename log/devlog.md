@@ -3,6 +3,23 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Command palette (Ctrl+K)
+
+**Done**
+- Step 2 of the "wow" plan, one commit per step: `CommandPalette` (desktop), 11 commands in
+  3 groups, keyboard driven, accessible (combobox/listbox), no dependency.
+- `DesktopLayout` now holds `playOpen` and `paletteOpen` and renders `PlayModal` and the palette;
+  `Hero` takes `onPlay` and `onOpenPalette` and shows a "Commands Ctrl K" button next to Play.
+- Keys `palette.*` added to both message files (81 keys each, identical).
+
+**Checked**
+- `tsc`, `lint` and `next build` pass, `public/` untouched. Not run in a browser.
+
+**Still open**
+- Try it: open with `Ctrl K`, filter, arrows, `Enter`, `Esc`, "Play" from the palette, language
+  switch, email copy (needs `localhost` or https for the clipboard).
+- Next step: a clear primary contact action.
+
 ## 2026-10-27: Cursor glow on the desktop backdrop
 
 **Done**

@@ -14,7 +14,7 @@ Where each section is rendered per device: [architecture.md](architecture.md).
 ## Hero (desktop only)
 
 Above Experience: the `cv.identity.description` thesis in Geist Mono, a "latest activity"
-readout from the GitHub data, and the game entry point.
+readout from the GitHub data, and two entry points: the command palette (`Ctrl K`) and the game.
 
 ## Rules
 

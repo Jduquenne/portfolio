@@ -68,6 +68,23 @@ dots. It writes `--mx` / `--my` straight to the DOM (no React state), is throttl
 is hidden under `prefers-reduced-motion`. It lives under the content (`-z-10` in an `isolate`d
 root), so it shows in the gaps between cards and never over text. Desktop only.
 
+## Desktop signature: command palette
+
+`CommandPalette` (`components/desktop/`) opens with `Ctrl K` / `Cmd K` or from the Hero button,
+and closes with `Esc`, the same shortcut or a click outside. Type to filter, `Up`/`Down` to move,
+`Enter` to run. Commands: scroll to Top / Experience / Projects / Passions, play Lights Out,
+switch language, copy the email (stays open, confirms in an `aria-live` line), open the CV page
+or PDF, GitHub, LinkedIn.
+
+- Built without a dependency: ARIA combobox + listbox, focus on the input, focus given back to the
+  opener on close, `Tab` held inside.
+- The chosen command runs after the exit animation (`onExitComplete`), so a modal it opens (the
+  game) records the right element to restore focus to.
+- All labels are in `messages/` (`palette.*`). To add a command, add its label in both files and an
+  entry in the `commands` array of `PaletteDialog`.
+- The Hero owns no state any more: `DesktopLayout` holds `playOpen` and `paletteOpen`, and renders
+  `PlayModal` and `CommandPalette`.
+
 ## States and accessibility (D-008)
 
 - Every interactive element has hover, active, and a **visible focus ring**. Both are global

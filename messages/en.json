@@ -84,5 +84,26 @@
   },
   "language": {
     "switch": "Switch language"
+  },
+  "palette": {
+    "open": "Commands",
+    "shortcut": "Ctrl K",
+    "label": "Command palette",
+    "placeholder": "Type a command…",
+    "empty": "No matching command",
+    "hint": "↑↓ move · Enter select · Esc close",
+    "group_navigate": "Navigate",
+    "group_actions": "Actions",
+    "group_links": "Links",
+    "go_top": "Top of page",
+    "go_experience": "Experience",
+    "go_projects": "Projects",
+    "go_passions": "Passions",
+    "play": "Play Lights Out",
+    "copy_email": "Copy email address",
+    "email_copied": "Email address copied",
+    "copy_failed": "Copy failed",
+    "open_cv": "Open the CV page",
+    "open_cv_pdf": "Open the CV (PDF)"
   }
 }

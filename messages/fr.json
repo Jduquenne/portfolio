@@ -84,5 +84,26 @@
   },
   "language": {
     "switch": "Changer de langue"
+  },
+  "palette": {
+    "open": "Commandes",
+    "shortcut": "Ctrl K",
+    "label": "Palette de commandes",
+    "placeholder": "Tapez une commande…",
+    "empty": "Aucune commande correspondante",
+    "hint": "↑↓ naviguer · Entrée valider · Échap fermer",
+    "group_navigate": "Naviguer",
+    "group_actions": "Actions",
+    "group_links": "Liens",
+    "go_top": "Haut de page",
+    "go_experience": "Expérience",
+    "go_projects": "Projets",
+    "go_passions": "Passions",
+    "play": "Jouer à Lights Out",
+    "copy_email": "Copier l’adresse email",
+    "email_copied": "Adresse email copiée",
+    "copy_failed": "Copie impossible",
+    "open_cv": "Ouvrir la page CV",
+    "open_cv_pdf": "Ouvrir le CV (PDF)"
   }
 }

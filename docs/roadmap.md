@@ -15,7 +15,8 @@ focus here.
 - ✅ `npm run lint`, `npx tsc --noEmit` and `npx next build` pass (2026-10-27, after the
   D-008 design fixes). `npm run build` (with `build:cv` and `build:og`) was not run.
 - ⬜ No automated tests exist (no test script in `package.json`).
-- ⬜ The design fixes and UX additions of 2026-10-27 were not looked at in a browser.
+- ⬜ The design fixes, UX additions, cursor glow and command palette of 2026-10-27 were not looked
+  at in a browser. The palette's keyboard flow and focus handling are untested by hand.
 
 ## Known debt
 

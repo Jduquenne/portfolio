@@ -64,7 +64,7 @@ src/
 │   ├── globals.css
 │   └── icon.svg
 ├── components/
-│   ├── desktop/                  # DesktopLayout, Hero, Sidebar, PlayModal, CursorGlow, sections/
+│   ├── desktop/                  # DesktopLayout, Hero, Sidebar, PlayModal, CursorGlow, CommandPalette, sections/
 │   │   └── sections/             # Experience, Projects, Specialties
 │   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, sections/
 │   │   └── sections/             # Profile, Experience, Stack, Projects, Passions, Play
@@ -107,7 +107,7 @@ not a section. See [spec-sections.md](spec-sections.md) for what each section do
 | Stack | block inside `Sidebar` | `StackSection` (dedicated section) |
 | Projects | `ProjectsSection` | `ProjectsSection` |
 | Passions | `SpecialtiesSection` | `PassionsSection` |
-| Play | modal (`PlayModal`) opened from the Hero | `PlaySection` |
+| Play | modal (`PlayModal`) opened from the Hero or the command palette | `PlaySection` |
 
 Desktop also has a `Hero` above Experience. Desktop and mobile never import from each
 other. `shared/` holds what both use (`LightsOut`, `ExperienceDescription`, ...).
