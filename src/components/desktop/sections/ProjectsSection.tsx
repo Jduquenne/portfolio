@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, GitBranch, Globe, Star } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import type { GitHubRepo, RepoStats } from "@/types";
 import { LANG_COLORS } from "@/lib/languages";
 import { relativeTime } from "@/lib/utils";
+import { ProjectPreview } from "@/components/desktop/ProjectPreview";
 import { RepoStatsReadout } from "@/components/shared/RepoStatsReadout";
 import { fadeUp, stagger } from "@/lib/motion";
 
@@ -41,6 +43,7 @@ interface ProjectsSectionProps {
 export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
   const t = useTranslations("logic");
   const locale = useLocale();
+  const [activeId, setActiveId] = useState<number | null>(null);
 
   return (
     <motion.section
@@ -69,7 +72,15 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
               <motion.div
                 initial="rest"
                 whileHover="hover"
-                className="relative h-44 border border-white/8 hover:border-accent/20 bg-surface flex flex-col gap-4 p-4 overflow-hidden transition-colors duration-200"
+                onHoverStart={() => setActiveId(repo.id)}
+                onHoverEnd={() => setActiveId(null)}
+                onFocus={() => setActiveId(repo.id)}
+                onBlur={(event) => {
+                  if (!event.currentTarget.contains(event.relatedTarget)) {
+                    setActiveId(null);
+                  }
+                }}
+                className="relative h-44 border border-white/8 hover:border-accent/20 bg-surface flex gap-4 p-4 overflow-hidden transition-colors duration-200"
               >
                 {/* Spring bar on hover */}
                 <motion.div
@@ -78,104 +89,114 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                   className="absolute left-0 top-0 bottom-0 w-0.5 bg-accent"
                 />
 
-                {/* Name + links */}
-                <div className="flex items-start justify-between gap-2">
-                  <div className="min-w-0 flex items-baseline gap-2">
-                    <p className="font-mono text-xs font-bold text-contrast leading-tight truncate">
-                      {repo.name}
-                    </p>
-                    {repo.fork && (
-                      <span className="font-mono text-xs text-contrast/50 shrink-0">
-                        {t("fork")}
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex items-center gap-2 shrink-0">
-                    {repo.stargazers_count > 0 && (
-                      <span className="flex items-center gap-1 font-mono text-xs text-contrast/50">
-                        <Star size={9} />
-                        {repo.stargazers_count}
-                      </span>
-                    )}
-                    <a
-                      href={repo.html_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-contrast/70 hover:text-accent transition-colors p-1 -m-1"
-                      title={t("link_repo")}
-                    >
-                      <GitBranch size={14} />
-                    </a>
-                    {repo.pages_url && (
-                      <a
-                        href={repo.pages_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-contrast/70 hover:text-accent transition-colors p-1 -m-1"
-                        title={t("link_pages")}
-                      >
-                        <Globe size={14} />
-                      </a>
-                    )}
-                    {repo.homepage && repo.homepage !== repo.pages_url && (
-                      <a
-                        href={repo.homepage}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-contrast/70 hover:text-accent transition-colors p-1 -m-1"
-                        title={t("link_live")}
-                      >
-                        <ExternalLink size={14} />
-                      </a>
-                    )}
-                  </div>
-                </div>
+                {repo.preview && (
+                  <ProjectPreview
+                    name={repo.name}
+                    preview={repo.preview}
+                    active={activeId === repo.id}
+                  />
+                )}
 
-                {/* Description at rest, so a card is never empty; topics replace it on hover when both exist */}
-                <div className="grid flex-1 items-start overflow-hidden">
-                  {repo.topics.length > 0 && (
-                    <motion.div
-                      variants={repo.description ? topicsVariants : undefined}
-                      className="col-start-1 row-start-1 flex flex-wrap items-start content-start gap-1"
-                    >
-                      {repo.topics.slice(0, 4).map((topic) => (
-                        <span
-                          key={topic}
-                          className="font-mono text-xs text-contrast/50 border border-white/8 px-2 py-1"
-                        >
-                          {topic}
+                <div className="flex min-w-0 flex-1 flex-col gap-4">
+                  {/* Name + links */}
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="min-w-0 flex items-baseline gap-2">
+                      <p className="font-mono text-xs font-bold text-contrast leading-tight truncate">
+                        {repo.name}
+                      </p>
+                      {repo.fork && (
+                        <span className="font-mono text-xs text-contrast/50 shrink-0">
+                          {t("fork")}
                         </span>
-                      ))}
-                    </motion.div>
-                  )}
-                  {repo.description && (
-                    <motion.p
-                      variants={repo.topics.length > 0 ? descriptionVariants : undefined}
-                      className="col-start-1 row-start-1 font-sans text-xs text-contrast/70 leading-relaxed line-clamp-3"
-                    >
-                      {repo.description}
-                    </motion.p>
-                  )}
-                </div>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      {repo.stargazers_count > 0 && (
+                        <span className="flex items-center gap-1 font-mono text-xs text-contrast/50">
+                          <Star size={9} />
+                          {repo.stargazers_count}
+                        </span>
+                      )}
+                      <a
+                        href={repo.html_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-contrast/70 hover:text-accent transition-colors p-1 -m-1"
+                        title={t("link_repo")}
+                      >
+                        <GitBranch size={14} />
+                      </a>
+                      {repo.pages_url && (
+                        <a
+                          href={repo.pages_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-contrast/70 hover:text-accent transition-colors p-1 -m-1"
+                          title={t("link_pages")}
+                        >
+                          <Globe size={14} />
+                        </a>
+                      )}
+                      {repo.homepage && repo.homepage !== repo.pages_url && (
+                        <a
+                          href={repo.homepage}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-contrast/70 hover:text-accent transition-colors p-1 -m-1"
+                          title={t("link_live")}
+                        >
+                          <ExternalLink size={14} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
 
-                {/* Footer: language + date */}
-                <div className="flex items-center justify-between pt-2 border-t border-white/4">
-                  {repo.language ? (
-                    <span className="flex items-center gap-2 font-mono text-xs text-contrast/50">
-                      <span
-                        className="w-2 h-2 rounded-full shrink-0"
-                        style={{
-                          backgroundColor: LANG_COLORS[repo.language] ?? "#38BDF8",
-                        }}
-                      />
-                      {repo.language}
+                  {/* Description at rest, so a card is never empty; topics replace it on hover when both exist */}
+                  <div className="grid flex-1 items-start overflow-hidden">
+                    {repo.topics.length > 0 && (
+                      <motion.div
+                        variants={repo.description ? topicsVariants : undefined}
+                        className="col-start-1 row-start-1 flex flex-wrap items-start content-start gap-1"
+                      >
+                        {repo.topics.slice(0, 4).map((topic) => (
+                          <span
+                            key={topic}
+                            className="font-mono text-xs text-contrast/50 border border-white/8 px-2 py-1"
+                          >
+                            {topic}
+                          </span>
+                        ))}
+                      </motion.div>
+                    )}
+                    {repo.description && (
+                      <motion.p
+                        variants={repo.topics.length > 0 ? descriptionVariants : undefined}
+                        className="col-start-1 row-start-1 font-sans text-xs text-contrast/70 leading-relaxed line-clamp-3"
+                      >
+                        {repo.description}
+                      </motion.p>
+                    )}
+                  </div>
+
+                  {/* Footer: language + date */}
+                  <div className="flex items-center justify-between pt-2 border-t border-white/4">
+                    {repo.language ? (
+                      <span className="flex items-center gap-2 font-mono text-xs text-contrast/50">
+                        <span
+                          className="w-2 h-2 rounded-full shrink-0"
+                          style={{
+                            backgroundColor: LANG_COLORS[repo.language] ?? "#38BDF8",
+                          }}
+                        />
+                        {repo.language}
+                      </span>
+                    ) : (
+                      <span />
+                    )}
+                    <span suppressHydrationWarning className="font-mono text-xs text-contrast/50">
+                      {relativeTime(repo.pushed_at, locale)}
                     </span>
-                  ) : (
-                    <span />
-                  )}
-                  <span suppressHydrationWarning className="font-mono text-xs text-contrast/50">
-                    {relativeTime(repo.pushed_at, locale)}
-                  </span>
+                  </div>
                 </div>
               </motion.div>
             </motion.div>

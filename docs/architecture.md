@@ -65,9 +65,9 @@ src/
 │   ├── globals.css
 │   └── icon.svg
 ├── components/
-│   ├── desktop/                  # DesktopLayout, Hero, Sidebar, PlayModal, CursorGlow, CommandPalette, sections/
+│   ├── desktop/                  # DesktopLayout, Hero, Sidebar, PlayModal, CursorGlow, CommandPalette, ProjectPreview, sections/
 │   │   └── sections/             # Experience, Projects, Specialties
-│   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, sections/
+│   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, ProjectPoster, sections/
 │   │   └── sections/             # Profile, Experience, Stack, Projects, Passions, Play
 │   ├── shared/                   # AdventureRouter, AdventureSkeleton, ContactAction, NoScriptContent, ExperienceDescription,
 │   │                             #   LanguageSwitcher, LightsOut, RepoStatsReadout
@@ -79,13 +79,14 @@ src/
 │   ├── github.ts                 # build-time GitHub fetch
 │   ├── motion.ts                 # shared Framer Motion presets
 │   ├── site.ts                   # SITE_URL, the one place the public URL is written
+│   ├── previews.ts               # matches public/previews/<repo>.* files to the listed repos (build time)
 │   ├── lightsOut.ts              # Lights Out game logic
 │   ├── languages.ts              # GitHub language colours
 │   └── utils.ts
 └── types/index.ts                # Locale, LocalizedString, SectionId, Project, GitHub types
 messages/{en,fr}.json             # all UI text, identical key sets
 scripts/                          # cv.mjs, build-cv.mts, build-og.mjs, fonts/
-public/                           # avatar.png, og.png, cv-{fr,en}.pdf, cv-preview-{fr,en}.webp
+public/                           # avatar.{png,webp}, og.png, cv-{fr,en}.pdf, cv-preview-{fr,en}.webp, previews/
 ```
 
 > Note (migration): the original structure listed `components/ui/`, and examples such

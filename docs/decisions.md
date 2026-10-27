@@ -113,3 +113,19 @@ not documented. They are all `accepted` because the code implements them.
   visually hidden duplicate text (read twice by screen readers).
 - **Consequences:** the text exists twice in the source (the app and the fallback) but both read `cv.ts`.
   `robots.txt` is not possible on a project page.
+
+## D-010: Project previews as local files matched by repo name, clip loaded on hover
+
+- **Date:** 2026-10-27
+- **Status:** accepted
+- **Context:** the Projects section is text only, and the repo list comes from GitHub at build time, so a
+  repo can appear, be renamed or disappear without the site being touched.
+- **Decision:** previews are committed files in `public/previews/`, matched to repos by name at build time.
+  No manifest. Desktop: a muted H.264 clip requested only after a 150ms hover or focus, over a still.
+  Mobile: the still only. A repo without files keeps the text layout.
+- **Alternatives considered:** GIF (several MB); animated WebP (about 1 MB, cannot be paused, always
+  decoded); GitHub's generated social image (`openGraphImageUrl`: a third-party request, not the app's
+  look, gone with the repo); automatic capture in CI (the build would fail whenever a demo is down).
+- **Consequences:** the repo grows by about 230 KiB per project, and a clip goes stale when the project
+  changes visually (re-record and redo the three files, see development.md). Renaming a repo drops its media until the
+  files are renamed; the build logs unused files.

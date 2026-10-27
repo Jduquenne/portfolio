@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ExternalLink, GitBranch, Globe, Star } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import { ProjectPoster } from "@/components/mobile/ProjectPoster";
 import type { GitHubRepo, RepoStats } from "@/types";
 import { LANG_COLORS } from "@/lib/languages";
 import { relativeTime } from "@/lib/utils";
@@ -54,6 +55,10 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
               variants={fadeUp}
               className="border border-white/8 bg-surface flex flex-col"
             >
+              {repo.preview && (
+                <ProjectPoster name={repo.name} poster={repo.preview.poster} />
+              )}
+
               {/* Top row: name + stars + links */}
               <div className="flex items-center justify-between gap-2 px-4 pt-4 pb-2">
                 <div className="flex items-center gap-2 min-w-0">

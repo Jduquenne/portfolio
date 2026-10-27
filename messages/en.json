@@ -28,7 +28,8 @@
     "fork": "fork",
     "link_repo": "GitHub repository",
     "link_pages": "GitHub Pages",
-    "link_live": "Live site"
+    "link_live": "Live site",
+    "preview_alt": "Preview of the {name} project"
   },
   "passions": {
     "section_label": "// passions"

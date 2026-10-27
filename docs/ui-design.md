@@ -92,6 +92,24 @@ or PDF, GitHub, LinkedIn.
 - The Hero owns no state any more: `DesktopLayout` holds `playOpen` and `paletteOpen`, and renders
   `PlayModal` and `CommandPalette`.
 
+## Project previews (desktop clip on hover, still on mobile)
+
+A project card shows media only when files named after its repo exist in `public/previews/`
+(see "Adding a project preview" in [development.md](development.md)).
+
+- **Desktop** (`ProjectPreview`): a 224px thumbnail at the left of the card. Nothing but the still is
+  downloaded at rest. After the card has been hovered or focused for 150ms, a muted looping `<video>` is
+  created and requested, then fades in over the still once it plays. It pauses and rewinds when the pointer
+  or focus leaves, and the browser cache makes the next hover instant. One card is active at a time.
+- **No clip** when the visitor prefers reduced motion or has data saving on.
+- **Mobile** (`ProjectPoster`): the still only, full width above the card. No hover on a phone, and a clip
+  would cost data and battery.
+- Why a video and not a GIF: a 13 s clip weighs about 150 KiB as H.264 (a GIF is several MB, an
+  animated WebP around 1 MB and cannot be paused).
+- Why two stills: the 448px thumbnail is exactly twice the desktop thumbnail, which a browser downsizes
+  cleanly even on a 1x screen; the 640px poster stays sharp when stretched across a phone.
+- A card without files keeps the text-only layout (no placeholder yet).
+
 ## Primary action: contact
 
 `ContactAction` (`components/shared/`) is the one filled element of the page: an accent button

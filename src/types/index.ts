@@ -29,6 +29,14 @@ export interface RepoStats {
   forks: number;
 }
 
+export interface RepoPreview {
+  /** 640px still, shown full width on a phone */
+  poster: string;
+  /** 448px still, exactly twice the desktop thumbnail so it downsizes cleanly */
+  thumb: string;
+  clip: string | null;
+}
+
 export interface GitHubRepo {
   id: number;
   name: string;
@@ -41,4 +49,5 @@ export interface GitHubRepo {
   stargazers_count: number;
   pushed_at: string;
   fork: boolean;
+  preview?: RepoPreview;
 }

@@ -52,6 +52,11 @@ short transitions) were fixed on 2026-10-27, see the devlog.
 - ⬜ **Crawler view not checked with a real crawler**: the fallback was verified in the generated HTML and
   in Chrome with JavaScript off, not with Search Console or a link-preview tool.
 
+- ⬜ **Project previews exist for one repo only** (`dofus-retro-craft-dashboard`, recorded as a test).
+  The other cards are text only; no placeholder yet. On desktop the text column next to a thumbnail is
+  narrow (the name truncates, the description is cut at 3 lines).
+- ⬜ **Thumbnail on a 1x screen** shows a slight grid pattern: the map's own grid lines at 224px.
+
 ## Observed in the visual check (2026-10-27, headless Chrome, desktop 1440x900 and mobile 390x844)
 
 - ✅ **Desktop project cards looked empty at rest** (description on hover only, and most repos have

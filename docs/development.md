@@ -58,6 +58,29 @@ changing `src/lib/data/cv.ts` or the `cv.*` translations, run `npm run build:cv`
 commit the regenerated `public/cv-*` files (output is deterministic). CI regenerates them
 on every deploy regardless.
 
+## Adding a project preview
+
+1. Record the project (a dozen seconds, 16:10, for instance 1280x800): a quick look at each page, then the most
+   visual one last. Anything works: OBS, ScreenToGif, or a scripted headless Chrome. Visit every page once before
+   recording so nothing loads during the clip, and move the mouse like a hand would (curved path, slow start and
+   end, small pauses); a straight constant-speed drag looks like a bot. A visible cursor helps the viewer follow.
+2. Encode the clip with ffmpeg (about 14 s at most, no audio, 448px wide, `faststart` so it starts before it is
+   fully downloaded):
+   `ffmpeg -i <video> -t 14 -an -vf "fps=24,scale=448:-2:flags=lanczos" -c:v libx264 -preset slow -crf 28 -pix_fmt yuv420p -movflags +faststart public/previews/<repo>.mp4`
+3. Take one frame as the still, ideally the page that presents the whole project (a home page with its menu,
+   before the cursor appears), and write it twice with any image tool (sharp, Squoosh, ffmpeg):
+   `public/previews/<repo>.webp` at 640px wide (quality about 78, shown full width on a phone) and
+   `public/previews/<repo>.thumb.webp` at **exactly 448px wide** (the desktop thumbnail is 224px, so a 2x
+   source downsizes cleanly even on a 1x screen). The sizes to expect: clip about 150 KiB for 13 s, stills from 5 to 45 KiB depending on how detailed the frame is.
+4. Commit the three files.
+
+The steps above are a recipe: the repo carries no script for them, and the build never runs ffmpeg.
+
+The files are matched to the GitHub repos **by name** at build time (`src/lib/previews.ts`). A repo without
+files simply has no media. Files that match none of the listed repos (renamed, deleted, or older than the
+eight most recent) stay harmless and the build logs `[previews] not used by the listed repos: ...`. The
+repo name must match exactly; after a rename on GitHub, rename the files too.
+
 ## Performance and accessibility check
 
 Lighthouse is not a dependency of the project. Run it from outside the repo (for instance

@@ -3,6 +3,56 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Dofus clip redone as a tour
+
+**Done**
+- The first clip (the map only, dragged in a straight line at constant speed) looked like a bot. New clip: a
+  quick look at seven pages (Grimoire, Métiers, Calcul XP with a job picked and its results, Calcul POD,
+  Ressources scrolled, Parchemins with another stat, Prix Dofus with another Dofus), then the interactive map
+  panned in two unhurried gestures and zoomed. 13.3 s, 149 KiB.
+- The still is the home page with the list of modules (frame at 0.3 s), not the map: it presents the whole
+  tool at a glance. The recording keeps the cursor off screen until the hand first moves, so that opening
+  frame has no cursor. The stills are small (13 and 6 KiB) because that page is flat colour.
+- Recording: every page is visited once off the record so nothing loads during the clip; a visible cursor
+  with a click ring is injected; mouse moves follow a curved path with slow start and end, a little tremor
+  and pauses, timed on the real clock, with seeded noise so a re-run gives the same clip.
+
+**Checked**
+- Frames of the encoded clip, and the clip playing inside the card in headless Chrome (rest, then 2.5, 5.5,
+  8.5 and 11.5 s after hover): the tour plays through and the video is still running at 11.6 of 13.3 s.
+
+**Still open**
+- Judge the pace by eye on the real card; the owner may want it shorter or slower.
+
+## 2026-10-27: Project previews (clip on hover)
+
+**Done**
+- Hover previews like YouTube: a still at rest, a muted H.264 clip requested only after a 150ms hover or
+  focus, played over the still and paused when leaving. Desktop only; mobile gets the still. No clip with
+  reduced motion or data saving. Decision D-010, rules in `docs/ui-design.md`.
+- `src/lib/previews.ts` matches `public/previews/<repo>.*` to the GitHub repos by name and logs unused
+  files; `ProjectPreview` (desktop), `ProjectPoster` (mobile), key `logic.preview_alt`, type
+  `RepoPreview`. The desktop card became a row (thumbnail + text) only when a preview exists.
+- The recording is turned into the clip (448px, 24 fps, CRF 28, no audio, faststart) and two stills (640px
+  and a 448px thumbnail) by a helper kept outside the repo on purpose (not versioned); the same steps are
+  written as a recipe in `docs/development.md`.
+- First preview: the Dofus fan site (`dofus-retro-craft-dashboard`), recorded with headless Chrome and
+  ffmpeg: Grimoire, then the interactive map dragged and zoomed. 143 KiB clip, 43 and 23 KiB stills.
+
+**Checked**
+- Headless Chrome: at rest only the thumbnail is requested and there is no `<video>`; 100 ms after hover
+  still none; during hover the clip is requested, plays muted at full opacity; after leaving it is paused,
+  rewound, opacity 0; keyboard focus on a card link starts it too. Mobile: only the poster is requested.
+- `tsc`, `lint` and `next build` pass; the three files land in `out/previews`.
+
+**Problems met on the way**
+- First clip opened on the map still loading (dark frame): the recording now warms the tiles up off the
+  record. A 640px still showed stripes at 1x (browser downsizing by 2.9x): hence the 448px thumbnail.
+
+**Still open**
+- Other projects have no preview; look at the card with the owner, then decide on a placeholder and on
+  recordings for the other demos.
+
 ## 2026-10-27: Lighthouse and its fixes
 
 **Done**
