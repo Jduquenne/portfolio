@@ -24,7 +24,7 @@ export function NoScriptContent({ locale, repos }: NoScriptContentProps) {
         id="main"
         className="mx-auto flex max-w-3xl flex-col gap-8 p-8 font-sans text-contrast"
       >
-        <p className="font-mono text-xs text-contrast/50">
+        <p className="font-mono text-xs text-contrast/70">
           {messages.noscript.notice}
         </p>
 
@@ -63,7 +63,7 @@ export function NoScriptContent({ locale, repos }: NoScriptContentProps) {
               <p className="text-contrast/70">
                 {localize(exp.description, locale)}
               </p>
-              <p className="font-mono text-xs text-contrast/50">
+              <p className="font-mono text-xs text-contrast/70">
                 {exp.stack.join(" · ")}
               </p>
             </article>

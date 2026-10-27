@@ -61,7 +61,7 @@ export function ContactAction() {
           aria-label={t("copy")}
           className={cn(
             "inline-flex aspect-square shrink-0 items-center justify-center transition-colors hover:text-accent",
-            copyState === "idle" ? "text-contrast/50" : "text-accent",
+            copyState === "idle" ? "text-contrast/70" : "text-accent",
           )}
         >
           <CopyIcon size={16} />
@@ -71,7 +71,7 @@ export function ContactAction() {
         </span>
       </div>
       {copyState === "failed" && (
-        <p className="font-mono text-xs text-contrast/50">
+        <p className="font-mono text-xs text-contrast/70">
           {t("copy_failed")}{" "}
           <span className="select-all text-contrast">{cv.contact.email}</span>
         </p>

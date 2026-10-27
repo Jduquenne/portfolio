@@ -46,7 +46,7 @@ export function SpecialtiesSection() {
               <span className="font-mono text-sm font-bold text-contrast">
                 {localize(passion.title, locale)}
               </span>
-              <span className="font-mono text-xs text-contrast/40 tracking-wide">
+              <span className="font-mono text-xs text-contrast/50 tracking-wide">
                 {localize(passion.label, locale)}
               </span>
             </div>

@@ -55,17 +55,17 @@ export function ExperienceSection() {
                         href={exp.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-mono text-xs text-contrast/32 hover:text-accent transition-colors"
+                        className="font-mono text-xs text-contrast/50 hover:text-accent transition-colors"
                       >
                         @ {localize(exp.company, locale)}
                       </a>
                     ) : (
-                      <span className="font-mono text-xs text-contrast/32">
+                      <span className="font-mono text-xs text-contrast/50">
                         @ {localize(exp.company, locale)}
                       </span>
                     )}
                   </div>
-                  <span className="font-mono text-xs text-contrast/24 shrink-0">
+                  <span className="font-mono text-xs text-contrast/50 shrink-0">
                     {exp.current
                       ? `${exp.period} — ${t("present")}`
                       : exp.period}
@@ -78,7 +78,7 @@ export function ExperienceSection() {
                   </span>
                 </div>
 
-                <p className="font-sans text-sm text-contrast/55 leading-relaxed mb-4">
+                <p className="font-sans text-sm text-contrast/70 leading-relaxed mb-4">
                   <ExperienceDescription
                     text={localize(exp.description, locale)}
                     links={exp.links}
@@ -89,7 +89,7 @@ export function ExperienceSection() {
                   {exp.stack.map((tech) => (
                     <span
                       key={tech}
-                      className="font-mono text-xs px-2 py-1 border border-white/8 text-contrast/40"
+                      className="font-mono text-xs px-2 py-1 border border-white/8 text-contrast/50"
                     >
                       {tech}
                     </span>

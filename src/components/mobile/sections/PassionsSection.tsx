@@ -44,7 +44,7 @@ export function PassionsSection() {
               <span className="font-mono text-sm font-bold text-contrast">
                 {localize(passion.title, locale)}
               </span>
-              <span className="font-mono text-xs text-contrast/40 leading-relaxed">
+              <span className="font-mono text-xs text-contrast/50 leading-relaxed">
                 {localize(passion.label, locale)}
               </span>
             </div>

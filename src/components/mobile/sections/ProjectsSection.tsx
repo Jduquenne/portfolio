@@ -44,7 +44,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
         )}
 
         {repos.length === 0 ? (
-          <motion.p variants={fadeUp} className="font-mono text-xs text-contrast/24">
+          <motion.p variants={fadeUp} className="font-mono text-xs text-contrast/50">
             {t("empty_repos")}
           </motion.p>
         ) : (
@@ -61,14 +61,14 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                     {repo.name}
                   </p>
                   {repo.fork && (
-                    <span className="font-mono text-xs text-contrast/24 shrink-0">
+                    <span className="font-mono text-xs text-contrast/50 shrink-0">
                       {t("fork")}
                     </span>
                   )}
                 </div>
                 <div className="flex items-center gap-4 shrink-0">
                   {repo.stargazers_count > 0 && (
-                    <span className="flex items-center gap-1 font-mono text-xs text-contrast/40">
+                    <span className="flex items-center gap-1 font-mono text-xs text-contrast/50">
                       <Star size={10} />
                       {repo.stargazers_count}
                     </span>
@@ -78,7 +78,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                       href={repo.html_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="-m-2 inline-flex size-10 items-center justify-center text-contrast/50 active:text-accent transition-colors"
+                      className="-m-2 inline-flex size-10 items-center justify-center text-contrast/70 active:text-accent transition-colors"
                       title={t("link_repo")}
                     >
                       <GitBranch size={16} />
@@ -88,7 +88,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                         href={repo.pages_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="-m-2 inline-flex size-10 items-center justify-center text-contrast/50 active:text-accent transition-colors"
+                        className="-m-2 inline-flex size-10 items-center justify-center text-contrast/70 active:text-accent transition-colors"
                         title={t("link_pages")}
                       >
                         <Globe size={16} />
@@ -99,7 +99,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                         href={repo.homepage}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="-m-2 inline-flex size-10 items-center justify-center text-contrast/50 active:text-accent transition-colors"
+                        className="-m-2 inline-flex size-10 items-center justify-center text-contrast/70 active:text-accent transition-colors"
                         title={t("link_live")}
                       >
                         <ExternalLink size={16} />
@@ -111,7 +111,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
 
               {/* Description */}
               {repo.description && (
-                <p className="font-sans text-sm text-contrast/50 leading-relaxed px-4 pb-2">
+                <p className="font-sans text-sm text-contrast/70 leading-relaxed px-4 pb-2">
                   {repo.description}
                 </p>
               )}
@@ -122,7 +122,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                   {repo.topics.slice(0, 5).map((topic) => (
                     <span
                       key={topic}
-                      className="font-mono text-xs text-contrast/32 border border-white/8 px-2 py-1"
+                      className="font-mono text-xs text-contrast/50 border border-white/8 px-2 py-1"
                     >
                       {topic}
                     </span>
@@ -133,7 +133,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
               {/* Footer: language + date */}
               <div className="flex items-center justify-between px-4 py-2 mt-auto border-t border-white/4">
                 {repo.language ? (
-                  <span className="flex items-center gap-2 font-mono text-xs text-contrast/40">
+                  <span className="flex items-center gap-2 font-mono text-xs text-contrast/50">
                     <span
                       className="w-2 h-2 rounded-full shrink-0"
                       style={{
@@ -145,7 +145,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                 ) : (
                   <span />
                 )}
-                <span suppressHydrationWarning className="font-mono text-xs text-contrast/24">
+                <span suppressHydrationWarning className="font-mono text-xs text-contrast/50">
                   {relativeTime(repo.pushed_at, locale)}
                 </span>
               </div>

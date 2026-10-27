@@ -88,6 +88,7 @@ Details in `docs/conventions.md` and `docs/ui-design.md`.
   (`fadeUp`, `fadeInLeft`, `stagger()`) are reused instead of redefined.
 - Spacing uses the 8px grid: Tailwind classes that are multiples of 8px
   (`p-2`, `p-4`, `p-6`, `p-8`...), plus step 1 (4px) as micro-spacing. Never `p-3`, `mt-5`.
+- Text uses `text-contrast/50` (metadata) or `/70` (body) at least, never paler (AA contrast).
 - Text sizes use the Tailwind scale (no `text-[10px]`). Transitions last at least 200ms.
   Every interactive element has a visible focus state (details in `docs/ui-design.md`).
 - Never call `setState` inside an effect to mirror an external source: use

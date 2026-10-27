@@ -37,14 +37,14 @@ export function StackSection() {
             variants={fadeUp}
             className="flex flex-col gap-2"
           >
-            <span className="font-mono text-xs text-contrast/24 tracking-widest uppercase">
+            <span className="font-mono text-xs text-contrast/50 tracking-widest uppercase">
               {localize(category.label, locale)}
             </span>
             <div className="flex flex-wrap gap-2">
               {category.items.map((item) => (
                 <span
                   key={item}
-                  className="font-mono text-xs px-4 py-2 border border-white/8 text-contrast/60"
+                  className="font-mono text-xs px-4 py-2 border border-white/8 text-contrast/70"
                 >
                   {item}
                 </span>

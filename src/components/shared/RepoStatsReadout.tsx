@@ -25,16 +25,16 @@ export function RepoStatsReadout({ stats, className }: RepoStatsReadoutProps) {
     <span
       ref={ref}
       className={cn(
-        "font-mono text-xs text-contrast/32 tracking-widest uppercase",
+        "font-mono text-xs text-contrast/50 tracking-widest uppercase",
         className,
       )}
     >
       {t("stat_repos", { count: total })}
       {stats.private > 0 && (
         <>
-          <span className="text-contrast/16">{" · "}</span>
+          <span className="text-contrast/50">{" · "}</span>
           {t("stat_public", { count: publicCount })}
-          <span className="text-contrast/16">{" · "}</span>
+          <span className="text-contrast/50">{" · "}</span>
           {t("stat_private", { count: privateCount })}
         </>
       )}

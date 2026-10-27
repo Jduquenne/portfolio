@@ -23,7 +23,7 @@ export function CvPage() {
         <div className="flex items-center justify-between gap-4">
           <a
             href="../"
-            className={`${linkBase} text-contrast/50 hover:text-accent`}
+            className={`${linkBase} text-contrast/70 hover:text-accent`}
           >
             <ArrowLeft size={14} />
             {t("back")}
@@ -34,7 +34,7 @@ export function CvPage() {
             <a
               href={pdfUrl}
               download={fileName}
-              className={`${linkBase} border border-white/8 px-4 py-2 text-contrast/50 hover:border-accent/40 hover:text-accent`}
+              className={`${linkBase} border border-white/8 px-4 py-2 text-contrast/70 hover:border-accent/40 hover:text-accent`}
             >
               <Download size={14} />
               {t("download")}

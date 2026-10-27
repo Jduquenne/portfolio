@@ -35,7 +35,7 @@ export function Sidebar() {
         <div className="relative w-40 h-40 shrink-0">
           <div className="w-full h-full border border-white/12 overflow-hidden">
             <Image
-              src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/avatar.png`}
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/avatar.webp`}
               alt={cv.identity.name}
               width={160}
               height={160}
@@ -54,10 +54,10 @@ export function Sidebar() {
           <h1 className="font-mono font-bold text-contrast leading-tight">
             {cv.identity.name}
           </h1>
-          <p className="font-sans text-xs text-contrast/50 leading-relaxed">
+          <p className="font-sans text-xs text-contrast/70 leading-relaxed">
             {localize(cv.identity.subtitle, locale)}
           </p>
-          <p className="font-mono text-xs text-contrast/40">
+          <p className="font-mono text-xs text-contrast/50">
             {tcv("age", { years: age(cv.identity.birthDate) })}
           </p>
         </div>
@@ -78,7 +78,7 @@ export function Sidebar() {
 
       {/* Contact */}
       <motion.div variants={fadeInLeft} className="flex flex-col gap-4">
-        <span className="font-mono text-xs text-contrast/24 tracking-widest uppercase">
+        <span className="font-mono text-xs text-contrast/50 tracking-widest uppercase">
           {tc("section_label")}
         </span>
         <div className="flex flex-col gap-2">
@@ -86,7 +86,7 @@ export function Sidebar() {
             href={cv.contact.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs text-contrast/50 hover:text-accent transition-colors"
+            className="font-mono text-xs text-contrast/70 hover:text-accent transition-colors"
           >
             {tc("github")}
           </a>
@@ -94,13 +94,13 @@ export function Sidebar() {
             href={cv.contact.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs text-contrast/50 hover:text-accent transition-colors"
+            className="font-mono text-xs text-contrast/70 hover:text-accent transition-colors"
           >
             {tc("linkedin")}
           </a>
           <Link
             href="/cv"
-            className="font-mono text-xs text-contrast/50 hover:text-accent transition-colors"
+            className="font-mono text-xs text-contrast/70 hover:text-accent transition-colors"
           >
             {tc("cv")}
           </Link>
@@ -111,20 +111,20 @@ export function Sidebar() {
 
       {/* Stack */}
       <motion.div variants={fadeInLeft} className="flex flex-col gap-4">
-        <span className="font-mono text-xs text-contrast/24 tracking-widest uppercase">
+        <span className="font-mono text-xs text-contrast/50 tracking-widest uppercase">
           {tl("stack_label")}
         </span>
         <div className="flex flex-col gap-4">
           {cv.stack.map((category) => (
             <div key={category.label.en} className="flex flex-col gap-2">
-              <span className="font-mono text-xs text-contrast/24 uppercase tracking-widest">
+              <span className="font-mono text-xs text-contrast/50 uppercase tracking-widest">
                 {localize(category.label, locale)}
               </span>
               <div className="flex flex-wrap gap-1">
                 {category.items.map((item) => (
                   <span
                     key={item}
-                    className="font-mono text-xs px-2 py-1 border border-white/8 text-contrast/50 hover:border-accent/30 hover:text-contrast transition-colors"
+                    className="font-mono text-xs px-2 py-1 border border-white/8 text-contrast/70 hover:border-accent/30 hover:text-contrast transition-colors"
                   >
                     {item}
                   </span>

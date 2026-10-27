@@ -53,7 +53,7 @@ export function LightsOut({ className }: { className?: string }) {
         <span className="font-mono text-xs uppercase tracking-widest text-accent">
           {t("label")}
         </span>
-        <span className="font-mono text-xs text-contrast/32">
+        <span className="font-mono text-xs text-contrast/50">
           {t("moves", { count: moves })}
         </span>
       </div>
@@ -70,7 +70,7 @@ export function LightsOut({ className }: { className?: string }) {
               "transition-colors",
               value === size
                 ? "text-accent"
-                : "text-contrast/32 hover:text-contrast/60",
+                : "text-contrast/50 hover:text-contrast/70",
             )}
           >
             {value}×{value}
@@ -107,7 +107,7 @@ export function LightsOut({ className }: { className?: string }) {
         <span
           className={cn(
             "font-mono text-xs",
-            solved ? "text-accent" : "text-contrast/32",
+            solved ? "text-accent" : "text-contrast/50",
           )}
         >
           {solved ? t("solved", { count: moves }) : t("hint")}
@@ -115,7 +115,7 @@ export function LightsOut({ className }: { className?: string }) {
         <button
           type="button"
           onClick={reset}
-          className="font-mono text-xs uppercase tracking-widest text-contrast/50 transition-colors hover:text-accent"
+          className="font-mono text-xs uppercase tracking-widest text-contrast/70 transition-colors hover:text-accent"
         >
           {t("reset")}
         </button>

@@ -58,6 +58,14 @@ changing `src/lib/data/cv.ts` or the `cv.*` translations, run `npm run build:cv`
 commit the regenerated `public/cv-*` files (output is deterministic). CI regenerates them
 on every deploy regardless.
 
+## Performance and accessibility check
+
+Lighthouse is not a dependency of the project. Run it from outside the repo (for instance
+`npx lighthouse <url> --preset=desktop`) against the deployed site: a local static server has to mimic
+GitHub Pages (gzip, the `/portfolio` base path) or the figures come out lower. A Windows build also
+writes the RSC segment files in nested folders, which gives one 404 in the console that the Linux CI build
+does not have.
+
 ## Sitemap
 
 `src/app/sitemap.ts` generates `sitemap.xml` (home and CV, in both languages, with `hreflang`

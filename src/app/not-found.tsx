@@ -23,12 +23,12 @@ export default function NotFound() {
           {routing.locales.map((locale) => (
             <section key={locale} lang={locale} className="flex flex-col gap-2">
               <h2 className="font-mono text-xl">{copy[locale].title}</h2>
-              <p className="text-sm text-contrast/55">
+              <p className="text-sm text-contrast/70">
                 {copy[locale].description}
               </p>
               <a
                 href={`${base}/${locale}/`}
-                className="font-mono text-xs uppercase tracking-widest text-contrast/50 transition-colors duration-200 hover:text-accent"
+                className="font-mono text-xs uppercase tracking-widest text-contrast/70 transition-colors duration-200 hover:text-accent"
               >
                 {copy[locale].back}
               </a>

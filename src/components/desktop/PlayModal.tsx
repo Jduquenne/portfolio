@@ -103,7 +103,7 @@ export function PlayModal({ open, onClose }: PlayModalProps) {
               type="button"
               onClick={onClose}
               aria-label={t("close")}
-              className="absolute -right-2 -top-2 z-10 border border-white/8 bg-surface p-2 text-contrast/50 transition-colors hover:border-accent/30 hover:text-accent"
+              className="absolute -right-2 -top-2 z-10 border border-white/8 bg-surface p-2 text-contrast/70 transition-colors hover:border-accent/30 hover:text-accent"
             >
               <X size={14} />
             </button>

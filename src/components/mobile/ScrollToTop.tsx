@@ -31,7 +31,7 @@ export function ScrollToTop() {
       href="#profile"
       aria-label={t("back_to_top")}
       className={cn(
-        "fixed bottom-20 right-6 z-40 inline-flex size-10 items-center justify-center border border-white/8 bg-surface/90 text-contrast/50 backdrop-blur-sm transition-opacity hover:text-accent",
+        "fixed bottom-20 right-6 z-40 inline-flex size-10 items-center justify-center border border-white/8 bg-surface/90 text-contrast/70 backdrop-blur-sm transition-opacity hover:text-accent",
         visible ? "opacity-100" : "pointer-events-none opacity-0",
       )}
     >

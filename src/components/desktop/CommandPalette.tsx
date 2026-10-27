@@ -257,7 +257,7 @@ function PaletteDialog({ onOpenChange, onPlay, pendingRef }: PaletteDialogProps)
           placeholder={t("placeholder")}
           autoComplete="off"
           spellCheck={false}
-          className="w-full border-b border-white/8 bg-transparent px-4 py-4 font-mono text-sm text-contrast caret-accent outline-none placeholder:text-contrast/40"
+          className="w-full border-b border-white/8 bg-transparent px-4 py-4 font-mono text-sm text-contrast caret-accent outline-none placeholder:text-contrast/50"
         />
 
         <ul
@@ -270,7 +270,7 @@ function PaletteDialog({ onOpenChange, onPlay, pendingRef }: PaletteDialogProps)
           {visible.length === 0 && (
             <li
               role="presentation"
-              className="px-4 py-4 font-mono text-sm text-contrast/40"
+              className="px-4 py-4 font-mono text-sm text-contrast/50"
             >
               {t("empty")}
             </li>
@@ -278,7 +278,7 @@ function PaletteDialog({ onOpenChange, onPlay, pendingRef }: PaletteDialogProps)
           {visible.map((command, index) => (
             <li key={command.id} role="presentation">
               {(index === 0 || visible[index - 1].group !== command.group) && (
-                <span className="block px-4 pb-2 pt-4 font-mono text-xs uppercase tracking-widest text-contrast/24">
+                <span className="block px-4 pb-2 pt-4 font-mono text-xs uppercase tracking-widest text-contrast/50">
                   {t(`group_${command.group}`)}
                 </span>
               )}
@@ -292,12 +292,12 @@ function PaletteDialog({ onOpenChange, onPlay, pendingRef }: PaletteDialogProps)
                   "flex cursor-pointer items-center justify-between px-4 py-2 font-mono text-sm transition-colors",
                   index === active
                     ? "bg-white/[0.06] text-accent"
-                    : "text-contrast/60",
+                    : "text-contrast/70",
                 )}
               >
                 <span>{command.label}</span>
                 {command.hint && (
-                  <span className="text-xs text-contrast/40">
+                  <span className="text-xs text-contrast/50">
                     {command.hint}
                   </span>
                 )}
@@ -306,7 +306,7 @@ function PaletteDialog({ onOpenChange, onPlay, pendingRef }: PaletteDialogProps)
           ))}
         </ul>
 
-        <div className="flex items-center justify-between gap-4 border-t border-white/8 px-4 py-2 font-mono text-xs text-contrast/40">
+        <div className="flex items-center justify-between gap-4 border-t border-white/8 px-4 py-2 font-mono text-xs text-contrast/50">
           <span>{t("hint")}</span>
           <span aria-live="polite" className="text-accent">
             {notice}

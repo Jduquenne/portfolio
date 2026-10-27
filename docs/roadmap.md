@@ -14,6 +14,12 @@ focus here.
   the git history. Not re-tested during the migration (the app was not run).
 - ✅ `npm run lint`, `npx tsc --noEmit` and `npx next build` pass (2026-10-27, after the
   D-008 design fixes). `npm run build` (with `build:cv` and `build:og`) was not run.
+- ✅ Lighthouse on the deployed site (2026-10-27, before the contrast/label/avatar fixes): mobile 94 /
+  100 / 100 / 100, desktop 100 / 96 / 100 / 100 (performance, accessibility, best practices, SEO). After the
+  fixes, on a local production build: accessibility 100 on both, mobile performance 95 (LCP 2.9 s), desktop 100.
+  The deployed site was not re-measured after the fixes.
+- ⬜ Mobile LCP is about 3 s (good is 2.5 s): the hero text only renders after the JavaScript has loaded,
+  because the layout is chosen in the browser. Going lower means changing that (see D-009 alternatives).
 - ⬜ No automated tests exist (no test script in `package.json`).
 - ⬜ The design fixes, UX additions, cursor glow and command palette of 2026-10-27 were not looked
   at in a browser. The palette's keyboard flow and focus handling are untested by hand.

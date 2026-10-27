@@ -59,7 +59,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
       </motion.div>
 
       {repos.length === 0 ? (
-        <motion.p variants={fadeUp} className="font-mono text-xs text-contrast/24">
+        <motion.p variants={fadeUp} className="font-mono text-xs text-contrast/50">
           {t("empty_repos")}
         </motion.p>
       ) : (
@@ -85,14 +85,14 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                       {repo.name}
                     </p>
                     {repo.fork && (
-                      <span className="font-mono text-xs text-contrast/24 shrink-0">
+                      <span className="font-mono text-xs text-contrast/50 shrink-0">
                         {t("fork")}
                       </span>
                     )}
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     {repo.stargazers_count > 0 && (
-                      <span className="flex items-center gap-1 font-mono text-xs text-contrast/40">
+                      <span className="flex items-center gap-1 font-mono text-xs text-contrast/50">
                         <Star size={9} />
                         {repo.stargazers_count}
                       </span>
@@ -101,7 +101,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                       href={repo.html_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-contrast/50 hover:text-accent transition-colors p-1 -m-1"
+                      className="text-contrast/70 hover:text-accent transition-colors p-1 -m-1"
                       title={t("link_repo")}
                     >
                       <GitBranch size={14} />
@@ -111,7 +111,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                         href={repo.pages_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-contrast/50 hover:text-accent transition-colors p-1 -m-1"
+                        className="text-contrast/70 hover:text-accent transition-colors p-1 -m-1"
                         title={t("link_pages")}
                       >
                         <Globe size={14} />
@@ -122,7 +122,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                         href={repo.homepage}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-contrast/50 hover:text-accent transition-colors p-1 -m-1"
+                        className="text-contrast/70 hover:text-accent transition-colors p-1 -m-1"
                         title={t("link_live")}
                       >
                         <ExternalLink size={14} />
@@ -141,7 +141,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                       {repo.topics.slice(0, 4).map((topic) => (
                         <span
                           key={topic}
-                          className="font-mono text-xs text-contrast/32 border border-white/8 px-2 py-1"
+                          className="font-mono text-xs text-contrast/50 border border-white/8 px-2 py-1"
                         >
                           {topic}
                         </span>
@@ -151,7 +151,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                   {repo.description && (
                     <motion.p
                       variants={repo.topics.length > 0 ? descriptionVariants : undefined}
-                      className="col-start-1 row-start-1 font-sans text-xs text-contrast/60 leading-relaxed line-clamp-3"
+                      className="col-start-1 row-start-1 font-sans text-xs text-contrast/70 leading-relaxed line-clamp-3"
                     >
                       {repo.description}
                     </motion.p>
@@ -161,7 +161,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                 {/* Footer: language + date */}
                 <div className="flex items-center justify-between pt-2 border-t border-white/4">
                   {repo.language ? (
-                    <span className="flex items-center gap-2 font-mono text-xs text-contrast/40">
+                    <span className="flex items-center gap-2 font-mono text-xs text-contrast/50">
                       <span
                         className="w-2 h-2 rounded-full shrink-0"
                         style={{
@@ -173,7 +173,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                   ) : (
                     <span />
                   )}
-                  <span suppressHydrationWarning className="font-mono text-xs text-contrast/24">
+                  <span suppressHydrationWarning className="font-mono text-xs text-contrast/50">
                     {relativeTime(repo.pushed_at, locale)}
                   </span>
                 </div>

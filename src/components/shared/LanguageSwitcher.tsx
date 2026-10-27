@@ -20,9 +20,9 @@ export function LanguageSwitcher() {
     <button
       type="button"
       lang={nextLocale}
-      aria-label={t("switch")}
+      aria-label={`${nextLocale.toUpperCase()}: ${t("switch")}`}
       onClick={handleSwitch}
-      className="-m-2 inline-flex min-h-10 min-w-10 items-center justify-center font-mono text-xs text-contrast/40 hover:text-accent transition-colors tracking-widest uppercase"
+      className="-m-2 inline-flex min-h-10 min-w-10 items-center justify-center font-mono text-xs text-contrast/50 hover:text-accent transition-colors tracking-widest uppercase"
     >
       {nextLocale}
     </button>

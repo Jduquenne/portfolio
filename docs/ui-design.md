@@ -29,6 +29,13 @@ Never use other spacing values (e.g. `p-3`, `mt-5`). Always verify alignment.
 GitHub language colours (`src/lib/languages.ts`) are data, applied through inline style
 in the Projects sections. They are the only hex values outside the palette in the UI.
 
+## Text opacity (WCAG contrast)
+
+Text uses two levels of `text-contrast`: **`/50`** for metadata and labels (5.1:1 on `surface`) and
+**`/70`** for body text, links and descriptions (8.8:1). Full `text-contrast` stays for titles. Never go
+below `/50` for text (the old `/16`, `/24`, `/32`, `/40` measured between 1.98 and 3.69, under the 4.5:1
+that AA asks). Borders, backgrounds and decorative lines may stay as pale as needed.
+
 ## Typography
 
 - **`Geist Mono`:** headings, labels, numeric data, code-style elements.
@@ -112,6 +119,8 @@ button, so the primary action stays unambiguous. Text on the accent fill uses `t
   button. When the visible element is smaller, the hit area grows with padding and a negative margin
   (`-m-2`) so the layout does not move. Inline text links (experience descriptions, the company name)
   are not enlarged.
+- An `aria-label` on a control that also shows text must start with that text (WCAG "label in name"): the
+  language switcher shows `EN` and is named "EN: Changer de langue".
 - Controls without a visible name get an `aria-label` from `messages/` (`LanguageSwitcher`).
 - Loading states are skeletons shaped like the real layout, never spinners. Empty states
   are composed views, never a blank panel. Errors are inline and specific, never

@@ -3,6 +3,25 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Lighthouse and its fixes
+
+**Done**
+- Measured the deployed site with Lighthouse (installed outside the repo): mobile 94 / 100 / 100 / 100,
+  desktop 100 / 96 / 100 / 100. Local figures first looked worse because the test server had no gzip and
+  no robots.txt: not the site.
+- Fixes: language switcher name now starts with its visible text (`EN: Changer de langue`); text opacity
+  moved to two levels (`/50` and `/70`) instead of `/16` to `/60`, 84 class changes in 21 files; the avatar
+  is served as `avatar.webp` (320px, 5 KiB instead of the 74 KiB PNG, which stays for the CV).
+- Rules added to `docs/ui-design.md` and `AGENTS.md`.
+
+**Checked**
+- Local production build with gzip: accessibility 100 on mobile and desktop, performance 95 / 100,
+  best practices 96 (a Windows-only 404 on a prefetch file, not present on the live site), SEO 100.
+  The two audits (contrast, label in name) and the image audits no longer fail. The look stays subdued.
+
+**Still open**
+- Re-measure the deployed site after the next deploy. Mobile LCP stays near 3 s (architecture).
+
 ## 2026-10-27: Text for crawlers and visitors without JavaScript
 
 **Done**

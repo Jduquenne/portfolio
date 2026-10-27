@@ -43,13 +43,13 @@ export function Hero({ latestRepo, onPlay, onOpenPalette }: HeroProps) {
             variants={fadeUp}
             className="text-right font-mono text-xs leading-relaxed"
           >
-            <dt className="text-contrast/40 tracking-widest uppercase">
+            <dt className="text-contrast/50 tracking-widest uppercase">
               {t("latest_activity")}
             </dt>
             <dd suppressHydrationWarning className="text-contrast/70">
               {relativeTime(latestRepo.pushed_at, locale)}
             </dd>
-            <dd className="text-contrast/40">{latestRepo.name}</dd>
+            <dd className="text-contrast/50">{latestRepo.name}</dd>
           </motion.dl>
         )}
       </div>
@@ -63,18 +63,18 @@ export function Hero({ latestRepo, onPlay, onOpenPalette }: HeroProps) {
           <button
             type="button"
             onClick={onOpenPalette}
-            className="inline-flex items-center gap-2 border border-white/8 px-4 py-2 font-mono text-xs uppercase tracking-widest text-contrast/50 transition-colors hover:border-accent/40 hover:text-accent"
+            className="inline-flex items-center gap-2 border border-white/8 px-4 py-2 font-mono text-xs uppercase tracking-widest text-contrast/70 transition-colors hover:border-accent/40 hover:text-accent"
           >
             <Command size={16} />
             {tPalette("open")}
-            <kbd className="border border-white/8 px-1 text-contrast/40">
+            <kbd className="border border-white/8 px-1 text-contrast/50">
               {tPalette("shortcut")}
             </kbd>
           </button>
           <button
             type="button"
             onClick={onPlay}
-            className="inline-flex items-center gap-2 border border-white/8 px-4 py-2 font-mono text-xs uppercase tracking-widest text-contrast/50 transition-colors hover:border-accent/40 hover:text-accent"
+            className="inline-flex items-center gap-2 border border-white/8 px-4 py-2 font-mono text-xs uppercase tracking-widest text-contrast/70 transition-colors hover:border-accent/40 hover:text-accent"
           >
             <Dice5 size={16} />
             {tToy("play")}
