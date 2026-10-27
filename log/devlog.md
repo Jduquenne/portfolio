@@ -3,6 +3,22 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Preview for theme-park-map
+
+**Done**
+- `theme-park-map` ("Park Map History", on GitHub Pages although the repo has no homepage set): the clip
+  arrives on the index of 37 parks, searches "Spirou", opens the plan of the Spirou park (the only park with a
+  plan) and zooms in once. 7.4 s, 59 KiB. The still is the index page.
+- The plan's zoom control is a Leaflet link (`a.leaflet-control-zoom-in`), not a button.
+- Clicking a point of interest only opens "no description recorded", so the clip stays on the plan.
+
+**Checked**
+- Frames of the clip and the grid at rest: seven cards out of eight have a thumbnail, only the thumbnails are
+  requested and no `<video>` exists.
+
+**Still open**
+- `tierlist-creator` has no preview; the `theme-park-map` card still has no description (none on GitHub).
+
 ## 2026-10-27: Previews for the other main projects
 
 **Done**
