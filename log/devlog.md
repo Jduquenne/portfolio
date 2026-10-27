@@ -3,6 +3,35 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Desktop sidebar redone, and the CV photo restored
+
+**Done**
+- Sidebar rebuilt on the grid of the main area: same 48px top margin, photo spanning the 224px column, every
+  block sharing the same left and right edges (the old one left the photo at 160px and let "EN" and the copy
+  icon float a few pixels off the edge). New pieces: `AvailabilityBadge` (pinging dot, also used by the
+  mobile profile; the "●" character left `hero.available`), `LocaleToggle` (FR | EN), `SidebarContact`
+  (32px action and a tinted copy segment instead of a 40px block and a loose icon), `SidebarSection` and
+  `SidebarLink` (rows with a hairline and an arrow that leans the way the link goes).
+- The copy logic moved to `useCopyEmail`; the mobile `ContactAction` keeps its look and uses it too.
+- `avatar.webp` is 448px (10 KiB) so the 224px photo stays sharp on dense screens.
+
+**Incident found on the way**
+- The deployed CV had an empty photo frame. The commit that made the avatar lighter removed
+  `public/avatar.png`, which `build-cv.mts` read; the CI regenerates the CV on every deploy, and react-pdf
+  does not fail on a missing image, it leaves the frame empty. Checked on the live preview image.
+- `build-cv.mts` now builds the CV photo from `avatar.webp` (converted to PNG in memory, passed as a data
+  URI), so no second image file is needed. CV regenerated, both previews checked: photo back in FR and EN.
+- `public/avatar.png` reappeared untracked in the working copy; nothing reads it any more.
+
+**Checked**
+- Headless Chrome: hover on a row (accent colour, arrow moved by 2px, hairline lit), language toggle
+  (`/en/`, `aria-pressed` updated), copy failure state (address shown, layout held), mobile profile
+  unchanged and no console message. `tsc` and `lint` pass.
+
+**Still open**
+- After the next deploy, check the live CV preview shows the photo.
+- Decide what to do with the untracked `public/avatar.png`.
+
 ## 2026-10-27: Real README
 
 **Done**

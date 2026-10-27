@@ -12,7 +12,7 @@
     "play": "Jouer"
   },
   "hero": {
-    "available": "● Disponible",
+    "available": "Disponible",
     "contact": "Contact",
     "latest_activity": "Dernière activité",
     "back_to_top": "Retour en haut"

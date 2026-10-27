@@ -1,49 +1,24 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { Check, Copy, Mail, X } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useCopyEmail } from "@/hooks/useCopyEmail";
 import { cv } from "@/lib/data/cv";
 import { cn } from "@/lib/utils";
 
-type CopyState = "idle" | "copied" | "failed";
-
-const RESET_DELAY_MS = 2000;
-const FAILED_RESET_DELAY_MS = 8000;
-
-/** The one primary action of the portfolio: write to me, or copy the address. */
+/** The one primary action of the mobile portfolio: write to me, or copy the address. */
 export function ContactAction() {
   const t = useTranslations("contact");
-  const [copyState, setCopyState] = useState<CopyState>("idle");
-  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
-
-  useEffect(() => () => clearTimeout(timer.current), []);
-
-  const copy = async () => {
-    let failed = false;
-    try {
-      await navigator.clipboard.writeText(cv.contact.email);
-      setCopyState("copied");
-    } catch {
-      failed = true;
-      setCopyState("failed");
-    }
-    clearTimeout(timer.current);
-    timer.current = setTimeout(
-      () => setCopyState("idle"),
-      failed ? FAILED_RESET_DELAY_MS : RESET_DELAY_MS,
-    );
-  };
+  const { state, copy } = useCopyEmail();
 
   const status =
-    copyState === "copied"
+    state === "copied"
       ? t("copied")
-      : copyState === "failed"
+      : state === "failed"
         ? `${t("copy_failed")} ${cv.contact.email}`
         : "";
 
-  const CopyIcon =
-    copyState === "copied" ? Check : copyState === "failed" ? X : Copy;
+  const CopyIcon = state === "copied" ? Check : state === "failed" ? X : Copy;
 
   return (
     <div className="flex flex-col gap-2">
@@ -61,7 +36,7 @@ export function ContactAction() {
           aria-label={t("copy")}
           className={cn(
             "inline-flex aspect-square shrink-0 items-center justify-center transition-colors hover:text-accent",
-            copyState === "idle" ? "text-contrast/70" : "text-accent",
+            state === "idle" ? "text-contrast/50" : "text-accent",
           )}
         >
           <CopyIcon size={16} />
@@ -70,8 +45,8 @@ export function ContactAction() {
           {status}
         </span>
       </div>
-      {copyState === "failed" && (
-        <p className="font-mono text-xs text-contrast/70">
+      {state === "failed" && (
+        <p className="font-mono text-xs text-contrast/50">
           {t("copy_failed")}{" "}
           <span className="select-all text-contrast">{cv.contact.email}</span>
         </p>

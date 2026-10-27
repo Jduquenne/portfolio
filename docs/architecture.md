@@ -65,14 +65,14 @@ src/
 │   ├── globals.css
 │   └── icon.svg
 ├── components/
-│   ├── desktop/                  # DesktopLayout, Hero, Sidebar, PlayModal, CursorGlow, CommandPalette, ProjectPreview, sections/
+│   ├── desktop/                  # DesktopLayout, Hero, Sidebar (+ SidebarContact, SidebarLink, SidebarSection, LocaleToggle), PlayModal, CursorGlow, CommandPalette, ProjectPreview, sections/
 │   │   └── sections/             # Experience, Projects, Specialties
 │   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, ProjectPoster, sections/
 │   │   └── sections/             # Profile, Experience, Stack, Projects, Passions, Play
-│   ├── shared/                   # AdventureRouter, AdventureSkeleton, ContactAction, NoScriptContent, ExperienceDescription,
+│   ├── shared/                   # AdventureRouter, AdventureSkeleton, AvailabilityBadge, ContactAction (mobile), NoScriptContent, ExperienceDescription,
 │   │                             #   LanguageSwitcher, LightsOut, RepoStatsReadout
 │   └── cv/                       # CvDocument (react-pdf), cvData (cv.ts -> plain strings), Cv (page UI)
-├── hooks/                        # useDevice, useCountUp, useActiveSection
+├── hooks/                        # useDevice, useCountUp, useActiveSection, useCopyEmail
 ├── i18n/                         # routing, navigation, request (next-intl)
 ├── lib/
 │   ├── data/cv.ts                # CV content, LocalizedString fields, localize()

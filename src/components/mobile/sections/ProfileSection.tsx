@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
+import { AvailabilityBadge } from "@/components/shared/AvailabilityBadge";
 import { ContactAction } from "@/components/shared/ContactAction";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
 import { Link } from "@/i18n/navigation";
@@ -14,7 +15,6 @@ const containerVariants = stagger(0.08);
 
 export function ProfileSection() {
   const locale = useLocale();
-  const t = useTranslations("hero");
   const tc = useTranslations("contact");
   const tcv = useTranslations("cv");
 
@@ -73,9 +73,7 @@ export function ProfileSection() {
           variants={fadeUp}
           className="flex items-center justify-between"
         >
-          <span className="font-mono text-xs text-accent tracking-widest uppercase">
-            {t("available")}
-          </span>
+          <AvailabilityBadge />
           <LanguageSwitcher />
         </motion.div>
 

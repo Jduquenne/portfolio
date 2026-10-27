@@ -3,22 +3,19 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
-import { ContactAction } from "@/components/shared/ContactAction";
-import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
-import { Link } from "@/i18n/navigation";
+import { LocaleToggle } from "@/components/desktop/LocaleToggle";
+import { SidebarContact } from "@/components/desktop/SidebarContact";
+import { SidebarLink } from "@/components/desktop/SidebarLink";
+import { SidebarSection } from "@/components/desktop/SidebarSection";
+import { AvailabilityBadge } from "@/components/shared/AvailabilityBadge";
 import { cv, localize } from "@/lib/data/cv";
 import { fadeInLeft, stagger } from "@/lib/motion";
 import { age } from "@/lib/utils";
 
 const containerVariants = stagger(0.08);
 
-function Divider() {
-  return <div className="border-t border-white/8" />;
-}
-
 export function Sidebar() {
   const locale = useLocale();
-  const t = useTranslations("hero");
   const tc = useTranslations("contact");
   const tl = useTranslations("logic");
   const tcv = useTranslations("cv");
@@ -28,111 +25,86 @@ export function Sidebar() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="w-72 shrink-0 h-full overflow-y-auto bento-scroll bg-surface border-r border-white/8 flex flex-col gap-8 p-8"
+      className="w-72 shrink-0 h-full overflow-y-auto bento-scroll bg-surface border-r border-white/8 flex flex-col gap-8 px-8 py-12"
     >
-      {/* Avatar + identity */}
-      <motion.div variants={fadeInLeft} className="flex flex-col gap-4">
-        <div className="relative w-40 h-40 shrink-0">
-          <div className="w-full h-full border border-white/12 overflow-hidden">
+      {/* Photo and identity: the photo spans the column, like everything below it */}
+      <motion.div variants={fadeInLeft} className="flex flex-col gap-6">
+        <div className="relative aspect-square w-full">
+          <div className="h-full w-full overflow-hidden border border-white/12">
             <Image
               src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/avatar.webp`}
               alt={cv.identity.name}
-              width={160}
-              height={160}
-              className="w-full h-full object-cover"
+              width={448}
+              height={448}
+              sizes="224px"
+              className="h-full w-full object-cover"
               priority
               loading="eager"
             />
           </div>
-          <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-accent/60" />
-          <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-accent/60" />
-          <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-accent/60" />
-          <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-accent/60" />
+          <div className="absolute left-0 top-0 size-4 border-l border-t border-accent/60" />
+          <div className="absolute right-0 top-0 size-4 border-r border-t border-accent/60" />
+          <div className="absolute bottom-0 left-0 size-4 border-b border-l border-accent/60" />
+          <div className="absolute bottom-0 right-0 size-4 border-b border-r border-accent/60" />
         </div>
 
         <div className="flex flex-col gap-1">
-          <h1 className="font-mono font-bold text-contrast leading-tight">
+          <h1 className="font-mono text-xl font-bold text-contrast">
             {cv.identity.name}
           </h1>
-          <p className="font-sans text-xs text-contrast/70 leading-relaxed">
+          <p className="font-sans text-xs leading-relaxed text-contrast/70">
             {localize(cv.identity.subtitle, locale)}
           </p>
           <p className="font-mono text-xs text-contrast/50">
             {tcv("age", { years: age(cv.identity.birthDate) })}
           </p>
         </div>
+      </motion.div>
 
+      <motion.div variants={fadeInLeft} className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
-          <span className="font-mono text-xs text-accent tracking-widest uppercase">
-            {t("available")}
-          </span>
-          <LanguageSwitcher />
+          <AvailabilityBadge />
+          <LocaleToggle />
         </div>
+        <SidebarContact />
       </motion.div>
 
       <motion.div variants={fadeInLeft}>
-        <ContactAction />
+        <SidebarSection label={tc("section_label")}>
+          <div className="flex flex-col">
+            <SidebarLink label={tc("github")} href={cv.contact.github} external />
+            <SidebarLink
+              label={tc("linkedin")}
+              href={cv.contact.linkedin}
+              external
+            />
+            <SidebarLink label={tc("cv")} href="/cv" />
+          </div>
+        </SidebarSection>
       </motion.div>
 
-      <Divider />
-
-      {/* Contact */}
-      <motion.div variants={fadeInLeft} className="flex flex-col gap-4">
-        <span className="font-mono text-xs text-contrast/50 tracking-widest uppercase">
-          {tc("section_label")}
-        </span>
-        <div className="flex flex-col gap-2">
-          <a
-            href={cv.contact.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-xs text-contrast/70 hover:text-accent transition-colors"
-          >
-            {tc("github")}
-          </a>
-          <a
-            href={cv.contact.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-xs text-contrast/70 hover:text-accent transition-colors"
-          >
-            {tc("linkedin")}
-          </a>
-          <Link
-            href="/cv"
-            className="font-mono text-xs text-contrast/70 hover:text-accent transition-colors"
-          >
-            {tc("cv")}
-          </Link>
-        </div>
-      </motion.div>
-
-      <Divider />
-
-      {/* Stack */}
-      <motion.div variants={fadeInLeft} className="flex flex-col gap-4">
-        <span className="font-mono text-xs text-contrast/50 tracking-widest uppercase">
-          {tl("stack_label")}
-        </span>
-        <div className="flex flex-col gap-4">
-          {cv.stack.map((category) => (
-            <div key={category.label.en} className="flex flex-col gap-2">
-              <span className="font-mono text-xs text-contrast/50 uppercase tracking-widest">
-                {localize(category.label, locale)}
-              </span>
-              <div className="flex flex-wrap gap-1">
-                {category.items.map((item) => (
-                  <span
-                    key={item}
-                    className="font-mono text-xs px-2 py-1 border border-white/8 text-contrast/70 hover:border-accent/30 hover:text-contrast transition-colors"
-                  >
-                    {item}
-                  </span>
-                ))}
+      <motion.div variants={fadeInLeft}>
+        <SidebarSection label={tl("stack_label")}>
+          <div className="flex flex-col gap-4">
+            {cv.stack.map((category) => (
+              <div key={category.label.en} className="flex flex-col gap-2">
+                <span className="font-mono text-xs uppercase tracking-widest text-contrast/50">
+                  {localize(category.label, locale)}
+                </span>
+                <div className="flex flex-wrap gap-1">
+                  {category.items.map((item) => (
+                    <span
+                      key={item}
+                      className="border border-white/8 px-2 py-1 font-mono text-xs text-contrast/70 transition-colors hover:border-accent/30 hover:text-contrast"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </SidebarSection>
       </motion.div>
     </motion.aside>
   );

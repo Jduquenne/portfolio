@@ -110,9 +110,28 @@ A project card shows media only when files named after its repo exist in `public
   cleanly even on a 1x screen; the 640px poster stays sharp when stretched across a phone.
 - A card without files keeps the text-only layout (no placeholder yet).
 
+## Desktop sidebar
+
+The sidebar shares the grid of the main area: it starts at the same 48px top margin (`py-12`) as the content,
+and every block spans the same 224px column, so the photo, the action, the rows and the chips share their
+left and right edges. Top to bottom:
+
+- The photo fills the column (a square with the accent corner brackets), then the name, the role and the age.
+- A row with `AvailabilityBadge` (a dot that quietly pings, still under reduced motion) and `LocaleToggle`
+  (FR and EN side by side, the current one lit, so it is clear which one a click switches to).
+- `SidebarContact`: the filled "Write to me" action and the copy segment, both 32px high, 8px apart. The copy
+  segment is tinted, with no outline. Its failure message and the address under it are the same as on mobile.
+- `SidebarSection` titles (the `// name` and a hairline, like the headings of the main area) over `SidebarLink`
+  rows (GitHub, LinkedIn, CV): a hairline under each, text in accent on hover and focus, and the arrow leans
+  the way the link goes (up and right out of the site, right inside it) with the spring of the project cards.
+- The stack, in chips.
+
+The mobile profile card keeps its own, larger controls (`ContactAction`, `LanguageSwitcher`), sized for
+fingers. Both read the same copy logic from `useCopyEmail`.
+
 ## Primary action: contact
 
-`ContactAction` (`components/shared/`) is the one filled element of the page: an accent button
+On mobile, `ContactAction` (`components/shared/`) is the one filled element of the page: an accent button
 "Write to Jason" (`mailto:`) with a square copy-address icon button beside it. The address itself is
 not displayed. The button has no outline. Copying swaps the icon for a check (a cross if it failed) and tints it
 in accent for two seconds; the result is announced to screen readers through an `aria-live` region. It sits right under the availability line, above the secondary links
