@@ -50,8 +50,10 @@ esbuild into the git-ignored `scripts/dist/` (react-pdf ships ESM-only subpath e
 that trip on-the-fly TS loaders) and runs it. It renders
 `src/components/cv/CvDocument.tsx` to PDF and a WebP preview per locale.
 
-The avatar is passed to react-pdf as a `file:` URL (`pathToFileURL`): react-pdf reads a Windows path such
-as `E:...` as a remote URL and fails with "fetch failed", leaving an empty photo frame.
+The CV photo is `public/avatar.webp` converted to PNG in memory (react-pdf cannot read WebP) and handed over
+as a data URI. Do not point react-pdf at a file path: on Windows a path such as `E:` followed by a backslash
+looks like a URL, and the photo frame comes out empty ("fetch failed"). If `avatar.webp` is missing the CV
+still builds, with an empty frame, so check the preview after any change to the avatar.
 
 react-pdf and its tooling are **devDependencies**: never shipped to the client. After
 changing `src/lib/data/cv.ts` or the `cv.*` translations, run `npm run build:cv` and

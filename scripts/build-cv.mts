@@ -6,7 +6,6 @@
  */
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { pathToFileURL } from "node:url";
 import { createElement } from "react";
 import { renderToBuffer } from "@react-pdf/renderer";
 import * as mupdf from "mupdf";
@@ -14,8 +13,11 @@ import sharp from "sharp";
 import { buildCvData, type CvTranslator } from "../src/components/cv/cvData";
 import { routing } from "../src/i18n/routing";
 
-// A file URL, not a path: react-pdf reads "E:\..." as a remote URL on Windows and fetches it
-const AVATAR = pathToFileURL(resolve("public/avatar.png")).href;
+// react-pdf cannot read WebP, so the CV photo is the site's avatar converted to PNG. Passed as a data
+// URI: a plain path made react-pdf try to fetch it on Windows ("E:\..." looks like a URL).
+const AVATAR = `data:image/png;base64,${(
+  await sharp(resolve("public/avatar.webp")).png().toBuffer()
+).toString("base64")}`;
 /** Render scale for the preview raster, then downscaled to this width. */
 const PREVIEW_SCALE = 2;
 const PREVIEW_WIDTH = 900;
