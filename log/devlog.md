@@ -3,6 +3,23 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Desktop project cards show their description
+
+**Done**
+- Desktop `ProjectsSection`: the description is visible at rest (clamped to 3 lines) instead of on
+  hover only, so no card is empty and nothing depends on hover. Topics replace it on hover when a
+  repo has both; with only one of the two, that one is always shown.
+- The two stacked layers moved from `absolute inset-0` to a one-cell grid: the clamp did not cut
+  an absolutely positioned paragraph in Chrome and showed a fourth line (measured: 58.5px high now,
+  exactly three lines).
+
+**Checked**
+- Re-shot in headless Chrome: cards read well. No repo has topics today, so the hover swap to topics
+  was not seen. `tsc`, `lint` and `next build` pass.
+
+**Still open**
+- Mobile scroll-to-top overlaps card text; Monogame and Godot still in the stack (owner decision).
+
 ## 2026-10-27: Visual check in headless Chrome
 
 **Done**

@@ -19,12 +19,12 @@ const accentBarVariants = {
   },
 };
 
-const topicsVariants = {
+const descriptionVariants = {
   rest: { opacity: 1 },
   hover: { opacity: 0, transition: { duration: 0.2 } },
 };
 
-const descriptionVariants = {
+const topicsVariants = {
   rest: { opacity: 0, y: 8 },
   hover: {
     opacity: 1,
@@ -131,12 +131,12 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                   </div>
                 </div>
 
-                {/* Topics at rest, description on hover — same slot, fixed height */}
-                <div className="relative flex-1 overflow-hidden">
+                {/* Description at rest, so a card is never empty; topics replace it on hover when both exist */}
+                <div className="grid flex-1 items-start overflow-hidden">
                   {repo.topics.length > 0 && (
                     <motion.div
                       variants={repo.description ? topicsVariants : undefined}
-                      className="absolute inset-0 flex flex-wrap items-start content-start gap-1"
+                      className="col-start-1 row-start-1 flex flex-wrap items-start content-start gap-1"
                     >
                       {repo.topics.slice(0, 4).map((topic) => (
                         <span
@@ -150,8 +150,8 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                   )}
                   {repo.description && (
                     <motion.p
-                      variants={descriptionVariants}
-                      className="absolute inset-0 font-sans text-xs text-contrast/60 leading-relaxed line-clamp-3"
+                      variants={repo.topics.length > 0 ? descriptionVariants : undefined}
+                      className="col-start-1 row-start-1 font-sans text-xs text-contrast/60 leading-relaxed line-clamp-3"
                     >
                       {repo.description}
                     </motion.p>

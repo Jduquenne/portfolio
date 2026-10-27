@@ -7,7 +7,7 @@ Where each section is rendered per device: [architecture.md](architecture.md).
 | **Profile** | Identity, availability, then the primary contact action (`ContactAction`) and secondary links: sidebar on desktop, first card on mobile |
 | **Experience** | Timeline from `cv.ts`: roles, periods, stacks. Project names in a description become links (`ExperienceDescription`) |
 | **Stack** | Technical categories from `cv.ts`. A block in the sidebar on desktop, a dedicated section on mobile |
-| **Projects** | GitHub repos fetched at build time, most recently pushed first |
+| **Projects** | GitHub repos fetched at build time, most recently pushed first. Desktop cards show the description at rest (3 lines), topics swap in on hover when the repo has any |
 | **Passions** | Specialities as data: numbers, metadata. Zero long text |
 | **Play** | Mobile only as a section: a Lights Out mini-game (`LightsOut`). Desktop opens it from a modal triggered in the Hero |
 
