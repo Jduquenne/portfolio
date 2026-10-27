@@ -7,9 +7,11 @@ first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
 **Done**
 - `README.md` replaced: the repository is public and listed in the portfolio's own project grid, and it still
-  held the `create-next-app` text. It now has the social card as a banner, what the project is, the two
-  experiences and `/cv`, what is worth a look (static export, GitHub data, hover previews, accessibility,
-  bilingual), the stack, how to run it, how it is deployed, and links to `AGENTS.md` and `docs/`.
+  held the `create-next-app` text. It is a showcase, not a guide to reuse the site: the social card as a
+  banner, what the project is ("my own site, not a template"), the two experiences and `/cv`, what is worth a
+  look (static export, GitHub data, hover previews, accessibility, bilingual), the stack, and links to the
+  architecture, design and decision docs. A first version also explained how to run and deploy it; the owner
+  does not want to guide people to customise it, so that was removed (setup stays in `docs/development.md`).
 - Facts checked against the code and the docs (commands, cron time, fallback without a token, the paths
   of the linked docs). No licence is claimed: the repository has no `LICENSE` file.
 - Removed the "README is boilerplate" item from the known debt in `docs/roadmap.md`.
