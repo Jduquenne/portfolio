@@ -17,8 +17,9 @@ focus here.
 - ✅ Lighthouse on the deployed site (2026-10-27, before the contrast/label/avatar fixes): mobile 94 /
   100 / 100 / 100, desktop 100 / 96 / 100 / 100 (performance, accessibility, best practices, SEO). After the
   fixes, on a local production build: accessibility 100 on both, mobile performance 95 (LCP 2.9 s), desktop 100.
-  The deployed site was not re-measured after the fixes.
-- ⬜ Mobile LCP is about 3 s (good is 2.5 s): the hero text only renders after the JavaScript has loaded,
+  Measured again on the deployed site after the push (2026-10-27): mobile 96 / 100 / 100 / 100 (LCP 2.6 s),
+  desktop 100 / 100 / 100 / 100.
+- ⬜ Mobile LCP is 2.6 s on the deployed site (good is 2.5 s): the hero text only renders after the JavaScript has loaded,
   because the layout is chosen in the browser. Going lower means changing that (see D-009 alternatives).
 - ⬜ No automated tests exist (no test script in `package.json`).
 - ⬜ The design fixes, UX additions, cursor glow and command palette of 2026-10-27 were not looked
@@ -36,7 +37,6 @@ short transitions) were fixed on 2026-10-27, see the devlog.
   `p-6`, `m-6`, `mt-6`, `gap-6` as violations (24px is on the grid) and miss `py-1.5` and
   `py-0.5`. They do not check arbitrary text sizes, the 200ms minimum duration or the
   focus ring.
-- ⬜ **`README.md`** is the unmodified `create-next-app` boilerplate.
 - ⬜ **`Cv.tsx`** gives the CV preview image the PDF file name as `alt`
   (`Jason_Duquenne_CV_FR.pdf`). A translated description needs a new `cv.*` key, hence a
   `build:cv` run.
@@ -49,13 +49,14 @@ short transitions) were fixed on 2026-10-27, see the devlog.
   thesis is abstract (a concrete version exists, but it would make the hero about three lines longer); the
   experiences carry no figures (users, duration, fleet size), none were invented.
 
-- ⬜ **Crawler view not checked with a real crawler**: the fallback was verified in the generated HTML and
-  in Chrome with JavaScript off, not with Search Console or a link-preview tool.
+- ⬜ **Crawler view not checked with a real crawler**: the fallback was verified on the deployed HTML (the
+  headline, an `<h1>` and the `<noscript>` block are present) and in Chrome with JavaScript off, not with
+  Search Console or a link-preview tool.
 
 - ⬜ **Project previews exist for seven repos** (`portfolio`, `artemis-foodlab`, `theme-park-map`,
   `sowftware`, `torpheen-arena`, `daily-drawing`, `dofus-retro-craft-dashboard`). `tierlist-creator`
-  (listed) and the repos outside the eight most recent (`job-lens`, `amusement-park-website`) have none,
-  and no placeholder exists yet. On desktop the text column next to a
+  (listed) deliberately has none (owner decision, not a gap to fill), and neither do the repos outside the
+  eight most recent (`job-lens`, `amusement-park-website`). No placeholder exists yet for cards without media. On desktop the text column next to a
   thumbnail is narrow (the name truncates, the description is cut at 3 lines).
 - ⬜ **The clips go stale**: each one shows the project as it was recorded. Redo a clip when its project
   changes visually. The `daily-drawing` clip shows an Unsplash photo (credited inside the app, not in the

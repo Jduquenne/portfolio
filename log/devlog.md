@@ -3,6 +3,37 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Real README
+
+**Done**
+- `README.md` replaced: the repository is public and listed in the portfolio's own project grid, and it still
+  held the `create-next-app` text. It now has the social card as a banner, what the project is, the two
+  experiences and `/cv`, what is worth a look (static export, GitHub data, hover previews, accessibility,
+  bilingual), the stack, how to run it, how it is deployed, and links to `AGENTS.md` and `docs/`.
+- Facts checked against the code and the docs (commands, cron time, fallback without a token, the paths
+  of the linked docs). No licence is claimed: the repository has no `LICENSE` file.
+- Removed the "README is boilerplate" item from the known debt in `docs/roadmap.md`.
+
+**Still open**
+- A licence is an owner decision (none is stated today).
+
+## 2026-10-27: Deployed site checked
+
+**Done**
+- After the push, checked the live site (headless Chrome, curl, Lighthouse):
+  - HTML: the thesis, an `<h1>` and the `<noscript>` block are in the static page; `sitemap.xml` is served with
+    its `hreflang` alternates.
+  - Previews: at rest only the seven 448px thumbnails are requested (200) and there is no `<video>`; hovering
+    each of the cards tried (artemis-foodlab, theme-park-map, sowftware, torpheen-arena, daily-drawing,
+    portfolio) plays its clip (paused false, time advancing, opacity 1). GitHub Pages answers with
+    `Accept-Ranges: bytes`.
+  - Lighthouse: mobile 96 / 100 / 100 / 100 (LCP 2.6 s, was 3.0 s), desktop 100 / 100 / 100 / 100.
+- Not a problem: one aborted HEAD request to `/fr/cv/` is Next's own link prefetch; its files answer 200.
+
+**Still open**
+- Remaining Lighthouse notes are not ours to fix: GitHub Pages fixes the cache lifetime at 10 minutes, and the
+  oversize-image notes are the 2x thumbnails kept sharp for high-density screens.
+
 ## 2026-10-27: Preview for theme-park-map
 
 **Done**
