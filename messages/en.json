@@ -113,5 +113,9 @@
   },
   "noscript": {
     "notice": "JavaScript is disabled: this is a simplified version of the portfolio."
+  },
+  "stack": {
+    "hint": "Hover a tech",
+    "used": "{count, plural, one {# role} other {# roles}} · since {year}"
   }
 }

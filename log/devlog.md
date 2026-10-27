@@ -3,6 +3,61 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Shorter hint above the stack
+
+- The line shown before any technology is hovered was too long ("Survoler une technologie pour voir où elle a
+  servi", "Hover a technology to see where it was used"). Now "Survoler une techno" and "Hover a tech". The two
+  lines reserved for the readout stay, since a hovered technology needs them ("React · 3 expériences · depuis
+  2021"), so nothing jumps when it appears.
+
+## 2026-10-27: Every technology tied to an experience
+
+**Done**
+- Placed the 12 technologies that no experience listed, from the owner's answers, in `cv.ts`: JavaScript and
+  GitHub in all four experiences; Angular, Go, C, Monogame, Godot and Gemini in the current one; Docker, Linux,
+  SQL and Jira in both Dagoma roles (SQL and Jira also in Codecare). GitLab left the stack and Jira took its
+  place. Reading "Dagoma" as both Dagoma roles for Jira, SQL and Linux is an assumption (the owner said it
+  explicitly only for Docker).
+- Result: 29 of 29 technologies are tied to an experience, no inert chip is left. The current experience now
+  lists 16 tags, the second Dagoma role 16, the first 11, Codecare 9.
+
+**Problem and fix**
+- The longer tag lists pushed the French CV onto a second page (the "Projects" heading stayed at the bottom of
+  page 1, its text went to page 2). The "Projects" block (one sentence and the GitHub link) moved to the bottom
+  of the left column, under the driving licence, where there is room. Both CVs regenerated: one page each, previews
+  looked at, no content removed.
+
+**Checked**
+- Hovering JavaScript (4 experiences since 2020), Jira (3), Docker (2), Gemini (1) and Angular (1) gives the
+  right readout and dims the right experiences; GitLab is gone; no console message. `tsc` and `lint` pass.
+
+**Still open**
+- The assumption about both Dagoma roles (Linux in the earlier one, for instance) is the owner's to confirm.
+- Re-check the live CV preview after the next deploy.
+
+## 2026-10-27: Stack and experiences answer each other (test)
+
+**Done**
+- Variant 1 of the proposal, as a test: hovering or focusing a technology in the sidebar shows a readout
+  ("React · 3 expériences · depuis 2021") and lights up the experiences that use it (their tag in accent, the
+  others at 40%); a click pins it, `Escape` releases it. Shared state in `StackFocusProvider` (desktop layout
+  only), figures computed by `stackUsage` from the experiences of `cv.ts`, new keys `stack.hint` and
+  `stack.used` (89 keys in each language).
+- 17 of the 29 technologies are tied to an experience; the 12 others are inert, paler chips (nothing is guessed).
+
+**Checked**
+- Headless Chrome: at rest the hint shows and nothing is dimmed; hovering React gives 3 experiences since 2021,
+  three lit tags and the fourth experience at 40%; Angular (inert) changes nothing; pinning Vue.js keeps it
+  after the mouse leaves; `Escape` clears it; no console message. `tsc` and `lint` pass.
+
+**Observation**
+- Pinning a technology used only by an experience below the fold (Vue.js, Codecare) dims everything that is on
+  screen and lights nothing visible. Hover alone is fine. A pin could scroll the first matching experience into
+  view, not done.
+
+**Still open**
+- Judge it by hand; keep it, drop it, or add the collapsible categories of variant 2.
+
 ## 2026-10-27: Desktop sidebar redone, and the CV photo restored
 
 **Done**

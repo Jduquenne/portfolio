@@ -7,6 +7,8 @@ import { LocaleToggle } from "@/components/desktop/LocaleToggle";
 import { SidebarContact } from "@/components/desktop/SidebarContact";
 import { SidebarLink } from "@/components/desktop/SidebarLink";
 import { SidebarSection } from "@/components/desktop/SidebarSection";
+import { StackChip } from "@/components/desktop/StackChip";
+import { StackReadout } from "@/components/desktop/StackReadout";
 import { AvailabilityBadge } from "@/components/shared/AvailabilityBadge";
 import { cv, localize } from "@/lib/data/cv";
 import { fadeInLeft, stagger } from "@/lib/motion";
@@ -86,6 +88,7 @@ export function Sidebar() {
       <motion.div variants={fadeInLeft}>
         <SidebarSection label={tl("stack_label")}>
           <div className="flex flex-col gap-4">
+            <StackReadout />
             {cv.stack.map((category) => (
               <div key={category.label.en} className="flex flex-col gap-2">
                 <span className="font-mono text-xs uppercase tracking-widest text-contrast/50">
@@ -93,12 +96,7 @@ export function Sidebar() {
                 </span>
                 <div className="flex flex-wrap gap-1">
                   {category.items.map((item) => (
-                    <span
-                      key={item}
-                      className="border border-white/8 px-2 py-1 font-mono text-xs text-contrast/70 transition-colors hover:border-accent/30 hover:text-contrast"
-                    >
-                      {item}
-                    </span>
+                    <StackChip key={item} tech={item} />
                   ))}
                 </div>
               </div>

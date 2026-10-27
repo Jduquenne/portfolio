@@ -124,7 +124,21 @@ left and right edges. Top to bottom:
 - `SidebarSection` titles (the `// name` and a hairline, like the headings of the main area) over `SidebarLink`
   rows (GitHub, LinkedIn, CV): a hairline under each, text in accent on hover and focus, and the arrow leans
   the way the link goes (up and right out of the site, right inside it) with the spring of the project cards.
-- The stack, in chips.
+- The stack, in chips, tied to the experiences (a test, see below).
+
+### Stack and experiences answer each other (desktop)
+
+Hovering or focusing a technology of the sidebar shows what it is worth in a two-line readout ("React · 3
+experiences · since 2021") and lights up the experiences that use it: their matching tag turns accent and the
+other experiences step back to 40%. A click pins the technology (`aria-pressed`), so it works from the keyboard
+and on touch, and `Escape` lets go. The state lives in `StackFocusProvider`, scoped to the desktop layout.
+
+- The figures come from the `stack` field of each experience in `cv.ts` (`src/lib/stack.ts`), never from
+  elsewhere: the readout counts the experiences that list the technology and takes the earliest start year.
+- A technology no experience lists is an inert chip, a little paler, rather than a guess. On 2026-10-27 every
+  technology of the stack is tied to at least one experience, so none is inert; a new one shows up inert until
+  it is added to the `stack` of the experience where it was used.
+- Mobile has no hover, so nothing changes there.
 
 The mobile profile card keeps its own, larger controls (`ContactAction`, `LanguageSwitcher`), sized for
 fingers. Both read the same copy logic from `useCopyEmail`.

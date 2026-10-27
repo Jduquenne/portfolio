@@ -65,7 +65,7 @@ src/
 │   ├── globals.css
 │   └── icon.svg
 ├── components/
-│   ├── desktop/                  # DesktopLayout, Hero, Sidebar (+ SidebarContact, SidebarLink, SidebarSection, LocaleToggle), PlayModal, CursorGlow, CommandPalette, ProjectPreview, sections/
+│   ├── desktop/                  # DesktopLayout, Hero, Sidebar (+ SidebarContact, SidebarLink, SidebarSection, LocaleToggle, StackChip, StackReadout, StackFocus), PlayModal, CursorGlow, CommandPalette, ProjectPreview, sections/
 │   │   └── sections/             # Experience, Projects, Specialties
 │   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, ProjectPoster, sections/
 │   │   └── sections/             # Profile, Experience, Stack, Projects, Passions, Play
@@ -79,6 +79,7 @@ src/
 │   ├── github.ts                 # build-time GitHub fetch
 │   ├── motion.ts                 # shared Framer Motion presets
 │   ├── site.ts                   # SITE_URL, the one place the public URL is written
+│   ├── stack.ts                  # where a technology is used, from the experiences of cv.ts
 │   ├── previews.ts               # matches public/previews/<repo>.* files to the listed repos (build time)
 │   ├── lightsOut.ts              # Lights Out game logic
 │   ├── languages.ts              # GitHub language colours

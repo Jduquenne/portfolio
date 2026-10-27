@@ -113,5 +113,9 @@
   },
   "noscript": {
     "notice": "JavaScript est désactivé : voici une version simplifiée du portfolio."
+  },
+  "stack": {
+    "hint": "Survoler une techno",
+    "used": "{count, plural, one {# expérience} other {# expériences}} · depuis {year}"
   }
 }

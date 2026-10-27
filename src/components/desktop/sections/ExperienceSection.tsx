@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
+import { useStackFocus } from "@/components/desktop/StackFocus";
 import { ExperienceDescription } from "@/components/shared/ExperienceDescription";
 import { cv, localize } from "@/lib/data/cv";
-import { experienceYears } from "@/lib/utils";
+import { cn, experienceYears } from "@/lib/utils";
 import { fadeUp, stagger } from "@/lib/motion";
 
 const sectionVariants = stagger(0.1);
@@ -12,6 +13,7 @@ const sectionVariants = stagger(0.1);
 export function ExperienceSection() {
   const locale = useLocale();
   const t = useTranslations("experience");
+  const { active } = useStackFocus();
 
   return (
     <motion.section
@@ -34,17 +36,20 @@ export function ExperienceSection() {
       <div className="flex flex-col">
         {cv.experiences.map((exp, i) => {
           const years = experienceYears(exp.period, exp.current);
+          // while a technology is active, the experiences that do not use it step back
+          const dimmed = active !== null && !exp.stack.includes(active);
+          const fade = cn("transition-opacity", dimmed && "opacity-40");
 
           return (
             <motion.div key={i} variants={fadeUp} className="flex gap-6">
-              <div className="flex flex-col items-center pt-2 shrink-0">
+              <div className={cn("flex flex-col items-center pt-2 shrink-0", fade)}>
                 <div className="w-1.5 h-1.5 bg-accent shrink-0" />
                 {i < cv.experiences.length - 1 && (
                   <div className="w-px flex-1 bg-white/8 my-2" />
                 )}
               </div>
 
-              <div className="flex-1 pb-10">
+              <div className={cn("flex-1 pb-10", fade)}>
                 <div className="flex items-baseline justify-between gap-4 mb-2">
                   <div className="flex items-baseline gap-2 flex-wrap">
                     <span className="font-mono text-sm font-bold text-contrast">
@@ -89,7 +94,12 @@ export function ExperienceSection() {
                   {exp.stack.map((tech) => (
                     <span
                       key={tech}
-                      className="font-mono text-xs px-2 py-1 border border-white/8 text-contrast/50"
+                      className={cn(
+                        "font-mono text-xs px-2 py-1 border transition-colors",
+                        tech === active
+                          ? "border-accent/60 bg-accent/10 text-accent"
+                          : "border-white/8 text-contrast/50",
+                      )}
                     >
                       {tech}
                     </span>

@@ -342,6 +342,16 @@ export function CvDocument({ data }: { data: CvData }) {
               <SectionLabel text={data.labels.licence} />
               <Text style={s.infoKey}>{data.licence}</Text>
             </View>
+
+            <View style={s.section}>
+              <SectionLabel text={data.labels.projects} />
+              <Text style={s.projects}>
+                {`${data.labels.projectsHint} `}
+                <Link src={data.contact.github} style={s.projectsLink}>
+                  {data.contact.githubDisplay}
+                </Link>
+              </Text>
+            </View>
           </View>
 
           <View style={s.colRight}>
@@ -378,16 +388,6 @@ export function CvDocument({ data }: { data: CvData }) {
                   <Text style={s.eduPeriod}>{entry.period}</Text>
                 </View>
               ))}
-            </View>
-
-            <View style={s.section}>
-              <SectionLabel text={data.labels.projects} />
-              <Text style={s.projects}>
-                {`${data.labels.projectsHint} `}
-                <Link src={data.contact.github} style={s.projectsLink}>
-                  {data.contact.githubDisplay}
-                </Link>
-              </Text>
             </View>
           </View>
         </View>

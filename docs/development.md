@@ -50,6 +50,11 @@ esbuild into the git-ignored `scripts/dist/` (react-pdf ships ESM-only subpath e
 that trip on-the-fly TS loaders) and runs it. It renders
 `src/components/cv/CvDocument.tsx` to PDF and a WebP preview per locale.
 
+The CV must stay on one A4 page. The experience tags come straight from `cv.ts`, so adding technologies to an
+experience can push the right column over the edge (the "Projects" heading once ended up alone at the bottom of
+page 1). The block now sits in the left column, which has room; check the page count after a change to `cv.ts`
+(`mupdf` reports it) and look at both previews.
+
 The CV photo is `public/avatar.webp` converted to PNG in memory (react-pdf cannot read WebP) and handed over
 as a data URI. Do not point react-pdf at a file path: on Windows a path such as `E:` followed by a backslash
 looks like a URL, and the photo frame comes out empty ("fetch failed"). If `avatar.webp` is missing the CV
