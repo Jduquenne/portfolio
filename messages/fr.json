@@ -54,7 +54,11 @@
     "section_label": "// contact",
     "github": "GitHub",
     "linkedin": "LinkedIn",
-    "cv": "CV"
+    "cv": "CV",
+    "write": "Écrire à Jason",
+    "copy": "Copier l’adresse email",
+    "copied": "Copié",
+    "copy_failed": "Copie impossible"
   },
   "cv": {
     "download": "Télécharger le CV",

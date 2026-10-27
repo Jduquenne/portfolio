@@ -85,6 +85,16 @@ or PDF, GitHub, LinkedIn.
 - The Hero owns no state any more: `DesktopLayout` holds `playOpen` and `paletteOpen`, and renders
   `PlayModal` and `CommandPalette`.
 
+## Primary action: contact
+
+`ContactAction` (`components/shared/`) is the one filled element of the page: an accent button
+"Write to Jason" (`mailto:`) with a square copy-address icon button beside it. The address itself is
+not displayed. The button has no outline. Copying swaps the icon for a check (a cross if it failed) and tints it
+in accent for two seconds; the result is announced to screen readers through an `aria-live` region. It sits right under the availability line, above the secondary links
+(GitHub, LinkedIn, CV), in the desktop sidebar and in the first mobile card. Keep it the only filled
+button, so the primary action stays unambiguous. Text on the accent fill uses `text-surface`:
+`text-base` would be read as the font size, not the `base` colour token.
+
 ## States and accessibility (D-008)
 
 - Every interactive element has hover, active, and a **visible focus ring**. Both are global

@@ -68,7 +68,7 @@ src/
 │   │   └── sections/             # Experience, Projects, Specialties
 │   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, sections/
 │   │   └── sections/             # Profile, Experience, Stack, Projects, Passions, Play
-│   ├── shared/                   # AdventureRouter, AdventureSkeleton, ExperienceDescription,
+│   ├── shared/                   # AdventureRouter, AdventureSkeleton, ContactAction, ExperienceDescription,
 │   │                             #   LanguageSwitcher, LightsOut, RepoStatsReadout
 │   └── cv/                       # CvDocument (react-pdf), cvData (cv.ts -> plain strings), Cv (page UI)
 ├── hooks/                        # useDevice, useCountUp, useActiveSection

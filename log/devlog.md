@@ -3,6 +3,25 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Primary contact action
+
+**Done**
+- Step 3 of the "wow" plan, one commit per step: `ContactAction` (shared) with an accent "Write to
+  Jason" button with a square copy-address icon beside it (the address is not shown in clear);
+  the copy button has no outline; feedback is the icon swap (check, or cross on failure) in
+  accent and an announced status.
+- Placed under the availability line in the desktop sidebar and the first mobile card; the old
+  plain email link was removed from both contact lists (GitHub, LinkedIn, CV stay).
+- Keys `contact.write`, `copy`, `copied`, `copy_failed` in both message files (85 keys each).
+
+**Checked**
+- `tsc`, `lint` and `next build` pass, `public/` untouched, the label is in both locale pages.
+  Not run in a browser.
+
+**Still open**
+- The visible feedback is icon-only; the "Copied" text is only for screen readers. Adjust if it is too discreet.
+- Copy needs `localhost` or https. A `mailto:` needs a mail client, hence the copy button.
+
 ## 2026-10-27: Command palette (Ctrl+K)
 
 **Done**

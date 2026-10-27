@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
+import { ContactAction } from "@/components/shared/ContactAction";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
 import { Link } from "@/i18n/navigation";
 import { cv, localize } from "@/lib/data/cv";
@@ -69,6 +70,10 @@ export function Sidebar() {
         </div>
       </motion.div>
 
+      <motion.div variants={fadeInLeft}>
+        <ContactAction />
+      </motion.div>
+
       <Divider />
 
       {/* Contact */}
@@ -77,12 +82,6 @@ export function Sidebar() {
           {tc("section_label")}
         </span>
         <div className="flex flex-col gap-2">
-          <a
-            href={`mailto:${cv.contact.email}`}
-            className="font-mono text-xs text-contrast/50 hover:text-accent transition-colors truncate"
-          >
-            {cv.contact.email}
-          </a>
           <a
             href={cv.contact.github}
             target="_blank"

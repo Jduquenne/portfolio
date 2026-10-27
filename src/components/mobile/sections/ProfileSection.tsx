@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
-import { ArrowUpRight } from "lucide-react";
+import { ContactAction } from "@/components/shared/ContactAction";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
 import { Link } from "@/i18n/navigation";
 import { cv, localize } from "@/lib/data/cv";
@@ -79,19 +79,16 @@ export function ProfileSection() {
           <LanguageSwitcher />
         </motion.div>
 
+        <motion.div variants={fadeUp}>
+          <ContactAction />
+        </motion.div>
+
         <div className="border-t border-white/8" />
 
         <motion.div variants={fadeUp} className="flex flex-col gap-4">
           <span className="font-mono text-xs text-contrast/24 tracking-widest uppercase">
             {tc("section_label")}
           </span>
-          <a
-            href={`mailto:${cv.contact.email}`}
-            className="flex items-center gap-2 font-mono text-xs text-contrast/50 hover:text-accent transition-colors w-fit"
-          >
-            {cv.contact.email}
-            <ArrowUpRight size={12} />
-          </a>
           <div className="flex items-center gap-6">
             <a
               href={cv.contact.github}

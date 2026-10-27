@@ -36,9 +36,8 @@ short transitions) were fixed on 2026-10-27, see the devlog.
   `build:cv` run.
 - ⬜ **Not audited:** hover, loading and empty states on every element, `alt` text and
   semantic HTML across the site, and `animate` limited to `transform` and `opacity`.
-- ⬜ **UX ideas not done:** a single clear primary call to action, 40px touch targets on
-  mobile chips and the language switcher, a wording review of `messages/` and `cv.ts`
-  against the skill's content rules.
+- ⬜ **UX ideas not done:** 40px touch targets on mobile chips and the language switcher, a
+  wording review of `messages/` and `cv.ts` against the skill's content rules.
 
 ## Ideas / later
 

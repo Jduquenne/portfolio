@@ -4,7 +4,7 @@ Where each section is rendered per device: [architecture.md](architecture.md).
 
 | Section | Key concept |
 |---|---|
-| **Profile** | Identity, availability, contact: sidebar on desktop, first card on mobile |
+| **Profile** | Identity, availability, then the primary contact action (`ContactAction`) and secondary links: sidebar on desktop, first card on mobile |
 | **Experience** | Timeline from `cv.ts`: roles, periods, stacks. Project names in a description become links (`ExperienceDescription`) |
 | **Stack** | Technical categories from `cv.ts`. A block in the sidebar on desktop, a dedicated section on mobile |
 | **Projects** | GitHub repos fetched at build time, most recently pushed first |
