@@ -105,6 +105,11 @@ button, so the primary action stays unambiguous. Text on the accent fill uses `t
 - Before the device is known, `AdventureSkeleton` is shown (sidebar and cards shape, pulse
   only when motion is allowed). It uses `lg:` classes, which is acceptable for a placeholder
   that renders neither adventure.
+- Touch targets are at least 40px (`size-10` / `min-h-10`) on the controls reachable on mobile: bottom
+  nav links, scroll-to-top, language switcher, project icon links, profile links and the contact
+  button. When the visible element is smaller, the hit area grows with padding and a negative margin
+  (`-m-2`) so the layout does not move. Inline text links (experience descriptions, the company name)
+  are not enlarged.
 - Controls without a visible name get an `aria-label` from `messages/` (`LanguageSwitcher`).
 - Loading states are skeletons shaped like the real layout, never spinners. Empty states
   are composed views, never a blank panel. Errors are inline and specific, never

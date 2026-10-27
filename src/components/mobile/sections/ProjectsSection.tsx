@@ -78,7 +78,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                       href={repo.html_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-contrast/50 active:text-accent transition-colors p-1 -m-1"
+                      className="-m-2 inline-flex size-10 items-center justify-center text-contrast/50 active:text-accent transition-colors"
                       title={t("link_repo")}
                     >
                       <GitBranch size={16} />
@@ -88,7 +88,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                         href={repo.pages_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-contrast/50 active:text-accent transition-colors p-1 -m-1"
+                        className="-m-2 inline-flex size-10 items-center justify-center text-contrast/50 active:text-accent transition-colors"
                         title={t("link_pages")}
                       >
                         <Globe size={16} />
@@ -99,7 +99,7 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
                         href={repo.homepage}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-contrast/50 active:text-accent transition-colors p-1 -m-1"
+                        className="-m-2 inline-flex size-10 items-center justify-center text-contrast/50 active:text-accent transition-colors"
                         title={t("link_live")}
                       >
                         <ExternalLink size={16} />

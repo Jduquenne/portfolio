@@ -22,7 +22,7 @@ export function LanguageSwitcher() {
       lang={nextLocale}
       aria-label={t("switch")}
       onClick={handleSwitch}
-      className="font-mono text-xs text-contrast/40 hover:text-accent transition-colors tracking-widest uppercase"
+      className="-m-2 inline-flex min-h-10 min-w-10 items-center justify-center font-mono text-xs text-contrast/40 hover:text-accent transition-colors tracking-widest uppercase"
     >
       {nextLocale}
     </button>

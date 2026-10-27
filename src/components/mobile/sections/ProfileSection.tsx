@@ -94,7 +94,7 @@ export function ProfileSection() {
               href={cv.contact.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-contrast/50 hover:text-accent transition-colors tracking-widest uppercase"
+              className="inline-flex min-h-10 items-center font-mono text-xs text-contrast/50 hover:text-accent transition-colors tracking-widest uppercase"
             >
               {tc("github")}
             </a>
@@ -103,14 +103,14 @@ export function ProfileSection() {
               href={cv.contact.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-contrast/50 hover:text-accent transition-colors tracking-widest uppercase"
+              className="inline-flex min-h-10 items-center font-mono text-xs text-contrast/50 hover:text-accent transition-colors tracking-widest uppercase"
             >
               {tc("linkedin")}
             </a>
             <span className="text-contrast/16 font-mono text-xs">—</span>
             <Link
               href="/cv"
-              className="font-mono text-xs text-contrast/50 hover:text-accent transition-colors tracking-widest uppercase"
+              className="inline-flex min-h-10 items-center font-mono text-xs text-contrast/50 hover:text-accent transition-colors tracking-widest uppercase"
             >
               {tc("cv")}
             </Link>

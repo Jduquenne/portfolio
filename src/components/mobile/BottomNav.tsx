@@ -25,7 +25,7 @@ export function BottomNav() {
           href={`#${id}`}
           aria-current={activeId === id ? "true" : undefined}
           className={cn(
-            "font-mono text-xs hover:text-accent transition-colors duration-200 tracking-widest uppercase",
+            "inline-flex h-full min-w-10 items-center justify-center font-mono text-xs hover:text-accent transition-colors duration-200 tracking-widest uppercase",
             activeId === id ? "text-accent" : "text-contrast/40",
           )}
         >

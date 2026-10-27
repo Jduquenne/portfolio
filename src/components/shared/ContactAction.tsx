@@ -43,7 +43,7 @@ export function ContactAction() {
     <div className="flex items-stretch gap-2">
       <a
         href={`mailto:${cv.contact.email}`}
-        className="inline-flex min-w-0 flex-1 items-center justify-center gap-2 bg-accent px-4 py-2 font-mono text-sm font-bold text-surface transition-colors hover:bg-accent/85"
+        className="inline-flex min-h-10 min-w-0 flex-1 items-center justify-center gap-2 bg-accent px-4 py-2 font-mono text-sm font-bold text-surface transition-colors hover:bg-accent/85"
       >
         <Mail size={16} />
         {t("write")}

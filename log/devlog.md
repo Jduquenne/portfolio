@@ -3,6 +3,35 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Visual check in headless Chrome
+
+**Done**
+- Screenshots of desktop (home, cursor glow, projects, passions, palette) and mobile (every section)
+  taken with Chrome driven by `puppeteer-core`, installed outside the repo.
+- Bug fixed: `RepoStatsReadout` showed "0 dépôts · 0 publics · 0 privés" after a direct jump to the
+  Projects section (nav tap, palette): `useInView` used `-15%` margins on all sides, so a header
+  snapped to the top never counted as visible. Now only the bottom margin is cut.
+- Confirmed in the render: cursor glow is subtle, palette and contact button read well, bottom nav
+  marks the active section, the primary button is the only filled element.
+
+**Findings left open** (see "Observed in the visual check" in `docs/roadmap.md`).
+
+## 2026-10-27: Touch targets on mobile
+
+**Done**
+- Interactive controls reachable on mobile now have a 40px hit area: bottom nav links (full bar
+  height), scroll-to-top, language switcher, project icon links, profile links, contact button.
+  The visuals barely move: small elements grow their hit area with a negative margin.
+- The stack chips are not interactive, so they were left alone (an earlier note listed them).
+
+**Checked**
+- `tsc`, `lint` and `next build` pass. No browser available in the session, so not seen.
+
+**Still open**
+- Bottom nav: the labels sit on one line on a 360px screen; check on a real phone, in French too.
+- Project icon links now sit 40px apart (they were 32px); check the card header on mobile.
+- Inline links (experience descriptions, company name) keep their text size.
+
 ## 2026-10-27: Primary contact action
 
 **Done**
