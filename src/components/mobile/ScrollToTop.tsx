@@ -13,7 +13,15 @@ export function ScrollToTop() {
     const main = document.querySelector("main");
     if (!main) return;
 
-    const onScroll = () => setVisible(main.scrollTop > main.clientHeight * 0.6);
+    // Shown only while scrolling back up, so it never sits over the text being read downwards
+    let lastTop = main.scrollTop;
+    const onScroll = () => {
+      const top = main.scrollTop;
+      if (top <= main.clientHeight * 0.6) setVisible(false);
+      else if (top < lastTop) setVisible(true);
+      else if (top > lastTop) setVisible(false);
+      lastTop = top;
+    };
     main.addEventListener("scroll", onScroll, { passive: true });
     return () => main.removeEventListener("scroll", onScroll);
   }, []);

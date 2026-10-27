@@ -3,6 +3,17 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Scroll-to-top only when scrolling up
+
+**Done**
+- Mobile `ScrollToTop` no longer shows while reading downwards: it appears when the scroll goes back up
+  (past 60% of a screen) and hides on the way down or near the top.
+- Checked in headless Chrome with a mobile viewport: opacity 0 at the top and when scrolling down, 1
+  after scrolling up one section, 0 again going down or back to the top. `tsc`, `lint`, `next build` pass.
+
+**Still open**
+- Stack still lists Monogame and Godot (owner decision); wording review of `messages/` and `cv.ts`.
+
 ## 2026-10-27: Desktop project cards show their description
 
 **Done**

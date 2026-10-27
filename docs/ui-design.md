@@ -100,6 +100,8 @@ button, so the primary action stays unambiguous. Text on the accent fill uses `t
 - Every interactive element has hover, active, and a **visible focus ring**. Both are global
   in the `base` layer of `globals.css`: a `:focus-visible` outline (2px accent, 2px offset)
   and a `scale: 0.98` press feedback on `button` and `a[href]` (motion-safe only).
+- The mobile scroll-to-top button appears only while scrolling back up (and below 60% of a screen), so
+  it never covers the text being read downwards.
 - The mobile bottom nav marks the section in view (`aria-current` and accent colour), driven
   by `useActiveSection`.
 - Before the device is known, `AdventureSkeleton` is shown (sidebar and cards shape, pulse

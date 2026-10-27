@@ -44,7 +44,7 @@ short transitions) were fixed on 2026-10-27, see the devlog.
 - ✅ **Desktop project cards looked empty at rest** (description on hover only, and most repos have
   no topics): the description now shows at rest, clamped to 3 lines; topics replace it on hover
   when a repo has both.
-- ⬜ **Scroll-to-top overlaps text** on the mobile feed (a 40px floating button over the card text).
+- ✅ **Scroll-to-top overlapped text** on the mobile feed: it now shows only while scrolling back up.
 - ⬜ **Stack still lists Monogame and Godot** (category "3D / Jeux") although game dev mentions were
   removed from the metadata and the social preview. Content decision for the owner.
 - ✅ Fixed during the check: the repo counters stayed at "0" after a direct jump to the section
