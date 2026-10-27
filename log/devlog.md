@@ -3,6 +3,23 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-10-27: Cursor glow on the desktop backdrop
+
+**Done**
+- Step 1 of the "wow" plan, one commit per step: `CursorGlow` lights the dot grid and adds a
+  halo around the mouse (desktop only). CSS in `globals.css`, mounted in `DesktopLayout`.
+- The cards (`bg-surface`) hide the glow underneath: it shows in the gaps and the margins. A
+  per-card border glow was left out on purpose.
+
+**Checked**
+- `tsc`, `lint` and `next build` pass; the compiled CSS keeps the `mask-image`. Not seen in a
+  browser.
+
+**Still open**
+- Toned down after the first try ("too much glow"): halo `0.07` to `0.025`, lit dots at 45%
+  opacity, radius `10rem` to `6rem`. Tune further by eye if needed.
+- Next steps: command palette (`Ctrl+K`), then a clear primary contact action.
+
 ## 2026-10-27: UX additions from the skill
 
 **Done**

@@ -94,6 +94,45 @@ body {
   }
 }
 
+/* Desktop cursor glow. The lit dots reuse the backdrop's 32px tile, so they sit
+   exactly on top of the resting dots. */
+.cursor-glow {
+  --mx: 50%;
+  --my: 50%;
+}
+
+.cursor-glow-halo,
+.cursor-glow-dots {
+  position: absolute;
+  inset: 0;
+}
+
+.cursor-glow-halo {
+  background: radial-gradient(
+    20rem 20rem at var(--mx) var(--my),
+    rgba(56, 189, 248, 0.025),
+    transparent 70%
+  );
+}
+
+.cursor-glow-dots {
+  background-image: radial-gradient(
+    rgba(56, 189, 248, 0.45) 1.1px,
+    transparent 1.6px
+  );
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(
+    6rem 6rem at var(--mx) var(--my),
+    #000,
+    transparent
+  );
+  mask-image: radial-gradient(
+    6rem 6rem at var(--mx) var(--my),
+    #000,
+    transparent
+  );
+}
+
 /* Blinking caret at the end of the desktop hero statement */
 .hero-caret {
   display: inline-block;

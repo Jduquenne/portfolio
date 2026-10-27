@@ -1,3 +1,4 @@
+import { CursorGlow } from "@/components/desktop/CursorGlow";
 import { Hero } from "@/components/desktop/Hero";
 import { Sidebar } from "@/components/desktop/Sidebar";
 import { ExperienceSection } from "@/components/desktop/sections/ExperienceSection";
@@ -12,7 +13,8 @@ interface DesktopLayoutProps {
 
 export function DesktopLayout({ repos, stats }: DesktopLayoutProps) {
   return (
-    <div className="grid-backdrop flex h-screen text-contrast font-sans overflow-hidden">
+    <div className="grid-backdrop relative isolate flex h-screen text-contrast font-sans overflow-hidden">
+      <CursorGlow />
       <Sidebar />
       <main id="main" className="flex-1 overflow-y-auto bento-scroll px-16 py-12 flex flex-col gap-16">
         <Hero latestRepo={repos[0]} />

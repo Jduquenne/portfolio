@@ -59,6 +59,15 @@ Loaded with `next/font` in `src/app/fonts.ts`.
   unthrottled work to a `scroll` listener (`ScrollToTop` uses a passive listener).
 - Animate `transform` and `opacity`, not `top`, `left`, `width`, `height`.
 
+## Desktop signature: cursor glow
+
+`CursorGlow` (`components/desktop/`) lights the backdrop dot grid (accent at 45%, 6rem radius) around the
+mouse and adds a barely visible halo (2.5%). Kept subtle on purpose: it first read as too much glow. The lit dots reuse the backdrop's 32px tile so they sit exactly on the resting
+dots. It writes `--mx` / `--my` straight to the DOM (no React state), is throttled with
+`requestAnimationFrame`, ignores touch and pen, fades out when the mouse leaves the window, and
+is hidden under `prefers-reduced-motion`. It lives under the content (`-z-10` in an `isolate`d
+root), so it shows in the gaps between cards and never over text. Desktop only.
+
 ## States and accessibility (D-008)
 
 - Every interactive element has hover, active, and a **visible focus ring**. Both are global
