@@ -15,7 +15,7 @@ interface RepoStatsReadoutProps {
 export function RepoStatsReadout({ stats, className }: RepoStatsReadoutProps) {
   const t = useTranslations("logic");
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-15%" });
+  const inView = useInView(ref, { once: true, margin: "0px 0px -15% 0px" });
 
   const total = useCountUp(stats.total, inView);
   const publicCount = useCountUp(stats.public, inView);
