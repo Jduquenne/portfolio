@@ -139,9 +139,10 @@ not documented. They are all `accepted` because the code implements them.
   Artemis FoodLab was also described as offline on IndexedDB, which is no longer true (its own Node.js API, sign-in
   required, IndexedDB kept as a cache).
 - **Decision:** `CVExperience` gets an optional `projects` (`label`, `href`, localized `description`), shown under
-  the description by `ExperienceProjects` (desktop, mobile), as a list in `NoScriptContent` and as bold name plus
-  line in the CV PDF. `links` and `ExperienceDescription` are removed. The stack stays at experience level.
+  the description by `ExperienceProjects` (desktop, mobile), as a list in `NoScriptContent` and, in the CV PDF, as a single line of project names
+  (one page is the constraint; the descriptions stay on the site). `links` and `ExperienceDescription` are removed. The stack stays at experience level.
 - **Alternatives considered:** line breaks inside the description string (fragile, no structure for the PDF);
   moving the two apps to the Projects section (fed by GitHub, cannot carry a written description).
 - **Consequences:** a project is now data, so a new one means one entry in `projects` in both languages. Links are
-  not printed in the PDF (they were not before).
+  not printed in the PDF (they were not before). The CV keeps only the names: four projects with a description
+  each made both CVs two pages.

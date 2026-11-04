@@ -11,8 +11,13 @@ first. History before the migration is in `git log` (31 commits on 2026-10-27).
 - The two apps of the current experience were one block of text. `cv.ts` now has `projects` per experience
   (D-011): each app has a linked name and its own line, in the sections, the `<noscript>` fallback and the CV.
   `ExperienceDescription` and `links` are gone. Node.js added to the stack of that experience.
-- `npm run build:cv` rerun, both CVs still one page. `lint` and `tsc` clean. `npm run build` not run, and the
-  sections were not looked at in a browser.
+- Added Sowftware (local-first, offline PWA) and ParkMapHistory (the README name of `theme-park-map`) to the
+  list, in the order Artemis FoodLab, Dofus Retro Craft Dashboard, Sowftware, ParkMapHistory. Texts come from the
+  repo descriptions and READMEs, and the owner confirmed Sowftware is still local-first and offline.
+- With four described projects both CVs went to two pages. The PDF now prints only the project names on one line
+  (owner choice); the descriptions stay on the site. Both `public/cv-*.pdf` are one page again (checked on the EN
+  preview, page count checked on both).
+- `lint` and `tsc` clean. `npm run build` not run, and the sections were not looked at in a browser.
 
 **Still open**
 - Check the new project list in the browser (desktop and mobile) and run `npm run build`.

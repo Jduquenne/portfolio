@@ -139,6 +139,22 @@ export const cv: CV = {
             fr: "Hub d’outils static-first : calculateurs d’XP et de craft, carte interactive et guides de rentabilité, tout côté client.",
           },
         },
+        {
+          label: "Sowftware",
+          href: "https://jduquenne.github.io/sowftware/",
+          description: {
+            en: "Garden planner: plots drawn to scale, crops placed by their real footprint, yields and watering tracked. Local-first PWA on IndexedDB that works offline, with a catalogue of plants grown in France.",
+            fr: "Planificateur de jardin : parcelles dessinées à l’échelle, cultures placées selon leur emprise réelle, suivi des récoltes et des arrosages. PWA local-first sur IndexedDB, utilisable hors ligne, avec un catalogue de plantes cultivées en France.",
+          },
+        },
+        {
+          label: "ParkMapHistory",
+          href: "https://jduquenne.github.io/theme-park-map/",
+          description: {
+            en: "Interactive archive of theme-park maps through time, starting with French parks: pick a map and a year, and only the attractions that existed then are shown. Angular and Leaflet, fully static.",
+            fr: "Archive interactive des plans de parcs d’attractions à travers le temps, à commencer par les parcs français : on choisit un plan et une année, seules les attractions de l’époque s’affichent. Angular et Leaflet, 100 % statique.",
+          },
+        },
       ],
       stack: [
         "JavaScript",
