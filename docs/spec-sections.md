@@ -16,8 +16,9 @@ Where each section is rendered per device: [architecture.md](architecture.md).
 Above Experience, and filling the visible height of the main area (`min-h-full`), so Experience is
 out of sight when the page opens. The `cv.identity.description` thesis in Geist Mono, a "latest
 activity" readout from the GitHub data, two entry points (the command palette `Ctrl K` and the game),
-and a scroll cue at the bottom that leads to Experience (`scrollToSection`, `src/lib/scroll.ts`), visible
-only while the whole Hero is on screen (`useFullyVisible`).
+and a section nav at the bottom (`HeroSectionNav`): Experience, Projects, Passions, each with one real figure
+(roles and first year from `cv.ts`, public repo count, number of passions), jumping with `scrollToSection`. It is
+visible only while the whole Hero is on screen (`useFullyVisible`).
 Test in progress: more content is planned for the free space.
 
 ## Rules

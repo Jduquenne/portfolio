@@ -3,23 +3,24 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
-## 2026-11-04: Desktop Hero fills the first screen, with a scroll cue (test)
+## 2026-11-04: Desktop Hero fills the first screen, with a section nav (test)
 
 **Done**
 - The Hero now fills the height of the main area (`min-h-full`, thesis at the top, entry points at the bottom), so
   Experience is hidden on opening. A 65vh version was tried first and dropped: the visible slice of Experience
   looked wrong (owner).
-- Added a scroll cue under the entry points: a one-row button labelled "Experience" / "Expérience" with a down arrow
-  (`hero.scroll_cue`) that scrolls to `#experience`, same box as the palette and game buttons (Geist Mono, hairline
-  border, accent on hover and focus, arrow nudges down on hover, no loop). A first stacked version (label above a
-  square arrow, "See experience") took too much height (owner).
+- Added a section nav under the entry points (`HeroSectionNav`): three boxes, Experience / Projets / Passions
+  (`hero.nav_*`), each with a line of real data (`hero.info_*`): roles and first year from `cv.ts`, count of listed
+  public repos, number of passions. Same box style as the palette and game buttons, accent on hover and focus, arrow
+  nudges down on hover. It replaced a single "Experience" cue that had first been stacked, then one row (owner:
+  too tall, then "use the space for every section"). The projects line is hidden when no repo is listed.
 - Fixed: scrolling to a section put its title against the top edge of the scroll area. `main` now has
-  `scroll-pt-12`, the same 48px as its top padding, so every section jump (cue and command palette) lands with the
+  `scroll-pt-12`, the same 48px as its top padding, so every section jump (Hero nav and command palette) lands with the
   title in the clear.
 - The scroll root id (`SCROLL_ROOT_ID`) and the desktop padding that must match the scroll padding
   (`DESKTOP_SCROLL_INSET_Y`, `py-12 scroll-pt-12`) live in `src/lib/scroll.ts`; `useActiveSection` stopped keeping its
   own copy of the id. Other layouts still write `id="main"` as the skip link target.
-- The cue only shows while the whole Hero is on screen (`useFullyVisible`: an `IntersectionObserver` rooted on
+- The nav only shows while the whole Hero is on screen (`useFullyVisible`: an `IntersectionObserver` rooted on
   `#main`, read through `useSyncExternalStore`). It fades out (200ms) and leaves the tab order and the
   accessibility tree (`inert`, `aria-hidden`) once the page is scrolled by about 48px, and comes back at the top.
 - `scrollToSection` and `scrollToTop` moved from `CommandPalette` to `src/lib/scroll.ts` so the palette and the

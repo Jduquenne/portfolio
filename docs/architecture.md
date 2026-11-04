@@ -65,7 +65,7 @@ src/
 │   ├── globals.css
 │   └── icon.svg
 ├── components/
-│   ├── desktop/                  # DesktopLayout, Hero, Sidebar (+ SidebarContact, SidebarLink, SidebarSection, LocaleToggle, StackChip, StackReadout, StackFocus), PlayModal, CursorGlow, CommandPalette, ProjectPreview, sections/
+│   ├── desktop/                  # DesktopLayout, Hero, HeroSectionNav, Sidebar (+ SidebarContact, SidebarLink, SidebarSection, LocaleToggle, StackChip, StackReadout, StackFocus), PlayModal, CursorGlow, CommandPalette, ProjectPreview, sections/
 │   │   └── sections/             # Experience, Projects, Specialties
 │   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, ProjectPoster, sections/
 │   │   └── sections/             # Profile, Experience, Stack, Projects, Passions, Play

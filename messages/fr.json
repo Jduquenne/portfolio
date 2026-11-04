@@ -16,7 +16,13 @@
     "contact": "Contact",
     "latest_activity": "Dernière activité",
     "back_to_top": "Retour en haut",
-    "scroll_cue": "Expérience"
+    "nav_label": "Sections",
+    "nav_experience": "Expérience",
+    "nav_projects": "Projets",
+    "nav_passions": "Passions",
+    "info_experience": "{count, plural, one {# poste} other {# postes}} · depuis {year}",
+    "info_projects": "{count, plural, one {# dépôt public} other {# dépôts publics}}",
+    "info_passions": "{count, plural, one {# domaine} other {# domaines}}"
   },
   "logic": {
     "section_label": "// logic",

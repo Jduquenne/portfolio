@@ -16,7 +16,13 @@
     "contact": "Contact",
     "latest_activity": "Latest activity",
     "back_to_top": "Back to top",
-    "scroll_cue": "Experience"
+    "nav_label": "Sections",
+    "nav_experience": "Experience",
+    "nav_projects": "Projects",
+    "nav_passions": "Passions",
+    "info_experience": "{count, plural, one {# role} other {# roles}} · since {year}",
+    "info_projects": "{count, plural, one {# public repo} other {# public repos}}",
+    "info_passions": "{count, plural, one {# area} other {# areas}}"
   },
   "logic": {
     "section_label": "// logic",

@@ -2,12 +2,13 @@
 
 import { useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Command, Dice5 } from "lucide-react";
+import { Command, Dice5 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import { HeroSectionNav } from "@/components/desktop/HeroSectionNav";
 import { useFullyVisible } from "@/hooks/useFullyVisible";
 import { cv, localize } from "@/lib/data/cv";
 import { fadeUp, stagger } from "@/lib/motion";
-import { SCROLL_ROOT_ID, scrollToSection } from "@/lib/scroll";
+import { SCROLL_ROOT_ID } from "@/lib/scroll";
 import { cn, relativeTime } from "@/lib/utils";
 import type { GitHubRepo } from "@/types";
 
@@ -15,11 +16,17 @@ const containerVariants = stagger(0.1, 0.1);
 
 interface HeroProps {
   latestRepo?: GitHubRepo;
+  repoCount: number;
   onPlay: () => void;
   onOpenPalette: () => void;
 }
 
-export function Hero({ latestRepo, onPlay, onOpenPalette }: HeroProps) {
+export function Hero({
+  latestRepo,
+  repoCount,
+  onPlay,
+  onOpenPalette,
+}: HeroProps) {
   const locale = useLocale();
   const t = useTranslations("hero");
   const tToy = useTranslations("toy");
@@ -89,7 +96,7 @@ export function Hero({ latestRepo, onPlay, onOpenPalette }: HeroProps) {
           </div>
         </motion.div>
 
-        <motion.div variants={fadeUp} className="flex justify-center">
+        <motion.div variants={fadeUp}>
           <div
             aria-hidden={!onHero}
             inert={!onHero}
@@ -98,17 +105,7 @@ export function Hero({ latestRepo, onPlay, onOpenPalette }: HeroProps) {
               !onHero && "pointer-events-none opacity-0",
             )}
           >
-            <button
-              type="button"
-              onClick={() => scrollToSection("experience")}
-              className="group inline-flex items-center gap-2 border border-white/8 px-4 py-2 font-mono text-xs uppercase tracking-widest text-contrast/50 transition-colors hover:border-accent/40 hover:text-accent"
-            >
-              {t("scroll_cue")}
-              <ArrowDown
-                size={16}
-                className="transition-transform group-hover:translate-y-1"
-              />
-            </button>
+            <HeroSectionNav repoCount={repoCount} />
           </div>
         </motion.div>
       </div>

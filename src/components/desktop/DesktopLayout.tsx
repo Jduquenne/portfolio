@@ -37,6 +37,7 @@ export function DesktopLayout({ repos, stats }: DesktopLayoutProps) {
         >
           <Hero
             latestRepo={repos[0]}
+            repoCount={repos.length}
             onPlay={() => setPlayOpen(true)}
             onOpenPalette={() => setPaletteOpen(true)}
           />
