@@ -3,6 +3,21 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-11-04: Experience projects as a list, Artemis FoodLab described as it is
+
+**Done**
+- Artemis FoodLab was still described as offline on IndexedDB with no backend. It runs on its own Node.js API,
+  needs a sign-in, and keeps IndexedDB as a cache. Fixed in the experience and in the meta description (EN, FR).
+- The two apps of the current experience were one block of text. `cv.ts` now has `projects` per experience
+  (D-011): each app has a linked name and its own line, in the sections, the `<noscript>` fallback and the CV.
+  `ExperienceDescription` and `links` are gone. Node.js added to the stack of that experience.
+- `npm run build:cv` rerun, both CVs still one page. `lint` and `tsc` clean. `npm run build` not run, and the
+  sections were not looked at in a browser.
+
+**Still open**
+- Check the new project list in the browser (desktop and mobile) and run `npm run build`.
+- The project links are 28px high on mobile (touch target debt, see roadmap).
+
 ## 2026-10-27: Portfolio clip redone from the current site
 
 **Done**

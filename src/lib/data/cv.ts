@@ -30,9 +30,10 @@ interface CVContact {
   linkedin: string;
 }
 
-export interface CVExperienceLink {
+export interface CVExperienceProject {
   label: string;
   href: string;
+  description: LocalizedString;
 }
 
 interface CVExperience {
@@ -42,7 +43,7 @@ interface CVExperience {
   period: string;
   current?: boolean;
   description: LocalizedString;
-  links?: CVExperienceLink[];
+  projects?: CVExperienceProject[];
   stack: string[];
 }
 
@@ -118,17 +119,25 @@ export const cv: CV = {
       period: "2024",
       current: true,
       description: {
-        en: "Web products designed and shipped independently, end to end. Artemis FoodLab — a local-first meal planner, fully in-browser on IndexedDB, no backend. Dofus Retro Craft Dashboard — a static-first utility hub: XP and craft calculators, interactive map and profitability guides, all client-side. AI integrated into the workflow (Claude Code, Gemini) for brainstorming and speed, architecture and review kept in hand.",
-        fr: "Produits web conçus et livrés en indépendant, de bout en bout. Artemis FoodLab — planificateur de repas local-first, entièrement dans le navigateur sur IndexedDB, sans backend. Dofus Retro Craft Dashboard — hub d’outils static-first : calculateurs d’XP et de craft, carte interactive et guides de rentabilité, tout côté client. IA intégrée au workflow (Claude Code, Gemini) pour le brainstorming et la rapidité, architecture et revue gardées en main.",
+        en: "Web products designed and shipped independently, end to end. AI integrated into the workflow (Claude Code, Gemini) for brainstorming and speed, architecture and review kept in hand.",
+        fr: "Produits web conçus et livrés en indépendant, de bout en bout. IA intégrée au workflow (Claude Code, Gemini) pour le brainstorming et la rapidité, architecture et revue gardées en main.",
       },
-      links: [
+      projects: [
         {
           label: "Artemis FoodLab",
           href: "https://jduquenne.github.io/artemis-foodlab/",
+          description: {
+            en: "Meal planner backed by its own Node.js API, sign-in required, with an IndexedDB cache for faster loads.",
+            fr: "Planificateur de repas adossé à sa propre API Node.js, connexion requise, avec un cache IndexedDB pour un chargement plus rapide.",
+          },
         },
         {
           label: "Dofus Retro Craft Dashboard",
           href: "https://jduquenne.github.io/dofus-retro-craft-dashboard/",
+          description: {
+            en: "Static-first utility hub: XP and craft calculators, interactive map and profitability guides, all client-side.",
+            fr: "Hub d’outils static-first : calculateurs d’XP et de craft, carte interactive et guides de rentabilité, tout côté client.",
+          },
         },
       ],
       stack: [
@@ -136,6 +145,7 @@ export const cv: CV = {
         "TypeScript",
         "React",
         "Next.js",
+        "Node.js",
         "Angular",
         "Three.js",
         "WebGL",

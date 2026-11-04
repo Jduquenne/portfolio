@@ -5,7 +5,7 @@ Where each section is rendered per device: [architecture.md](architecture.md).
 | Section | Key concept |
 |---|---|
 | **Profile** | Identity, availability, then the primary contact action (`ContactAction`) and secondary links: sidebar on desktop, first card on mobile |
-| **Experience** | Timeline from `cv.ts`: roles, periods, stacks. Project names in a description become links (`ExperienceDescription`) |
+| **Experience** | Timeline from `cv.ts`: roles, periods, stacks. An experience can list its own `projects` (linked name and one line each, `ExperienceProjects`) |
 | **Stack** | Technical categories from `cv.ts`. A block in the sidebar on desktop, a dedicated section on mobile |
 | **Projects** | GitHub repos fetched at build time, most recently pushed first. Desktop cards show the description at rest (3 lines), topics swap in on hover when the repo has any. A repo with files in `public/previews/` also gets a thumbnail: a clip on hover on desktop, a still on mobile |
 | **Passions** | Specialities as data: numbers, metadata. Zero long text |

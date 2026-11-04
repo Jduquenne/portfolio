@@ -174,6 +174,8 @@ const s = StyleSheet.create({
   expCompany: { fontFamily: "Geist Mono", fontWeight: 400, color: C.muted },
   expPeriod: { fontFamily: "Geist Mono", fontSize: 7, color: C.muted },
   expDesc: { fontSize: 8, color: C.soft, marginTop: 2 },
+  expProject: { fontSize: 8, color: C.soft, marginTop: 2 },
+  expProjectName: { fontFamily: "Geist Mono", fontWeight: 700, color: C.ink },
   expStack: {
     fontFamily: "Geist Mono",
     fontSize: 6.5,
@@ -227,6 +229,7 @@ export interface CvData {
     company: string;
     period: string;
     description: string;
+    projects: { label: string; description: string }[];
     stack: string;
   }[];
   education: { title: string; school: string; period: string }[];
@@ -369,6 +372,12 @@ export function CvDocument({ data }: { data: CvData }) {
                       <Text style={s.expPeriod}>{exp.period}</Text>
                     </View>
                     <Text style={s.expDesc}>{exp.description}</Text>
+                    {exp.projects.map((project) => (
+                      <Text key={project.label} style={s.expProject}>
+                        <Text style={s.expProjectName}>{project.label}</Text>
+                        {` — ${project.description}`}
+                      </Text>
+                    ))}
                     <Text style={s.expStack}>{exp.stack}</Text>
                   </View>
                 </View>

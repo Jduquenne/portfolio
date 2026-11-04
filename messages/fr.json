@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Jason Duquenne — Développeur Fullstack",
-    "description": "Développeur fullstack (TypeScript, Next.js), passionné de 3D. J’ai conçu l’écran de contrôle d’imprimantes 3D professionnelles et un planificateur de repas hors ligne."
+    "description": "Développeur fullstack (TypeScript, Next.js), passionné de 3D. J’ai conçu l’écran de contrôle d’imprimantes 3D professionnelles et un planificateur de repas adossé à sa propre API Node.js."
   },
   "nav": {
     "profile": "Profil",

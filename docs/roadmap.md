@@ -42,7 +42,7 @@ short transitions) were fixed on 2026-10-27, see the devlog.
   `build:cv` run.
 - ⬜ **Not audited:** hover, loading and empty states on every element, `alt` text and
   semantic HTML across the site, and `animate` limited to `transform` and `opacity`.
-- ⬜ **UX ideas not done:** touch targets for the inline links (experience descriptions, company name)
+- ⬜ **UX ideas not done:** touch targets for the project links of an experience and the company name
   on mobile.
 - ⬜ **Wording, owner input needed:** "Disponible" alone (FR, and the CV) does not say available for what
   (the English "Available for work" does; the sidebar is too narrow for a longer French label); the hero

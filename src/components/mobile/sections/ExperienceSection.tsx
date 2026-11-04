@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
-import { ExperienceDescription } from "@/components/shared/ExperienceDescription";
+import { ExperienceProjects } from "@/components/shared/ExperienceProjects";
 import { cv, localize } from "@/lib/data/cv";
 import { experienceYears } from "@/lib/utils";
 import { fadeUp, stagger } from "@/lib/motion";
@@ -81,11 +81,12 @@ export function ExperienceSection() {
                     )}
                   </div>
                   <p className="font-sans text-sm text-contrast/70 leading-relaxed mb-4">
-                    <ExperienceDescription
-                      text={localize(exp.description, locale)}
-                      links={exp.links}
-                    />
+                    {localize(exp.description, locale)}
                   </p>
+
+                  {exp.projects && (
+                    <ExperienceProjects projects={exp.projects} locale={locale} />
+                  )}
                   <div className="flex flex-wrap gap-1">
                     {exp.stack.map((tech) => (
                       <span

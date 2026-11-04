@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Jason Duquenne — Fullstack Developer",
-    "description": "Fullstack developer (TypeScript, Next.js) into 3D. I built the control screen of professional 3D printers and an offline meal planner."
+    "description": "Fullstack developer (TypeScript, Next.js) into 3D. I built the control screen of professional 3D printers and a meal planner backed by its own Node.js API."
   },
   "nav": {
     "profile": "Profile",

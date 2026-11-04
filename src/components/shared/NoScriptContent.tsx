@@ -63,6 +63,16 @@ export function NoScriptContent({ locale, repos }: NoScriptContentProps) {
               <p className="text-contrast/70">
                 {localize(exp.description, locale)}
               </p>
+              {exp.projects && (
+                <ul className="flex flex-col gap-2 text-contrast/70">
+                  {exp.projects.map((project) => (
+                    <li key={project.label}>
+                      <a href={project.href}>{project.label}</a>:{" "}
+                      {localize(project.description, locale)}
+                    </li>
+                  ))}
+                </ul>
+              )}
               <p className="font-mono text-xs text-contrast/70">
                 {exp.stack.join(" · ")}
               </p>

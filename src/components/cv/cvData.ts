@@ -54,6 +54,10 @@ export function buildCvData(
       role: localize(exp.role, locale),
       company: localize(exp.company, locale),
       description: localize(exp.description, locale),
+      projects: (exp.projects ?? []).map((project) => ({
+        label: project.label,
+        description: localize(project.description, locale),
+      })),
       stack: exp.stack.join(" · "),
       period: experiencePeriod(exp.period, exp.current),
     })),

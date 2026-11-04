@@ -69,7 +69,7 @@ src/
 │   │   └── sections/             # Experience, Projects, Specialties
 │   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, ProjectPoster, sections/
 │   │   └── sections/             # Profile, Experience, Stack, Projects, Passions, Play
-│   ├── shared/                   # AdventureRouter, AdventureSkeleton, AvailabilityBadge, ContactAction (mobile), NoScriptContent, ExperienceDescription,
+│   ├── shared/                   # AdventureRouter, AdventureSkeleton, AvailabilityBadge, ContactAction (mobile), NoScriptContent, ExperienceProjects,
 │   │                             #   LanguageSwitcher, LightsOut, RepoStatsReadout
 │   └── cv/                       # CvDocument (react-pdf), cvData (cv.ts -> plain strings), Cv (page UI)
 ├── hooks/                        # useDevice, useCountUp, useActiveSection, useCopyEmail
@@ -114,7 +114,7 @@ not a section. See [spec-sections.md](spec-sections.md) for what each section do
 | Play | modal (`PlayModal`) opened from the Hero or the command palette | `PlaySection` |
 
 Desktop also has a `Hero` above Experience. Desktop and mobile never import from each
-other. `shared/` holds what both use (`LightsOut`, `ExperienceDescription`, ...).
+other. `shared/` holds what both use (`LightsOut`, `ExperienceProjects`, ...).
 
 ## Data flow
 

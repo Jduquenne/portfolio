@@ -129,3 +129,19 @@ not documented. They are all `accepted` because the code implements them.
 - **Consequences:** the repo grows by about 230 KiB per project, and a clip goes stale when the project
   changes visually (re-record and redo the three files, see development.md). Renaming a repo drops its media until the
   files are renamed; the build logs unused files.
+
+## D-011: Experience projects as structured data, not links inside a description
+
+- **Date:** 2026-11-04
+- **Status:** accepted
+- **Context:** the current experience ships two apps, but `description` was a single string and the project names
+  were turned into links by matching them in the text (`ExperienceDescription`), so the two apps read as one block.
+  Artemis FoodLab was also described as offline on IndexedDB, which is no longer true (its own Node.js API, sign-in
+  required, IndexedDB kept as a cache).
+- **Decision:** `CVExperience` gets an optional `projects` (`label`, `href`, localized `description`), shown under
+  the description by `ExperienceProjects` (desktop, mobile), as a list in `NoScriptContent` and as bold name plus
+  line in the CV PDF. `links` and `ExperienceDescription` are removed. The stack stays at experience level.
+- **Alternatives considered:** line breaks inside the description string (fragile, no structure for the PDF);
+  moving the two apps to the Projects section (fed by GitHub, cannot carry a written description).
+- **Consequences:** a project is now data, so a new one means one entry in `projects` in both languages. Links are
+  not printed in the PDF (they were not before).
