@@ -203,3 +203,28 @@ not documented. They are all `accepted` because the code implements them.
   sizes (the card scrolls inside itself under about 700px of height, and the map is faded under text and buttons).
   `Escape` clears a route only when no dialog is open.
 
+## D-015: The availability map on mobile: its own section, reached from the first screen
+
+- **Date:** 2026-11-04
+- **Status:** accepted
+- **Context:** the map carries information (where and how he can work) that a phone visitor should not miss, but the
+  desktop Hero has no mobile counterpart. The tab bar has five entries, and a sixth is cramped (11px between entries
+  at 390px, 6px at 360px, touching at 320px).
+- **Decision:** a section `availability` right after Profile (not a tab bar entry, not in `SectionId`), same
+  `h-screen` and snap as its neighbours. The map fills it, under a head (title and mode switch) and a panel (the
+  summary and the cities) of fixed heights (128px and 240px, the bottom 56px of the panel clear the tab bar), so the
+  free area of the map never changes and the camera never jumps. It draws itself the first time 60% of it is on screen,
+  once per browser session. The on-site view frames the 45 km circle, not the whole region (the cities are 18px apart
+  at region scale, under a fingertip). A tap picks the nearest reachable city within 32px, and the cities are also a
+  row the finger slides sideways. The first screen links to the section ("Lieu de travail", 45 km around Bailleul or
+  remote) and is reworked: three groups spread over the height, the availability badge beside the name, the language
+  switch in the top corner, the "Contact" block replaced by three outline buttons. To serve both layouts the engine now
+  takes four insets instead of a left reserve, an on-site focus, a route zoom cap and a speed scale for off-screen
+  drawing, and labels stay inside the viewport.
+- **Alternatives considered:** a sixth tab bar entry (too tight on small phones); the map inside the profile card (no
+  room); a per-dot tap (a finger misses at that scale); a mobile-only map with different data (duplicates the engine).
+- **Consequences:** desktop and mobile share the data, the engine, the renderer and `components/shared/availability`;
+  each owns its placement (`desktop/availabilityLayout.ts`, `mobile/availabilityLayout.ts`). The mobile sections still
+  use `h-screen` (`100vh`): on a phone with a collapsing address bar that is taller than the visible area, a point
+  left for a later pass over all sections (the tab bar stays fixed).
+

@@ -47,7 +47,7 @@ export interface World {
   radiusUnits: number;
   outlines: Record<OutlineId, Shape>;
   cities: readonly WorldCity[];
-  bounds: { france: Bounds; region: Bounds };
+  bounds: { france: Bounds; region: Bounds; radius: Bounds };
 }
 
 /** Everything the scene draws, projected once from the raw data. */
@@ -96,6 +96,7 @@ export function buildWorld(): World {
     bounds: {
       france: boundsOf([...outlines.france.points, ...outlines.corsica.points]),
       region: boundsOf([...outlines.region.points, ...outlines.radius.points]),
+      radius: boundsOf(outlines.radius.points),
     },
   };
 }

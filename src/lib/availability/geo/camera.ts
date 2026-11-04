@@ -1,10 +1,10 @@
 import { clamp } from "@/lib/availability/geo/math";
-import type { Bounds, Camera, Point, Viewport } from "@/lib/availability/types";
+import type { Bounds, Camera, Insets, Point, Viewport } from "@/lib/availability/types";
 
 export interface FrameOptions {
   padding: number;
-  /** Width in pixels kept free on the left, for the content drawn over the map. */
-  reservedLeft: number;
+  /** Pixels kept free on each side, for the content drawn over the map. */
+  reserve: Insets;
   minLogScale?: number;
   maxLogScale?: number;
 }
@@ -13,20 +13,21 @@ export interface FrameOptions {
 export function frameFor(
   bounds: Bounds,
   viewport: Viewport,
-  { padding, reservedLeft, minLogScale = -Infinity, maxLogScale = Infinity }: FrameOptions,
+  { padding, reserve, minLogScale = -Infinity, maxLogScale = Infinity }: FrameOptions,
 ): Camera {
-  const freeWidth = Math.max(1, viewport.width - reservedLeft - padding * 2);
-  const freeHeight = Math.max(1, viewport.height - padding * 2);
+  const freeWidth = Math.max(1, viewport.width - reserve.left - reserve.right - padding * 2);
+  const freeHeight = Math.max(1, viewport.height - reserve.top - reserve.bottom - padding * 2);
   const fit = Math.min(
     freeWidth / (bounds.maxX - bounds.minX || 1),
     freeHeight / (bounds.maxY - bounds.minY || 1),
   );
   const logScale = clamp(Math.log(fit), minLogScale, maxLogScale);
   const scale = Math.exp(logScale);
-  const centerPx = reservedLeft + (viewport.width - reservedLeft) / 2;
+  const centerX = reserve.left + (viewport.width - reserve.left - reserve.right) / 2;
+  const centerY = reserve.top + (viewport.height - reserve.top - reserve.bottom) / 2;
   return {
-    cx: (bounds.minX + bounds.maxX) / 2 - (centerPx - viewport.width / 2) / scale,
-    cy: (bounds.minY + bounds.maxY) / 2,
+    cx: (bounds.minX + bounds.maxX) / 2 - (centerX - viewport.width / 2) / scale,
+    cy: (bounds.minY + bounds.maxY) / 2 - (centerY - viewport.height / 2) / scale,
     logScale,
   };
 }

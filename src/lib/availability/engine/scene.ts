@@ -4,6 +4,7 @@ import {
   scaleOf,
   screenToWorld,
   viewBoxOf,
+  worldToScreen,
 } from "@/lib/availability/geo/camera";
 import { clamp, easeOut, type Easing } from "@/lib/availability/geo/math";
 import { boundsOf, drawnPoints } from "@/lib/availability/geo/shape";
@@ -31,6 +32,7 @@ import {
 } from "@/lib/availability/engine/world";
 import type {
   Camera,
+  Insets,
   MapMode,
   Point,
   SceneState,
@@ -40,9 +42,7 @@ import type {
 type CameraKey = "remote" | "onsite" | "route";
 type Stage = "pending" | "running" | "done";
 
-const FRAME_PADDING = 56;
-const ROUTE_FRAME_PADDING = 88;
-const ROUTE_MAX_ZOOM = 3.4;
+const DEFAULT_ROUTE_MAX_ZOOM = 3.4;
 const POP_SECONDS = 0.25;
 const SETTLE_SECONDS = 0.3;
 const MAX_CRUMPLES = 3;
@@ -51,8 +51,12 @@ const DIMMED = 0.6;
 
 export interface SceneOptions {
   world: World;
-  /** Width in pixels the map leaves free on the left, for the content over it. */
-  reservedLeft: (viewportWidth: number) => number;
+  /** Pixels the map leaves free on each side, for the content over it. */
+  reserve: (viewport: Viewport) => Insets;
+  padding: { frame: number; route: number };
+  /** What the on-site view frames: the whole region, or just the radius around the origin. */
+  focus?: "region" | "radius";
+  routeMaxZoom?: number;
 }
 
 export interface FrameContext {
@@ -100,11 +104,19 @@ export interface Scene {
   setMode: (mode: MapMode) => void;
   toggleCity: (cityId: string) => void;
   clearSelection: () => void;
+  /** The reachable city nearest to a point of the viewport, within `reachPx`. */
+  pickCity: (pixel: Point, reachPx: number) => string | null;
   isActive: () => boolean;
   advance: (dt: number, context: FrameContext) => SceneFrame;
 }
 
-export function createScene({ world, reservedLeft }: SceneOptions): Scene {
+export function createScene({
+  world,
+  reserve,
+  padding,
+  focus = "region",
+  routeMaxZoom = DEFAULT_ROUTE_MAX_ZOOM,
+}: SceneOptions): Scene {
   const tweens = new Tweens();
   const listeners = new Set<() => void>();
   const wakeListeners = new Set<() => void>();
@@ -165,25 +177,26 @@ export function createScene({ world, reservedLeft }: SceneOptions): Scene {
   }
 
   function computeFrames() {
-    const left = reservedLeft(viewport.width);
+    const insets = reserve(viewport);
     frames.remote = frameFor(world.bounds.france, viewport, {
-      padding: FRAME_PADDING,
-      reservedLeft: left,
+      padding: padding.frame,
+      reserve: insets,
     });
-    frames.onsite = frameFor(world.bounds.region, viewport, {
-      padding: FRAME_PADDING,
-      reservedLeft: left,
-    });
+    frames.onsite = frameFor(
+      focus === "radius" ? world.bounds.radius : world.bounds.region,
+      viewport,
+      { padding: padding.frame, reserve: insets },
+    );
     const route = selectedCity()?.route;
     if (route) {
       frames.route = frameFor(
         boundsOf([...route.shape.points, world.origin.position]),
         viewport,
         {
-          padding: ROUTE_FRAME_PADDING,
-          reservedLeft: left,
+          padding: padding.route,
+          reserve: insets,
           minLogScale: frames.onsite.logScale,
-          maxLogScale: frames.onsite.logScale + Math.log(ROUTE_MAX_ZOOM),
+          maxLogScale: frames.onsite.logScale + Math.log(routeMaxZoom),
         },
       );
     }
@@ -274,7 +287,12 @@ export function createScene({ world, reservedLeft }: SceneOptions): Scene {
     const { region, radius } = world.outlines;
     const program = createProgram(
       [
-        { kind: "print", shapeId: "region", shape: region },
+        {
+          kind: "print",
+          shapeId: "region",
+          shape: region,
+          speedScale: focus === "radius" ? scaleOf(frames.onsite) / scaleOf(frames.remote) : 1,
+        },
         { kind: "rapid", to: radius.points[0] },
         { kind: "print", shapeId: "radius", shape: radius },
       ],
@@ -517,6 +535,18 @@ export function createScene({ world, reservedLeft }: SceneOptions): Scene {
     },
     clearSelection() {
       dropSelection(false);
+    },
+    pickCity([px, py], reachPx) {
+      let nearest: { id: string; distance: number } | null = null;
+      for (const city of world.cities) {
+        if (!cityFrame(city).interactive) continue;
+        const [x, y] = worldToScreen(camera, viewport, city.position);
+        const distance = Math.hypot(x - px, y - py);
+        if (distance <= reachPx && (!nearest || distance < nearest.distance)) {
+          nearest = { id: city.id, distance };
+        }
+      }
+      return nearest ? nearest.id : null;
     },
     isActive: () =>
       tweens.active ||

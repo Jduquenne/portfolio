@@ -3,7 +3,7 @@ import { pointAtProgress, type Shape } from "@/lib/availability/geo/shape";
 import type { Point } from "@/lib/availability/types";
 
 export type MoveSpec =
-  | { kind: "print"; shapeId: string; shape: Shape; minDuration?: number }
+  | { kind: "print"; shapeId: string; shape: Shape; minDuration?: number; speedScale?: number }
   | { kind: "rapid"; to: Point }
   | { kind: "dwell"; duration: number };
 
@@ -60,7 +60,10 @@ export function createProgram(
     if (spec.kind === "print") {
       from = spec.shape.points[0];
       to = spec.shape.points[spec.shape.points.length - 1];
-      duration = Math.max(spec.minDuration ?? 0, spec.shape.length / speeds.print);
+      duration = Math.max(
+        spec.minDuration ?? 0,
+        spec.shape.length / (speeds.print * (spec.speedScale ?? 1)),
+      );
     } else if (spec.kind === "rapid") {
       to = spec.to;
       duration = Math.max(

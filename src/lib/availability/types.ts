@@ -15,6 +15,13 @@ export interface Viewport {
   height: number;
 }
 
+export interface Insets {
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
+}
+
 export interface Camera {
   cx: number;
   cy: number;

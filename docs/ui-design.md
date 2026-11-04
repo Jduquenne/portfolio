@@ -108,6 +108,19 @@ are a dotted line that fades. Everything is accent on the base colour, no relief
   at once and skips the crumple. No loops: the scene stops asking for frames when it has nothing to animate.
 - **Card:** 352px wide (304px under a 1188px window), scrolls inside itself when the Hero is short.
 
+## Mobile: first screen and work location section
+
+- **First screen** (`ProfileSection`): `min-h-full` with `justify-between` over three groups, so the content ends 24px above
+  the tab bar (`pb-20`) whatever the height. Name in `text-2xl`, role and age in `text-sm` (the age at /70, not /50), the
+  role on two lines (split on " · "), the availability badge under the age. Height steps use the Tailwind scale only:
+  the thesis goes from `text-xl` to `text-2xl` from 820px, the photo from `size-40` to `size-44`, the buttons from
+  `min-h-10` to `min-h-12` and the link to `min-h-14` from 900px (`[@media(min-height:...)]`).
+- **Work location section:** `h-screen snap-start`, the map under everything (`z-0`), a fade from the base colour at the top
+  (`z-5`), the head and the panel on top (`z-10`). Both are `data-map-obstacle`, so labels step aside. The panel is `h-60`
+  with `pb-14` for the fixed tab bar, and its summary slot is `h-18`, so nothing moves when a trip appears.
+- **Touch:** every target is at least 40px (`min-h-10`), the row of cities scrolls sideways with snap and no scrollbar,
+  and the selected city is brought to the centre.
+
 ## Project previews (desktop clip on hover, still on mobile)
 
 A project card shows media only when files named after its repo exist in `public/previews/`

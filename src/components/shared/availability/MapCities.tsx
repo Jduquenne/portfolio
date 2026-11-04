@@ -12,8 +12,10 @@ export interface HoverPoint {
 interface MapCitiesProps {
   world: World;
   registry: MapRegistry;
-  onSelect: (cityId: string) => void;
-  onHover: (cityId: string | null, point?: HoverPoint) => void;
+  /** Left out when the map picks the city itself, from the tap position. */
+  onSelect?: (cityId: string) => void;
+  /** Left out where there is no pointer to hover with. */
+  onHover?: (cityId: string | null, point?: HoverPoint) => void;
 }
 
 const LABEL_FONT = "var(--font-geist-mono), ui-monospace, monospace";
@@ -35,9 +37,11 @@ export const MapCities = memo(function MapCities({
             key={city.id}
             ref={group}
             style={{ display: "none", pointerEvents: "none" }}
-            onClick={() => onSelect(city.id)}
-            onPointerEnter={(event) => onHover(city.id, { x: event.clientX, y: event.clientY })}
-            onPointerLeave={() => onHover(null)}
+            onClick={onSelect ? () => onSelect(city.id) : undefined}
+            onPointerEnter={
+              onHover ? (event) => onHover(city.id, { x: event.clientX, y: event.clientY }) : undefined
+            }
+            onPointerLeave={onHover ? () => onHover(null) : undefined}
           >
             <circle ref={hit} fill="transparent" />
             <circle ref={dot} fill="var(--color-accent)" />

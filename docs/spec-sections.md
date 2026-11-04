@@ -4,7 +4,7 @@ Where each section is rendered per device: [architecture.md](architecture.md).
 
 | Section | Key concept |
 |---|---|
-| **Profile** | Identity, availability, then the primary contact action (`ContactAction`) and secondary links: sidebar on desktop, first card on mobile |
+| **Profile** | Identity, availability, then the primary contact action (`ContactAction`) and secondary links: sidebar on desktop, first screen on mobile (see "Mobile first screen") |
 | **Experience** | Timeline from `cv.ts`: roles, periods, stacks. An experience can list its own `projects` (linked name and one line each, `ExperienceProjects`) |
 | **Stack** | Technical categories from `cv.ts`. A block in the sidebar on desktop, a dedicated section on mobile |
 | **Projects** | GitHub repos fetched at build time, most recently pushed first. Desktop cards show the description at rest (3 lines), topics swap in on hover when the repo has any. A repo with files in `public/previews/` also gets a thumbnail: a clip on hover on desktop, a still on mobile |
@@ -22,9 +22,9 @@ visible only while the whole Hero is on screen (`useFullyVisible`). The browser 
 leaving it adds one history entry, and going back to the entry before scrolls to the top (`useBackToHero`).
 Between the thesis and the bottom row, the availability card and the map behind the Hero (see below).
 
-## Availability (desktop only for now)
+## Availability
 
-A map behind the Hero and a card in its middle, answering "where and how can he work". The card is titled "Lieu de travail" / "Work location" (not "availability", which the sidebar badge already says); the code keeps the name `availability`. Mobile is still to design.
+A map behind the Hero and a card in its middle, answering "where and how can he work". The card is titled "Lieu de travail" / "Work location" (not "availability", which the sidebar badge already says); the code keeps the name `availability`. On mobile it is its own section (below).
 
 - **Two modes**, chosen in the card. *On site · hybrid*: the Hauts-de-France, Bailleul as the starting point, and a
   radius of 45 km (`data/config.ts`). *Remote* ("À distance" in French, the word LinkedIn France uses next to "Sur site" and "Hybride"): the whole of France, "anywhere in France".
@@ -39,6 +39,26 @@ A map behind the Hero and a card in its middle, answering "where and how can he 
   the availability in one sentence.
 - **Accessibility:** the map is decorative (hidden from assistive technology). The same cities and the same
   information are in the card, which is keyboard-operable.
+
+### Availability on mobile
+
+A section right after Profile (id `availability`, no tab bar entry), same data and engine as the desktop.
+
+- **Layout:** the map fills the screen. A head (title and the two modes, 40px buttons) sits on top, a panel of fixed
+  height at the bottom: the summary line ("Up to 45 km around Bailleul"), a slot for either the hint or the chosen trip,
+  and the cities as a row that slides sideways. The on-site view frames the radius, not the whole region.
+- **Start:** the drawing begins the first time 60% of the section is on screen, once per browser session. Later views and
+  language switches show it drawn. Reduced motion shows it drawn.
+- **Touch:** a tap on the map picks the nearest city within 32px, a tap on a city in the row does the same, "Clear"
+  crumples the route into the panel. A vertical swipe that starts on the map scrolls the feed and selects nothing.
+- **Credit:** the OpenStreetMap line shows in the panel with the trip.
+
+### Mobile first screen
+
+Three groups spread over the screen height, so nothing is left empty at the bottom: **who** (photo, then name, role, age
+and the availability badge, with the thesis under), **where** (a link to the section above) and **how** (the contact
+action, then GitHub, LinkedIn and CV as three outline buttons). The language switch sits in the top corner. On taller
+screens the thesis grows (from 820px of height) and the photo, the buttons and the link too (from 900px).
 
 ## Rules
 

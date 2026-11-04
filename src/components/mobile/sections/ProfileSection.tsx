@@ -1,22 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { useLocale, useTranslations } from "next-intl";
-import { AvailabilityBadge } from "@/components/shared/AvailabilityBadge";
+import { useLocale } from "next-intl";
+import { ContactLinks } from "@/components/mobile/ContactLinks";
+import { ProfileIdentity } from "@/components/mobile/ProfileIdentity";
+import { WorkLocationLink } from "@/components/mobile/WorkLocationLink";
 import { ContactAction } from "@/components/shared/ContactAction";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
-import { Link } from "@/i18n/navigation";
 import { cv, localize } from "@/lib/data/cv";
 import { fadeUp, stagger } from "@/lib/motion";
-import { age } from "@/lib/utils";
 
 const containerVariants = stagger(0.08);
 
+/**
+ * The first screen. Three groups spread over its height, so nothing is left
+ * empty at the bottom: who he is, where he can work, how to reach him.
+ */
 export function ProfileSection() {
   const locale = useLocale();
-  const tc = useTranslations("contact");
-  const tcv = useTranslations("cv");
 
   return (
     <section
@@ -27,92 +28,27 @@ export function ProfileSection() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="flex flex-col gap-6 px-6 pt-12 pb-14"
+        className="relative flex min-h-full flex-col justify-between gap-6 px-6 pt-12 pb-20"
       >
-        {/* Photo + identity */}
-        <motion.div variants={fadeUp} className="flex items-center gap-4">
-          <div className="relative w-40 h-40 shrink-0">
-            <div className="w-full h-full border border-white/12 overflow-hidden">
-              <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/avatar.webp`}
-                alt={cv.identity.name}
-                width={160}
-                height={160}
-                className="w-full h-full object-cover"
-                priority
-                loading="eager"
-              />
-            </div>
-            <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-accent/60" />
-            <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-accent/60" />
-            <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-accent/60" />
-            <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-accent/60" />
-          </div>
-          <div className="flex flex-col gap-1">
-            <h1 className="font-mono  font-bold text-contrast leading-tight">
-              {cv.identity.name}
-            </h1>
-            <p className="font-sans text-xs text-contrast/70">
-              {localize(cv.identity.subtitle, locale)}
-            </p>
-            <p className="font-mono text-xs text-contrast/50">
-              {tcv("age", { years: age(cv.identity.birthDate) })}
-            </p>
-          </div>
-        </motion.div>
-
-        <motion.p
-          variants={fadeUp}
-          className="font-mono text-xl text-balance text-contrast"
-        >
-          {localize(cv.identity.description, locale)}
-          <span className="hero-caret" aria-hidden="true" />
-        </motion.p>
-
-        <motion.div
-          variants={fadeUp}
-          className="flex items-center justify-between"
-        >
-          <AvailabilityBadge />
+        <motion.div variants={fadeUp} className="absolute top-2 right-4">
           <LanguageSwitcher />
         </motion.div>
 
-        <motion.div variants={fadeUp}>
-          <ContactAction />
+        <motion.div variants={fadeUp} className="flex flex-col gap-6">
+          <ProfileIdentity />
+          <p className="font-mono text-xl text-balance text-contrast [@media(min-height:820px)]:text-2xl">
+            {localize(cv.identity.description, locale)}
+            <span className="hero-caret" aria-hidden="true" />
+          </p>
         </motion.div>
 
-        <div className="border-t border-white/8" />
+        <motion.div variants={fadeUp}>
+          <WorkLocationLink />
+        </motion.div>
 
-        <motion.div variants={fadeUp} className="flex flex-col gap-4">
-          <span className="font-mono text-xs text-contrast/50 tracking-widest uppercase">
-            {tc("section_label")}
-          </span>
-          <div className="flex items-center gap-6">
-            <a
-              href={cv.contact.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-10 items-center font-mono text-xs text-contrast/70 hover:text-accent transition-colors tracking-widest uppercase"
-            >
-              {tc("github")}
-            </a>
-            <span className="text-contrast/50 font-mono text-xs">—</span>
-            <a
-              href={cv.contact.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-10 items-center font-mono text-xs text-contrast/70 hover:text-accent transition-colors tracking-widest uppercase"
-            >
-              {tc("linkedin")}
-            </a>
-            <span className="text-contrast/50 font-mono text-xs">—</span>
-            <Link
-              href="/cv"
-              className="inline-flex min-h-10 items-center font-mono text-xs text-contrast/70 hover:text-accent transition-colors tracking-widest uppercase"
-            >
-              {tc("cv")}
-            </Link>
-          </div>
+        <motion.div variants={fadeUp} className="flex flex-col gap-6">
+          <ContactAction />
+          <ContactLinks />
         </motion.div>
       </motion.div>
     </section>

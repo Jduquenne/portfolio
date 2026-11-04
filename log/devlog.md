@@ -3,6 +3,46 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-11-04: Availability map on mobile, and a new first screen
+
+**Done**
+- A section `availability` right after Profile (D-015): the map under a fixed head (title and mode switch) and a fixed
+  panel (summary, hint or trip, and the cities as a row to slide). It starts when 60% of it is on screen, once per
+  session. The on-site view frames the 45 km circle. A tap picks the nearest city within 32px.
+- The first screen is reworked: three groups spread over the height (no empty space at the bottom), the badge beside the
+  name, the language switch in the top corner, a link "Lieu de travail" to the section, the "Contact" block replaced by
+  three outline buttons (GitHub, LinkedIn, CV), larger name, role (on two lines) and age. Height steps for tall screens.
+- The engine and the shared components now serve both layouts without changing the desktop: `reserve` (four insets)
+  replaces `reservedLeft`, plus `focus`, `routeMaxZoom`, a `speedScale` on the region print, `pickCity`, the hit radius
+  as an option, and labels kept inside the viewport (which also helps the desktop). A layout passes a `SceneConfig`
+  (`DESKTOP_SCENE`, `MOBILE_SCENE`).
+- New: `components/mobile/{ProfileIdentity,WorkLocationLink,ContactLinks,availabilityLayout}`,
+  `mobile/availability/{AvailabilityPanel,CityRail}`, `mobile/sections/AvailabilitySection`,
+  `hooks/useStartWhenVisible`. Shared `ModeSwitch` and `RouteSummary` got a `touch` option. Two strings in both
+  languages (113 keys each). No dependency added.
+
+**Verified** (`lint`, `tsc`, `npx next build` pass; Chrome with an emulated phone against the dev server)
+- First screen at 390x844: three groups, 83px between them, content 24px above the tab bar, five tab bar entries.
+- The link scrolls to the section and the drawing starts there; a tap slightly off a dot picks the right city; the row of
+  cities slides by touch without moving the feed; clear, the remote mode, the second visit (already drawn), English, a
+  360x640 phone and reduced motion all behave; a vertical swipe of more than half a screen scrolls the feed, also when it
+  starts on a city dot, and selects nothing. No error in the console.
+- The desktop test (drawing, click, Escape with and without a dialog, reload, footer, narrow window, English, reduced
+  motion) gives the same results as before the engine change.
+
+**Not verified**
+- A real phone: only an emulated one. Touch feel, the address bar collapsing, and performance on a modest phone are not
+  known. `npm run build` (with `build:cv` and `build:og`) was not run, only `next build`.
+- No automated tests (owner decision). Keyboard and screen reader use of the section were not tried by hand.
+- A short swipe (under half a screen) snaps back: that is the feed's `snap mandatory`, as before.
+
+**Still open**
+- The mobile sections use `h-screen` (`100vh`), taller than the visible area while the address bar shows. Moving all
+  sections to `dvh` is a separate pass.
+- At 640px of height the first screen scrolls inside itself, as it already did.
+- A city label can disappear when it has no free side (the row and the tap still reach the city).
+- The tab bar has no entry for the section (decision), so nothing is highlighted while it is on screen, as for Profile.
+
 ## 2026-11-04: Availability map on the desktop Hero
 
 **Done**

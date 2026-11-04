@@ -140,6 +140,8 @@
     "route_clear": "Clear",
     "tooltip": "{city} · {km} km · about {minutes} min",
     "credit": "Routes © <link>OpenStreetMap contributors</link>",
-    "noscript": "Available on site or hybrid within {km} km of {city}, and remote anywhere in France."
+    "noscript": "Available on site or hybrid within {km} km of {city}, and remote anywhere in France.",
+    "link_title": "Work location",
+    "link_summary": "{km} km around {city} · remote"
   }
 }

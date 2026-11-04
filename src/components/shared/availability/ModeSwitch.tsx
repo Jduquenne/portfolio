@@ -9,9 +9,11 @@ const MODES: readonly MapMode[] = ["onsite", "remote"];
 interface ModeSwitchProps {
   mode: MapMode;
   onChange: (mode: MapMode) => void;
+  /** Buttons tall enough for a finger. */
+  touch?: boolean;
 }
 
-export function ModeSwitch({ mode, onChange }: ModeSwitchProps) {
+export function ModeSwitch({ mode, onChange, touch = false }: ModeSwitchProps) {
   const t = useTranslations("availability");
 
   return (
@@ -23,7 +25,8 @@ export function ModeSwitch({ mode, onChange }: ModeSwitchProps) {
           aria-pressed={mode === candidate}
           onClick={() => onChange(candidate)}
           className={cn(
-            "flex-1 whitespace-nowrap px-1 py-1 font-mono text-xs transition-colors",
+            "flex-1 whitespace-nowrap px-1 font-mono text-xs transition-colors",
+            touch ? "min-h-10" : "py-1",
             mode === candidate
               ? "bg-accent/10 text-accent"
               : "text-contrast/50 hover:text-accent",

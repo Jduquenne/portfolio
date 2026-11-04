@@ -67,15 +67,16 @@ src/
 ├── components/
 │   ├── desktop/                  # DesktopLayout, Hero, HeroAvailability, AvailabilityCard, availabilityLayout, Footer, HeroSectionNav, Sidebar (+ SidebarContact, SidebarLink, SidebarSection, LocaleToggle, StackChip, StackReadout, StackFocus), PlayModal, CursorGlow, CommandPalette, ProjectPreview, sections/
 │   │   └── sections/             # Experience, Projects, Specialties
-│   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, ProjectPoster, sections/
-│   │   └── sections/             # Profile, Experience, Stack, Projects, Passions, Play
+│   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, ProjectPoster, ProfileIdentity, WorkLocationLink, ContactLinks, availabilityLayout, availability/, sections/
+│   │   ├── availability/         # AvailabilityPanel, CityRail
+│   │   └── sections/             # Profile, Availability, Experience, Stack, Projects, Passions, Play
 │   ├── shared/                   # AdventureRouter, AdventureSkeleton, AvailabilityBadge, ContactAction (mobile), NoScriptContent, ExperienceProjects,
 │   │                             #   LanguageSwitcher, LightsOut, RepoStatsReadout
 │   │   └── availability/         # AvailabilityMap + MapOutlines, MapRoutes, MapCities, MapOrigin, MapPen, MapCrumples, CityTooltip,
 │   │                             #   ModeSwitch, CityChips, RouteSummary, OsmCredit (shared by desktop and, later, mobile)
 │   └── cv/                       # CvDocument (react-pdf), cvData (cv.ts -> plain strings), Cv (page UI)
 ├── hooks/                        # useDevice, useCountUp, useActiveSection, useCopyEmail, useFullyVisible, useBackToHero,
-│                                 #   useAvailabilityScene, useSceneLoop, useDismissOnEscape
+│                                 #   useAvailabilityScene, useSceneLoop, useDismissOnEscape, useStartWhenVisible
 ├── i18n/                         # routing, navigation, request (next-intl)
 ├── lib/
 │   ├── data/cv.ts                # CV content, LocalizedString fields, localize()
@@ -166,5 +167,11 @@ data ──► World (projected once) ──► Scene (state machine, tweens, to
   `components/desktop/availabilityLayout.ts` (the map keeps the card's width free).
 - **Adding a city:** an entry in `data/cities.ts` (both languages). With a route in `data/routes.ts` and inside the
   radius, it becomes clickable.
-- Mobile will reuse `lib/availability`, the hooks and `components/shared/availability`, with its own placement.
+- **Two layouts, one engine.** A layout decides only three things through a `SceneConfig`: the insets the map leaves
+  free (`reserve`), the paddings, and what the on-site view frames (`focus`: the region or the radius). Desktop:
+  `desktop/availabilityLayout.ts` (a left reserve for the card). Mobile: `mobile/availabilityLayout.ts` (a fixed head on
+  top, a fixed panel at the bottom). `AvailabilityMap` gets `tapReachPx` on a touch screen: no per-dot clicks and no
+  hover, the scene picks the nearest city to the tap (`pickCity`).
+- Desktop starts the drawing a second after the Hero is in (`HeroAvailability`), mobile when the section is on screen
+  (`useStartWhenVisible`). Both use the same first-visit flag.
 

@@ -140,6 +140,8 @@
     "route_clear": "Effacer",
     "tooltip": "{city} · {km} km · environ {minutes} min",
     "credit": "Itinéraires © <link>contributeurs d’OpenStreetMap</link>",
-    "noscript": "Disponible sur site ou en hybride jusqu’à {km} km autour de {city}, et à distance partout en France."
+    "noscript": "Disponible sur site ou en hybride jusqu’à {km} km autour de {city}, et à distance partout en France.",
+    "link_title": "Lieu de travail",
+    "link_summary": "{km} km autour de {city} · à distance"
   }
 }

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef } from "react";
 import { AvailabilityCard } from "@/components/desktop/AvailabilityCard";
-import { reservedLeft } from "@/components/desktop/availabilityLayout";
+import { DESKTOP_SCENE } from "@/components/desktop/availabilityLayout";
 import { AvailabilityMap } from "@/components/shared/availability/AvailabilityMap";
 import { useAvailabilityScene } from "@/hooks/useAvailabilityScene";
 import { useDismissOnEscape } from "@/hooks/useDismissOnEscape";
@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 /** The map behind the Hero and the availability card in its middle. */
 export function HeroAvailability() {
-  const { scene, state } = useAvailabilityScene(reservedLeft);
+  const { scene, state } = useAvailabilityScene(DESKTOP_SCENE);
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   const clearSelection = useCallback(() => scene.clearSelection(), [scene]);

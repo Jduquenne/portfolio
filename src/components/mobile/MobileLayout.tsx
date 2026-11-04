@@ -1,5 +1,6 @@
 import { BottomNav } from "@/components/mobile/BottomNav";
 import { ScrollToTop } from "@/components/mobile/ScrollToTop";
+import { AvailabilitySection } from "@/components/mobile/sections/AvailabilitySection";
 import { ProfileSection } from "@/components/mobile/sections/ProfileSection";
 import { ExperienceSection } from "@/components/mobile/sections/ExperienceSection";
 import { StackSection } from "@/components/mobile/sections/StackSection";
@@ -18,6 +19,7 @@ export function MobileLayout({ repos, stats }: MobileLayoutProps) {
     <>
       <main id="main" className="grid-backdrop bento-scroll h-screen overflow-y-scroll snap-y snap-mandatory text-contrast font-sans">
         <ProfileSection />
+        <AvailabilitySection />
         <ExperienceSection />
         <StackSection />
         <ProjectsSection repos={repos} stats={stats} />

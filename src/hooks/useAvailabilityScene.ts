@@ -2,9 +2,12 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { useReducedMotion } from "framer-motion";
-import { createScene, type Scene } from "@/lib/availability/engine/scene";
+import { createScene, type Scene, type SceneOptions } from "@/lib/availability/engine/scene";
 import { buildWorld, type World } from "@/lib/availability/engine/world";
 import type { SceneState } from "@/lib/availability/types";
+
+/** What a layout decides about the scene: where the map may sit, and how it is framed. */
+export type SceneConfig = Omit<SceneOptions, "world">;
 
 let world: World | null = null;
 
@@ -13,11 +16,11 @@ function sharedWorld(): World {
   return world;
 }
 
-export function useAvailabilityScene(reservedLeft: (viewportWidth: number) => number): {
+export function useAvailabilityScene(config: SceneConfig): {
   scene: Scene;
   state: SceneState;
 } {
-  const [scene] = useState(() => createScene({ world: sharedWorld(), reservedLeft }));
+  const [scene] = useState(() => createScene({ world: sharedWorld(), ...config }));
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {

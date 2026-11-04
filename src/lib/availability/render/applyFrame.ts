@@ -9,7 +9,7 @@ import type { LabelSide, Viewport } from "@/lib/availability/types";
 const STROKE = { france: 1.25, corsica: 1.25, region: 1.5, radius: 1.5, route: 2.25 } as const;
 const OUTLINES: readonly OutlineId[] = ["france", "corsica", "region", "radius"];
 const DOT_RADIUS = { selected: 5.5, origin: 4.5, strong: 3, weak: 2.2 } as const;
-const HIT_RADIUS_PX = 14;
+const DEFAULT_HIT_RADIUS_PX = 14;
 const LABEL_OFFSET_PX = 8;
 const LABEL_FONT_PX = 11;
 const LABEL_CHAR_PX = 6.8;
@@ -76,12 +76,17 @@ function priorityOrder(world: World): number[] {
 }
 
 /** Writes one scene frame to the SVG. No React render happens per frame. */
+export interface RenderOptions {
+  hitRadiusPx?: number;
+}
+
 export function applyFrame(
   frame: SceneFrame,
   world: World,
   handles: MapHandles,
   viewport: Viewport,
   obstacles: readonly Obstacle[],
+  { hitRadiusPx = DEFAULT_HIT_RADIUS_PX }: RenderOptions = {},
 ): void {
   const { scale } = frame;
   set(handles.svg, "viewBox", frame.viewBox);
@@ -151,7 +156,7 @@ export function applyFrame(
     set(entry.dot, "fill-opacity", state.dotOpacity);
     set(entry.hit, "cx", x);
     set(entry.hit, "cy", y);
-    set(entry.hit, "r", state.interactive ? HIT_RADIUS_PX / scale : 0);
+    set(entry.hit, "r", state.interactive ? hitRadiusPx / scale : 0);
 
     const screen = screenOf(city.position);
     const length = entry.label.textContent?.length ?? 0;
@@ -161,6 +166,7 @@ export function applyFrame(
     let box: Obstacle | null = null;
     for (const side of candidates) {
       const attempt = labelBox(screen, side, length);
+      if (attempt.left < 0 || attempt.right > viewport.width || attempt.top < 0 || attempt.bottom > viewport.height) continue;
       if (!overlapsAny(attempt, obstacles) && !overlapsAny(attempt, placed) && !overlapsAny(attempt, others)) {
         chosen = side;
         box = attempt;
