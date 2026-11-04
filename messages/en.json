@@ -39,7 +39,18 @@
     "preview_alt": "Preview of the {name} project"
   },
   "passions": {
-    "section_label": "// passions"
+    "section_label": "// passions",
+    "suns_label": "View a step",
+    "list_label": "Passions",
+    "panel_eyebrow": "Passion",
+    "tools": "Tools",
+    "close": "Close",
+    "level_1": "Discovery",
+    "level_2": "Regular practice",
+    "level_3": "At ease",
+    "level_4": "Mastery",
+    "level_5": "I teach it",
+    "level_scale": "level {level} out of 5"
   },
   "experience": {
     "section_label": "// experience",

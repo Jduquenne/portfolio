@@ -39,7 +39,18 @@
     "preview_alt": "Aperçu du projet {name}"
   },
   "passions": {
-    "section_label": "// passions"
+    "section_label": "// passions",
+    "suns_label": "Voir une étape",
+    "list_label": "Passions",
+    "panel_eyebrow": "Passion",
+    "tools": "Outils",
+    "close": "Fermer",
+    "level_1": "Découverte",
+    "level_2": "Pratique régulière",
+    "level_3": "À l’aise",
+    "level_4": "Maîtrise",
+    "level_5": "Je transmets",
+    "level_scale": "niveau {level} sur 5"
   },
   "experience": {
     "section_label": "// expérience",

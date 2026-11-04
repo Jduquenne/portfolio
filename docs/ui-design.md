@@ -108,6 +108,25 @@ are a dotted line that fades. Everything is accent on the base colour, no relief
   at once and skips the crumple. No loops: the scene stops asking for frames when it has nothing to animate.
 - **Card:** 352px wide (304px under a 1188px window), scrolls inside itself when the Hero is short.
 
+## Desktop signature: passions constellation
+
+The Passions section is a 3D scene under a game-like interface (`components/shared/constellation`, `components/desktop/PlanetPanel`).
+Everything is the accent and the contrast colour on the page itself.
+
+- **Nodes:** a sun is an octagon with a double frame and four spikes, a planet a hexagon, a tool a diamond that fills from the
+  bottom with its level. Edges are hairlines (a planet to its suns, a tool to its planet); orbits are barely visible.
+- **No edge:** the canvas has no box, no border and no background. It bleeds past its section and fades at the top and bottom, so
+  the page's dot grid shows through; the section title keeps the `// passions` pattern.
+- **Panel:** `bg-surface/90` with a blur, a `white/8` border and four accent corner marks, `font-mono` for the title and the
+  metadata (`text-xs`, `tracking-widest`, uppercase), `font-sans` for the passion's text at `text-contrast/70`. It never
+  scrolls (see `useFitText`). A leader line (accent, 1px) joins it to the planet.
+- **Tabs:** the four steps at the bottom, under a hairline, underlined in accent when pressed (`aria-pressed`).
+- **Levels:** five 8px diamonds, filled up to the level, with the level also said in words for screen readers.
+- **Motion:** orbits, comet and shooting star are on a loop while the section is on screen; the loop stops when it is off
+  screen or the tab is hidden. Reduced motion: still scene, rendered on change, no flight.
+- **Dependencies on layout:** the panel sits at the right of the stage and the scene slides left to keep the open planet
+  clear of it (the Hero's `DESKTOP_HERO_BLEED` insets are reused for the layer).
+
 ## Mobile: first screen and work location section
 
 - **Mobile shell:** a column as tall as the visible area (`.h-visible`, `100dvh`), the scrolling `main` takes what is left,

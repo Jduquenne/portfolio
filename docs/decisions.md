@@ -231,3 +231,33 @@ not documented. They are all `accepted` because the code implements them.
   `100dvh`): the scrolling area takes what is left (`min-h-0 flex-1`), the sections are `h-full`, and the tab bar sits
   after it (no longer fixed, no longer over anything). Sections need no bottom room for it (`pb-6`).
 
+## D-016: The passions as a 3D constellation, and Three.js
+
+- **Date:** 2026-11-04
+- **Status:** accepted (dependencies approved by the owner the same day)
+- **Context:** the Passions section was three cards of keywords. The owner wanted something creative that shows how he
+  thinks and works, made with Three.js, light enough for any device, with more precise passions (they are part of his
+  personality and can match a recruiter).
+- **Decision:** the passions are a constellation named `CCFM-1409` (the initials of the four steps, and a date only
+  people who know him recognise). Four suns are the steps (Understand, Design, Build, Show), planets are the passions,
+  and the tools of a passion go around it. A passion that belongs to two or three steps sits between those suns and
+  is tied to each. A tool has a level from 1 to 5 only when the owner sets one; levels are on tools, never on passions.
+  The code follows D-013: data (`lib/data/constellation.ts`), pure layers (`lib/constellation`: model, layout, math,
+  store, no Three.js), the scene (`lib/constellation/engine`, the only code that imports Three.js) and a thin React
+  shell (`components/shared/constellation`, `components/desktop`). The scene writes the position of every label and
+  of the leader line straight to the DOM; React only sees the discrete choice (sun, planet, tool) through a store.
+  The panel is HTML styled as a game HUD, not a plane in 3D: it stays sharp, selectable, translated and reachable by
+  keyboard. `three` is requested with a dynamic `import()` only when the stage comes within 600px of the scroll area,
+  and not at all with data saving on. Until it is there (or without WebGL) the same passions are a plain list of
+  buttons grouped by step, which is also how a keyboard or a screen reader reaches them once the scene is up. Reduced
+  motion draws a still scene, rendered only when something changes.
+- **Dependencies:** `three` and `@types/three` (types are a separate package). No react-three-fiber, no drei.
+- **Alternatives considered:** react-three-fiber and drei (two more dependencies for one scene, and React would sit in
+  the frame loop); 2D canvas or SVG (no depth, no orbits); the panel as a 3D plane (blurry text, no selection, no
+  translation); a card grid with CSS only (what it was).
+- **Consequences:** a 138.8 KiB (gzip) chunk, requested only near the section; the first load is unchanged (checked:
+  no request for it before scrolling). `cv.passions` is left alone, so the CV and its PDF do not change; the Hero's
+  "areas" figure now counts the planets. The spec of the section changes: a short description per passion is allowed.
+  The mobile section still shows the old cards until the constellation is built for it (a vertical layout is already
+  in the code, not yet exercised).
+

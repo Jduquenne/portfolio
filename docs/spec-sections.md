@@ -8,7 +8,7 @@ Where each section is rendered per device: [architecture.md](architecture.md).
 | **Experience** | Timeline from `cv.ts`: roles, periods, stacks. An experience can list its own `projects` (linked name and one line each, `ExperienceProjects`) |
 | **Stack** | Technical categories from `cv.ts`. A block in the sidebar on desktop, a dedicated section on mobile |
 | **Projects** | GitHub repos fetched at build time, most recently pushed first. Desktop cards show the description at rest (3 lines), topics swap in on hover when the repo has any. A repo with files in `public/previews/` also gets a thumbnail: a clip on hover on desktop, a still on mobile |
-| **Passions** | Specialities as data: numbers, metadata. Zero long text |
+| **Passions** | A constellation of the passions: four steps, the passions between them, their tools. A short description per passion in a panel (see "Passions" below); no long text in the grid |
 | **Play** | Mobile only as a section: a Lights Out mini-game (`LightsOut`). Desktop opens it from a modal triggered in the Hero |
 
 ## Hero (desktop only)
@@ -66,3 +66,29 @@ screens the thesis grows (from 820px of height) and the photo, the buttons and t
 - `/cv` is a separate route, not a section.
 - The Projects list and the repo counters use the same filters (owned, public, forks
   excluded), so the displayed number describes the listed set.
+
+## Passions
+
+The passions as a constellation named `CCFM-1409`, from `lib/data/constellation.ts`. Desktop is built; mobile still shows
+the earlier three cards (`cv.passions`) until its own version is made.
+
+- **Structure:** four **suns**, the steps of how he works (Comprendre · Concevoir · Fabriquer · Montrer). A **planet** is a
+  passion. A planet belongs to one to three suns and sits between them, tied to each by a line. The **tools** of a passion go
+  around it as diamonds. The comet on the path between the suns is the same print head as the map's.
+- **Choosing:** the tabs at the bottom (one per sun) fly the camera to a sun and light its planets, a second press lets
+  go. A click on a planet opens its panel and flies to it; the scene turns still while a planet is open and a leader line
+  ties it to the panel. Pointing at a planet lights every sun it belongs to. `Escape` closes the panel.
+- **Panel:** the passion in words on the left, its tools on the right. Pointing at a tool (or pressing its row) lights its
+  diamond and shows its name in the scene. The panel never scrolls: a text that does not fit is cut with an ellipsis.
+  A passion with no description or no tool leaves that part out.
+- **Levels:** a tool may carry a level, 1 to 5 (Découverte, Pratique régulière, À l'aise, Maîtrise, Je transmets), drawn as
+  diamonds and filling its diamond in the scene. Only the owner sets one, nothing is guessed: with none set, tools have no
+  level.
+- **Loading:** the 3D library is requested when the section is within 600px of the screen, not before. With data saving
+  on it is never requested. Without WebGL, or before it has loaded, the passions are a list of buttons grouped by step.
+- **Accessibility:** the scene is decorative (hidden from assistive technology). The same passions are buttons grouped by
+  step (visible while the scene is not there, visually hidden once it is), the tabs and the panel are keyboard-operable,
+  and a level is also said in words. Reduced motion draws a still scene: no orbit, no comet, no rotation, no flight.
+- **Content rules:** the names of tools are products and stay as their owners write them. Every other text is a
+  `LocalizedString` (`cv.ts` convention) or a `passions.*` message.
+

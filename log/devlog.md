@@ -3,6 +3,48 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-11-04: The Passions section as a 3D constellation (desktop)
+
+**Done**
+- Prototyped outside the repo (board to organise the passions in suns, planets and tools; Three.js scene; talent-tree look
+  inspired by game interfaces, drawn from memory, not copied), then built into the repo for desktop. Decision D-016: `three` and
+  `@types/three` added (approved by the owner), the section spec changed to allow a short description per passion.
+- Data in `lib/data/constellation.ts` (17 passions, 4 steps, tools), a pure layer (`lib/constellation`: model, layout, store),
+  the scene under `engine/` (nodes, parts, shaders, frame loop, picking, camera flights), a thin React shell
+  (`ConstellationStage`, labels, tabs, tool rows, level pips, planet list) and the desktop panel. `SpecialtiesSection` is now
+  the constellation. The Hero's "areas" figure counts the planets; `cv.passions` is untouched, so the CV and its PDF do not change.
+- All text is in `messages/{en,fr}.json` (`passions.*`, 11 new keys each, identical sets) or `LocalizedString`.
+
+**Verified** (`npm run lint`, `npx tsc --noEmit`, `npx next build` pass; Chrome with software rendering on a production build served
+under `/portfolio`)
+- Three.js is a separate chunk of 138.8 KiB gzip. It is not requested at first paint and is requested after scrolling to the
+  section. The constellation grows out of the page's dot grid with no visible edge; the wheel over the canvas scrolls the page.
+- Every one of the 17 planets opens a panel that never overflows (no scroll either way, nothing cut) at 1920x1080, 1440x900 and
+  1280x640. A tab flies to its sun. English shows the translated step names and panel. `Escape` closes the panel.
+- Reduced motion: two screenshots 1.5 s apart are identical. Data saving (the connection flag forced on): the list shows and opens
+  the panel, and no scene is requested.
+- Bugs found and fixed on the way: variables used before their declaration in the engine start-up, a time step that could go
+  negative on the first frame (it made the comet curve throw), and the canvas covering the tabs and the list.
+
+**Not verified**
+- A real screen: the scene was driven with software rendering, so no real frame rate was measured, on a strong or a weak
+  machine. Nothing was run on a phone.
+- The English texts are the assistant's drafts, not validated by the owner.
+- The vertical layout meant for mobile is in the code but has not been exercised in the repo.
+- `npm run build` (with `build:cv` and `build:og`) was not run.
+
+**Observed, not investigated**
+- `npm audit --omit=dev` reports 3 vulnerabilities (next 16.0.0 to 16.4.0, sharp below 0.35.5, source-map-js). They are in packages
+  that were already there, not in `three`; no `npm audit fix` was run.
+- The list of buttons names a passion once per step it belongs to, so a screen reader hears it twice or three times.
+
+**Still open**
+- Mobile: the section still shows the old cards. It needs its own layout (vertical, a bottom sheet with Description and Tools tabs,
+  labels only for what is in focus) and a check on a real phone.
+- Levels: no tool has one yet. The owner sets them; the five labels are mine and not validated.
+- Descriptions missing for Video and AI; tools missing for several passions. Nothing was invented.
+- The panel's wording on a very small desktop window (under 1280px) was not looked at.
+
 ## 2026-11-04: Portfolio clip redone with the work location map
 
 **Done**

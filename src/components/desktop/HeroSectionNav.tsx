@@ -2,6 +2,7 @@
 
 import { ArrowDown } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { constellation } from "@/lib/data/constellation";
 import { cv } from "@/lib/data/cv";
 import { scrollToSection } from "@/lib/scroll";
 
@@ -31,7 +32,7 @@ export function HeroSectionNav({ repoCount }: HeroSectionNavProps) {
           })
         : null,
     projects: repoCount > 0 ? t("info_projects", { count: repoCount }) : null,
-    passions: t("info_passions", { count: cv.passions.length }),
+    passions: t("info_passions", { count: constellation.planets.length }),
   };
 
   return (

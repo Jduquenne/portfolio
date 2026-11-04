@@ -29,7 +29,13 @@ focus here.
   covered content on a real phone (sections in `100vh` under a fixed tab bar); the mobile layout now follows the visible height
   with the tab bar after the content (see the devlog). Checked on an emulated phone; the owner has not seen the fix on a real
   one yet, and `npm run build` was not run.
+- ✅ Passions as a 3D constellation on desktop (2026-11-04, D-016): `lint`, `tsc` and `npx next build` pass, and the flows were
+  driven in Chrome on a production build (see the devlog). Not seen on a real screen, no frame rate measured, `npm run build` not run.
+- ⬜ Passions on mobile: still the earlier cards. Needs its own layout and a real-phone check.
+- ⬜ Passions content: levels of the tools (owner), the five level labels and the English texts (owner to validate), missing
+  descriptions (Video, AI) and tools.
 - ⬜ On a production build the console shows 404s for the prefetch of the `/cv` page data (see the devlog). Not investigated.
+- ⬜ `npm audit --omit=dev`: 3 vulnerabilities in `next`, `sharp` and `source-map-js` (see the devlog). Not investigated.
 - ⬜ The design fixes, UX additions, cursor glow and command palette of 2026-10-27 were not looked
   at in a browser. The palette's keyboard flow and focus handling are untested by hand.
 
@@ -86,5 +92,4 @@ short transitions) were fixed on 2026-10-27, see the devlog.
 
 ## Ideas / later
 
-- Three.js scene in the Passions section, loaded when it approaches the screen (needs a dependency decision).
 - A one-sentence availability summary visible without opening anything, if the permanent map ever proves too heavy.

@@ -12,6 +12,7 @@ rigorous IT aesthetic.
 | Language | TypeScript (strict mode) |
 | Styling | Tailwind CSS v4 |
 | Animations | Framer Motion |
+| 3D | Three.js (`three`), loaded on demand, only for the Passions constellation |
 | i18n | next-intl, `fr` (default) + `en` |
 | Fonts | `next/font`: Geist Mono + Inter Variable |
 | Icons | Lucide React |
@@ -65,21 +66,26 @@ src/
 │   ├── globals.css
 │   └── icon.svg
 ├── components/
-│   ├── desktop/                  # DesktopLayout, Hero, HeroAvailability, AvailabilityCard, availabilityLayout, Footer, HeroSectionNav, Sidebar (+ SidebarContact, SidebarLink, SidebarSection, LocaleToggle, StackChip, StackReadout, StackFocus), PlayModal, CursorGlow, CommandPalette, ProjectPreview, sections/
+│   ├── desktop/                  # DesktopLayout, Hero, PlanetPanel, HeroAvailability, AvailabilityCard, availabilityLayout, Footer, HeroSectionNav, Sidebar (+ SidebarContact, SidebarLink, SidebarSection, LocaleToggle, StackChip, StackReadout, StackFocus), PlayModal, CursorGlow, CommandPalette, ProjectPreview, sections/
 │   │   └── sections/             # Experience, Projects, Specialties
 │   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, ProjectPoster, ProfileIdentity, WorkLocationLink, ContactLinks, availabilityLayout, availability/, sections/
 │   │   ├── availability/         # AvailabilityPanel, CityRail
 │   │   └── sections/             # Profile, Availability, Experience, Stack, Projects, Passions, Play
 │   ├── shared/                   # AdventureRouter, AdventureSkeleton, AvailabilityBadge, ContactAction (mobile), NoScriptContent, ExperienceProjects,
 │   │                             #   LanguageSwitcher, LightsOut, RepoStatsReadout
-│   │   └── availability/         # AvailabilityMap + MapOutlines, MapRoutes, MapCities, MapOrigin, MapPen, MapCrumples, CityTooltip,
-│   │                             #   ModeSwitch, CityChips, RouteSummary, OsmCredit (shared by desktop and, later, mobile)
+│   │   ├── availability/         # AvailabilityMap + MapOutlines, MapRoutes, MapCities, MapOrigin, MapPen, MapCrumples, CityTooltip,
+│   │   │                         #   ModeSwitch, CityChips, RouteSummary, OsmCredit (shared by desktop and, later, mobile)
+│   │   └── constellation/        # ConstellationStage, ConstellationLabels, SunTabs, ToolRows, LevelPips, PlanetList
 │   └── cv/                       # CvDocument (react-pdf), cvData (cv.ts -> plain strings), Cv (page UI)
 ├── hooks/                        # useDevice, useCountUp, useActiveSection, useCopyEmail, useFullyVisible, useBackToHero,
-│                                 #   useAvailabilityScene, useSceneLoop, useDismissOnEscape, useStartWhenVisible
+│                                 #   useAvailabilityScene, useSceneLoop, useDismissOnEscape, useStartWhenVisible,
+│                                 #   useConstellation, useConstellationEngine, useNearScreen, useFitText
 ├── i18n/                         # routing, navigation, request (next-intl)
 ├── lib/
 │   ├── data/cv.ts                # CV content, LocalizedString fields, localize()
+│   ├── data/constellation.ts     # the passions: suns, planets, tools (LocalizedString), read by the constellation only
+│   ├── constellation/            # see "Passions constellation" below: types, math, model, layout, store, engine/
+│   ├── dataSaver.ts              # is the browser asked to save data
 │   ├── github.ts                 # build-time GitHub fetch
 │   ├── motion.ts                 # shared Framer Motion presets
 │   ├── scroll.ts                 # scrollToSection, scrollToTop, scroll root id and desktop insets (one place)
@@ -121,7 +127,7 @@ not a section. See [spec-sections.md](spec-sections.md) for what each section do
 | Experience | `ExperienceSection` | `ExperienceSection` |
 | Stack | block inside `Sidebar` | `StackSection` (dedicated section) |
 | Projects | `ProjectsSection` | `ProjectsSection` |
-| Passions | `SpecialtiesSection` | `PassionsSection` |
+| Passions | `SpecialtiesSection` (the constellation) | `PassionsSection` (still the cards of `cv.passions`) |
 | Play | modal (`PlayModal`) opened from the Hero or the command palette | `PlaySection` |
 
 Desktop also has a `Hero` above Experience. Desktop and mobile never import from each
@@ -174,4 +180,28 @@ data ──► World (projected once) ──► Scene (state machine, tweens, to
   hover, the scene picks the nearest city to the tap (`pickCity`).
 - Desktop starts the drawing a second after the Hero is in (`HeroAvailability`), mobile when the section is on screen
   (`useStartWhenVisible`). Both use the same first-visit flag.
+
+## Passions constellation
+
+Built like the availability map (D-013, D-016): layers that do not mix.
+
+```
+lib/data/constellation.ts      content, LocalizedString: four suns, the planets (suns, note, tools), levels
+lib/constellation/
+  types.ts · math.ts           shared types, small vector helpers and a seeded generator (pure)
+  model.ts                     data + language + level labels -> ConstellationModel (pure)
+  layout.ts                    orbits, and planets pushed apart so they do not pile up (pure, deterministic)
+  store.ts                     the visitor's choice: sun, planet, tool (no Three.js, works before the scene exists)
+  engine/                      the only code that imports Three.js: nodes, parts, shaders, index (frame loop, picking, camera)
+hooks/useConstellation         model, layout and store for a layout kind ("wide" on desktop, "tall" for mobile)
+hooks/useConstellationEngine   requests the engine with import() once enabled, starts it on the stage, disposes it
+components/shared/constellation/ConstellationStage   canvas + labels + leader line as one decorative layer
+```
+
+- **Frame:** the engine writes positions and opacity of the labels (`data-node`) and of the leader line (`data-leader`) to
+  the DOM, and reads the panel (`data-panel`) to keep the open planet clear of it. React re-renders only when the choice
+  changes. With reduced motion it renders only when something changes.
+- **Sky and the page:** the layer bleeds past the stage (`DESKTOP_HERO_BLEED`) and is masked at its top and bottom
+  (`.constellation-veil`), so the page's dot grid shows through and there is no edge between the canvas and the DOM.
+- **Tiers:** `compact` (a phone) uses fewer stars, a pixel ratio of 1.5 and shows labels only for what is in focus.
 
