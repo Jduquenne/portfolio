@@ -33,10 +33,15 @@ focus here.
   driven in Chrome on a production build (see the devlog). Not seen on a real screen, no frame rate measured, `npm run build` not run.
 - ✅ Passions on mobile (2026-11-04, D-016 amendment): `lint`, `tsc` and `npx next build` pass, driven in Chrome with an emulated phone
   (see the devlog). Not seen on a real phone, no frame rate measured.
-- ⬜ Global Lighthouse run (mobile and desktop) after the constellation, to keep the perfect scores.
+- ✅ Lighthouse after the constellation (2026-11-04, local production build): mobile 92 / 100 / 96 / 100, desktop 100 / 100 / 96 / 100
+  (performance, accessibility, best practices, SEO). The constellation adds nothing measurable (a comparison with the sections stubbed gave
+  the same 92). Best practices 96 was one console 404 (the `/cv` data prefetch).
+- ✅ The `/cv` prefetch 404 is gone (`prefetch={false}` on the two CV links, click checked on desktop and mobile): best practices 100 on both,
+  mobile 93 / 100 / 100 / 100, desktop 100 / 100 / 100 / 100. Not measured on the deployed site.
+- ⬜ Mobile LCP is 3.1 to 3.3 s (local build): the hero text waits for the JavaScript. A larger change, see D-009 alternatives.
 - ⬜ Passions content: levels of the tools (owner), the five level labels and the English texts (owner to validate), missing
   descriptions (Video, AI) and tools.
-- ⬜ On a production build the console shows 404s for the prefetch of the `/cv` page data (see the devlog). Not investigated.
+- ✅ The `/cv` page-data prefetch 404 on a production build: stopped by not prefetching the CV links (see the devlog); the cause (the data file the router asks for is not where the static export puts it) was not investigated.
 - ⬜ `npm audit --omit=dev`: 3 vulnerabilities in `next`, `sharp` and `source-map-js` (see the devlog). Not investigated.
 - ⬜ The design fixes, UX additions, cursor glow and command palette of 2026-10-27 were not looked
   at in a browser. The palette's keyboard flow and focus handling are untested by hand.

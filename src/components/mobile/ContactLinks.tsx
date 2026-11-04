@@ -19,7 +19,7 @@ export function ContactLinks() {
       <a href={cv.contact.linkedin} target="_blank" rel="noopener noreferrer" className={BUTTON}>
         {t("linkedin")}
       </a>
-      <Link href="/cv" className={BUTTON}>
+      <Link href="/cv" prefetch={false} className={BUTTON}>
         {t("cv")}
       </Link>
     </div>

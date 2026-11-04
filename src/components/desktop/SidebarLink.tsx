@@ -50,6 +50,7 @@ export function SidebarLink({ label, href, external = false }: SidebarLinkProps)
   ) : (
     <MotionLink
       href={href}
+      prefetch={false}
       initial="rest"
       whileHover="hover"
       whileFocus="hover"

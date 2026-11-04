@@ -3,6 +3,40 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-11-04: Lighthouse after the constellation
+
+**Done**
+- Lighthouse 12 on a local production build (`out/` served under `/portfolio` with gzip and a 10 minute cache), French home page,
+  nothing changed in the code:
+  - Mobile: performance 92, accessibility 100, best practices 96, SEO 100. FCP 0.8 s, LCP 3.3 s, TBT 50-90 ms, CLS 0.
+  - Desktop: performance 100, accessibility 100, best practices 96, SEO 100. FCP 0.2 s, LCP 0.8 s, TBT 0 ms, CLS 0.
+  - Three mobile runs gave 92 each time (LCP 3.3 s), so the figure is stable.
+- Does the constellation cost anything? A comparison: the two Passions sections were replaced by empty shells, the site rebuilt and
+  measured three times on mobile: 92 and 3.3 s again. The 138.9 KiB `three` chunk is not requested at first load. So the
+  constellation does not move the scores. The shells were removed afterwards: the two files are byte-identical to what they were
+  (checked with `cmp`), and the site was rebuilt.
+- Where the points go:
+  - Best practices 96, both layouts: one console error, a 404 for `fr/cv/__next.$d$locale.cv.__PAGE__.txt` (the prefetch of the `/cv`
+    page data, already noted in the entry on the mobile layout). Nothing else fails.
+  - Mobile performance 92: the LCP element is the first thesis paragraph, and 2.9 s of the 3.3 s is element render delay: the text only
+    renders once the JavaScript has loaded and the layout is chosen (D-009 alternatives). The first-load scripts are about 70 + 62 + 46 +
+    39 KiB gzip.
+
+**Not verified**
+- These are local figures. The deployed site (GitHub Pages, long cache headers, its own compression) was not measured, so the cache and
+  compression findings of the local server are not representative.
+- The last deployed measurement in this file (2026-10-27: mobile 96, LCP 2.6 s) predates the map, so the 3.3 s cannot be split between the
+  map, the mobile layout change and other work: only the constellation was isolated.
+
+**Fix, same day:** `prefetch={false}` on the two links to `/cv` (`SidebarLink` for internal links, and `ContactLinks`). Checked on a
+production build: no failing request at load, and a click on the CV link reaches `/fr/cv/` on desktop and on an emulated phone, with no
+failing request and no page error during the click. Lighthouse again: mobile 93 / 100 / 100 / 100 (LCP 3.1 s), desktop 100 / 100 / 100 / 100.
+The command palette's "CV page" entry uses `router.push` and was not touched. Without a prefetch the CV page is only requested on the click.
+
+**Still open**
+- The mobile LCP (3.1 to 3.3 s over the runs) is a larger change (less JavaScript before the first render, or a server-rendered first
+  screen); not started.
+
 ## 2026-11-04: The Passions constellation on mobile
 
 **Done**
