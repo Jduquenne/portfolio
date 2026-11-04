@@ -3,6 +3,31 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-11-04: Portfolio clip redone with the work location map
+
+**Done**
+- The `portfolio` project preview (clip, poster, thumbnail in `public/previews/`) shows this site, so it was redone now that
+  the Hero has the map. The tour (15.0 s, 132 KiB, 448x280) opens on a fresh first visit: the page loads, the thesis types,
+  the glowing point draws France and the camera moves in on the north, the radius and the cities appear (4.8 s). Then Lille
+  is picked (the road is drawn, the card gives the time), then Dunkerque (the first road crumples into the card, another is
+  drawn), then the main area scrolls to the projects and hovers the Dofus card, and back to the top.
+- Poster (16 KiB) and thumbnail (9 KiB) are taken at 7.5 s: the road to Lille drawn, with the card.
+- Two passes, as the earlier entry says: record, encode, rebuild so the portfolio card in the grid shows the new thumbnail,
+  record again, encode. The first visit is filmed by clearing the `availability-map-seen` session flag and reloading, with the
+  map warmed up off the record.
+
+**Dropped from the previous tour (to stay under 15 s):** pinning React and Vue.js in the sidebar (the stack lighting up the
+experiences) and the `Ctrl K` palette. The map took their place.
+
+**Not verified**
+- The clip was looked at as a contact sheet of ten frames per pass, not played in a browser hover. The owner has not seen it yet.
+- The previous files are kept outside the repo (`E:/Developpement/_claude/tmp/clips/backup-portfolio-2026-10-27/`) in case the
+  old tour is wanted back. Nothing was committed or pushed.
+
+**Still open**
+- The clip goes stale again whenever the Hero changes visually (it is the one to redo last).
+- The stack-to-experiences interaction and the palette are no longer in any preview.
+
 ## 2026-11-04: Mobile layout on the visible height, tab bar after the content
 
 **Done**
