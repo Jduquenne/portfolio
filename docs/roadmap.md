@@ -31,7 +31,9 @@ focus here.
   one yet, and `npm run build` was not run.
 - ✅ Passions as a 3D constellation on desktop (2026-11-04, D-016): `lint`, `tsc` and `npx next build` pass, and the flows were
   driven in Chrome on a production build (see the devlog). Not seen on a real screen, no frame rate measured, `npm run build` not run.
-- ⬜ Passions on mobile: still the earlier cards. Needs its own layout and a real-phone check.
+- ✅ Passions on mobile (2026-11-04, D-016 amendment): `lint`, `tsc` and `npx next build` pass, driven in Chrome with an emulated phone
+  (see the devlog). Not seen on a real phone, no frame rate measured.
+- ⬜ Global Lighthouse run (mobile and desktop) after the constellation, to keep the perfect scores.
 - ⬜ Passions content: levels of the tools (owner), the five level labels and the English texts (owner to validate), missing
   descriptions (Video, AI) and tools.
 - ⬜ On a production build the console shows 404s for the prefetch of the `/cv` page data (see the devlog). Not investigated.

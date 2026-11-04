@@ -59,7 +59,12 @@ export function SpecialtiesSection() {
             {planet && (
               <PlanetPanel key={planet.id} planet={planet} model={model} store={store} tool={state.tool} />
             )}
-            <SunTabs model={model} store={store} active={state.sun} />
+            <SunTabs
+              model={model}
+              store={store}
+              active={state.sun}
+              className="flex flex-wrap gap-x-8 gap-y-2"
+            />
           </>
         )}
       </ConstellationStage>

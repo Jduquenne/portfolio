@@ -68,7 +68,7 @@ src/
 ├── components/
 │   ├── desktop/                  # DesktopLayout, Hero, PlanetPanel, HeroAvailability, AvailabilityCard, availabilityLayout, Footer, HeroSectionNav, Sidebar (+ SidebarContact, SidebarLink, SidebarSection, LocaleToggle, StackChip, StackReadout, StackFocus), PlayModal, CursorGlow, CommandPalette, ProjectPreview, sections/
 │   │   └── sections/             # Experience, Projects, Specialties
-│   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, ProjectPoster, ProfileIdentity, WorkLocationLink, ContactLinks, availabilityLayout, availability/, sections/
+│   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, PlanetSheet, ProjectPoster, ProfileIdentity, WorkLocationLink, ContactLinks, availabilityLayout, availability/, sections/
 │   │   ├── availability/         # AvailabilityPanel, CityRail
 │   │   └── sections/             # Profile, Availability, Experience, Stack, Projects, Passions, Play
 │   ├── shared/                   # AdventureRouter, AdventureSkeleton, AvailabilityBadge, ContactAction (mobile), NoScriptContent, ExperienceProjects,
@@ -127,7 +127,7 @@ not a section. See [spec-sections.md](spec-sections.md) for what each section do
 | Experience | `ExperienceSection` | `ExperienceSection` |
 | Stack | block inside `Sidebar` | `StackSection` (dedicated section) |
 | Projects | `ProjectsSection` | `ProjectsSection` |
-| Passions | `SpecialtiesSection` (the constellation) | `PassionsSection` (still the cards of `cv.passions`) |
+| Passions | `SpecialtiesSection` (the constellation) | `PassionsSection` (the constellation) |
 | Play | modal (`PlayModal`) opened from the Hero or the command palette | `PlaySection` |
 
 Desktop also has a `Hero` above Experience. Desktop and mobile never import from each
@@ -203,5 +203,6 @@ components/shared/constellation/ConstellationStage   canvas + labels + leader li
   changes. With reduced motion it renders only when something changes.
 - **Sky and the page:** the layer bleeds past the stage (`DESKTOP_HERO_BLEED`) and is masked at its top and bottom
   (`.constellation-veil`), so the page's dot grid shows through and there is no edge between the canvas and the DOM.
-- **Tiers:** `compact` (a phone) uses fewer stars, a pixel ratio of 1.5 and shows labels only for what is in focus.
+- **Tiers:** `compact` (a phone) uses fewer stars, a pixel ratio of at most 1.5, no antialiasing, the orbit controls off (a drag
+  scrolls the page), a wider tap reach and labels only for what is in focus.
 

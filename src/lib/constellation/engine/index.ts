@@ -37,6 +37,10 @@ export interface Engine {
 const MAX_STEP_SECONDS = 0.05;
 const AZIMUTH_LIMIT = 0.9;
 const PICK_REACH = 0.6;
+/** A finger covers more than a pointer. */
+const PICK_REACH_TOUCH = 1;
+/** On a phone, names higher than this (px) would run into the title, so they are left out. */
+const COMPACT_TOP_CLEAR = 96;
 
 /**
  * The 3D scene: draws the constellation on the canvas of `root` and writes the
@@ -76,6 +80,11 @@ export function createEngine(options: EngineOptions): Engine {
   controls.minAzimuthAngle = -AZIMUTH_LIMIT;
   controls.maxAzimuthAngle = AZIMUTH_LIMIT;
   controls.autoRotateSpeed = 0.4;
+  if (compact) {
+    // A drag on a phone scrolls the page: the scene drifts on its own and is chosen by taps.
+    controls.enabled = false;
+    canvas.style.touchAction = "pan-y";
+  }
 
   const uniforms: Uniforms = {
     uActive: { value: new THREE.Vector4(1, 1, 1, 1) },
@@ -124,7 +133,7 @@ export function createEngine(options: EngineOptions): Engine {
 
   // ── Picking ──
   const ray = new THREE.Raycaster();
-  ray.params.Points.threshold = PICK_REACH;
+  ray.params.Points.threshold = compact ? PICK_REACH_TOUCH : PICK_REACH;
   const pointer = new THREE.Vector2();
   const pick = (event: PointerEvent | MouseEvent, accept: (i: number) => boolean): number => {
     const box = canvas.getBoundingClientRect();
@@ -176,7 +185,7 @@ export function createEngine(options: EngineOptions): Engine {
     if (!width || !height) return;
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
-    fit = compact ? 27 : Math.max(24, 24 * (1.75 / camera.aspect));
+    fit = compact ? Math.max(24, 12.8 / camera.aspect) : Math.max(24, 24 * (1.75 / camera.aspect));
     camera.updateProjectionMatrix();
     lastShift = "";
     invalidate();
@@ -331,8 +340,9 @@ export function createEngine(options: EngineOptions): Engine {
       let opacity: number;
       if (node.kind === "sun") opacity = 1;
       else if (node.kind === "tool") opacity = i === toolNode ? 1 : 0;
-      else if (compact && sun === null && i !== hover && i !== selected) opacity = 0;
+      else if (compact) opacity = isLit(i, sun) && (sun !== null || i === selected) ? (i === selected ? 1 : 0.85 * depth) : 0;
       else opacity = isLit(i, sun) ? (i === hover || i === selected ? 1 : 0.85 * depth) : 0.25;
+      if (compact && node.kind !== "sun" && y < COMPACT_TOP_CLEAR) opacity = 0;
       label.style.opacity = String(opacity * intro);
     });
   };

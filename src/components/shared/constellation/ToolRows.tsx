@@ -9,10 +9,12 @@ interface ToolRowsProps {
   store: ConstellationStore;
   /** The tool lit in the scene. */
   active: string | null;
+  /** The level in words under each tool. Left out where height is short. */
+  levelLabels?: boolean;
 }
 
 /** The tools of a planet. Hovering or pressing a row lights its diamond in the scene. */
-export function ToolRows({ tools, store, active }: ToolRowsProps) {
+export function ToolRows({ tools, store, active, levelLabels = true }: ToolRowsProps) {
   return (
     <ul>
       {tools.map((tool) => (
@@ -27,7 +29,7 @@ export function ToolRows({ tools, store, active }: ToolRowsProps) {
           >
             <span className="min-w-0 break-words text-contrast">{tool.name}</span>
             {tool.level ? <LevelPips level={tool.level} /> : <span />}
-            {tool.levelLabel && (
+            {levelLabels && tool.levelLabel && (
               <span className="col-span-2 text-contrast/50">{tool.levelLabel}</span>
             )}
             {tool.note && (

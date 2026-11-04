@@ -69,8 +69,8 @@ screens the thesis grows (from 820px of height) and the photo, the buttons and t
 
 ## Passions
 
-The passions as a constellation named `CCFM-1409`, from `lib/data/constellation.ts`. Desktop is built; mobile still shows
-the earlier three cards (`cv.passions`) until its own version is made.
+The passions as a constellation named `CCFM-1409`, from `lib/data/constellation.ts`, on desktop and mobile (same data and
+scene, each with its own layout and panel).
 
 - **Structure:** four **suns**, the steps of how he works (Comprendre · Concevoir · Fabriquer · Montrer). A **planet** is a
   passion. A planet belongs to one to three suns and sits between them, tied to each by a line. The **tools** of a passion go
@@ -91,4 +91,17 @@ the earlier three cards (`cv.passions`) until its own version is made.
   and a level is also said in words. Reduced motion draws a still scene: no orbit, no comet, no rotation, no flight.
 - **Content rules:** the names of tools are products and stay as their owners write them. Every other text is a
   `LocalizedString` (`cv.ts` convention) or a `passions.*` message.
+
+### Passions on mobile
+
+A section of the feed (id `passions`, `h-full snap-start`), the scene filling it under the title.
+
+- **Layout:** the four suns one under the other, tabs (a 2x2 grid of 40px targets) just above the tab bar. Until a sun or a
+  passion is chosen, a line says "Choisir une étape, ou toucher une passion": names are shown only for what is in focus.
+- **Touch:** the scene drifts on its own, and a vertical swipe over it scrolls the feed. There is no drag to turn it. A tap on
+  a passion (within 40px) opens its sheet, a tap on empty space or on the cross closes it.
+- **Sheet:** over the bottom of the stage: title, the steps it belongs to, then Description and Tools as two tabs (a passion
+  with only one shows it directly). It never scrolls; a long text is cut with an ellipsis. Tapping a tool row lights its diamond.
+- **Loading:** as on desktop, `three` is requested within 600px of the section and never with data saving on; until then the
+  passions are a list in two columns.
 

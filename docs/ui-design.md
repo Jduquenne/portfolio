@@ -127,6 +127,17 @@ Everything is the accent and the contrast colour on the page itself.
 - **Dependencies on layout:** the panel sits at the right of the stage and the scene slides left to keep the open planet
   clear of it (the Hero's `DESKTOP_HERO_BLEED` insets are reused for the layer).
 
+## Mobile: passions constellation
+
+- **Shell:** the section is `h-full` like its neighbours, `overflow-hidden`, with the scene as a layer over all of it
+  (`inset-0`, the same top and bottom fade as desktop). Title row and `CCFM-1409` at the top, the sheet over the bottom of
+  the middle area, the four tabs (`grid-cols-2`, `min-h-10`) right above the tab bar.
+- **Touch:** nothing in the middle area takes a tap but the sheet (`pointer-events-none` on the wrapper), so the canvas gets
+  the taps. The canvas is `touch-action: pan-y`: vertical swipes scroll the feed.
+- **Sheet:** the desktop panel's look (`bg-surface/90`, blur, `white/8` border, accent corners) in a bottom sheet. Two tabs
+  share the room so it never scrolls; its close button is 40px.
+- **Labels:** none at rest; the names of a chosen sun's planets, or of the open planet; never in the top 96px (the title).
+
 ## Mobile: first screen and work location section
 
 - **Mobile shell:** a column as tall as the visible area (`.h-visible`, `100dvh`), the scrolling `main` takes what is left,

@@ -3,6 +3,38 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-11-04: The Passions constellation on mobile
+
+**Done**
+- `PassionsSection` (mobile) is the constellation: the "tall" layout (suns one under the other), the scene in `compact` mode (fewer
+  stars, pixel ratio at most 1.5, no antialiasing, orbit controls off so a swipe scrolls the feed, a 40px tap reach), names only for
+  what is in focus, a sheet (`mobile/PlanetSheet`) with Description and Tools as two tabs, and a 2x2 grid of tabs above the tab bar.
+- Shared pieces were made layout-agnostic: `SunTabs` takes its layout and an optional hint line, `ToolRows` can leave the level words
+  out, `PlanetList` takes its layout. The old cards are gone from mobile (`cv.passions` stays for the CV).
+- 3 new messages in each language (`tab_note`, `details_label`, `touch_hint`).
+
+**Verified** (`npm run lint`, `npx tsc --noEmit`, `npx next build` pass; Chrome with an emulated phone, software rendering, on a production build)
+- 390x844, 360x640 and 430x932: the section is as tall as the scrolling area and ends exactly on the tab bar, the page itself does
+  not scroll, and Three.js is not requested at first load. All 17 passions, in both tabs, open a sheet that never overflows and never
+  covers the tab bar.
+- A tap on a passion opens its sheet; a vertical swipe of 600px over the canvas scrolls the feed; English shows the translated tabs and
+  hint; reduced motion gives two identical frames 1.5 s apart; with data saving forced on the two-column list shows and no scene loads.
+- Bugs found and fixed on the way: the wrapper of the middle area intercepted the taps meant for the canvas, and on a 640px-high phone
+  the five tools of 3D printing did not fit under the title (the level words under each tool are left out on mobile).
+
+**Not verified**
+- A real phone: taps, the swipe against the snap scroll, the address bar and battery use with the scene running. No real frame rate was
+  measured, on a strong or a weak phone.
+- Names can still overlap each other when a sun has many planets near each other (they are left as they fall).
+- A global Lighthouse run was not made yet (the owner wants it next).
+- `npm run build` (with `build:cv` and `build:og`) was not run.
+
+**Still open**
+- Lighthouse on the deployed site, mobile and desktop, to keep the perfect scores; the scene is only requested near the section, so it
+  should not weigh on the first load.
+- Tool levels are set by the owner in `constellation.ts`; the five level labels and the English texts still need his validation.
+- Descriptions missing for Video and AI.
+
 ## 2026-11-04: The Passions section as a 3D constellation (desktop)
 
 **Done**

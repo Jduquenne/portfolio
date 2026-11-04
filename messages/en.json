@@ -50,7 +50,10 @@
     "level_3": "At ease",
     "level_4": "Mastery",
     "level_5": "I teach it",
-    "level_scale": "level {level} out of 5"
+    "level_scale": "level {level} out of 5",
+    "tab_note": "Description",
+    "details_label": "Details of the passion",
+    "touch_hint": "Choose a step, or tap a passion"
   },
   "experience": {
     "section_label": "// experience",

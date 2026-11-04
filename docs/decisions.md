@@ -260,4 +260,12 @@ not documented. They are all `accepted` because the code implements them.
   "areas" figure now counts the planets. The spec of the section changes: a short description per passion is allowed.
   The mobile section still shows the old cards until the constellation is built for it (a vertical layout is already
   in the code, not yet exercised).
+  **Amendment, same day: mobile.** The mobile section (`components/mobile/sections/PassionsSection`) uses the same
+  data, store and scene, with its own layout (`LayoutKind` "tall": the suns one under the other) and its own HUD. The
+  scene runs in `compact` mode: fewer stars, a pixel ratio of at most 1.5, no antialiasing, and the orbit controls off,
+  because a drag on a phone must scroll the feed (the canvas is `touch-action: pan-y`), so the scene drifts on its own and
+  is chosen by taps (a tap reaches 40px around a node). Names are shown only for what is in focus (a chosen sun, the open
+  planet) and never above the title. The panel is a sheet over the bottom of the stage (`mobile/PlanetSheet`), with
+  Description and Tools as two tabs so it never scrolls; level labels in words are left out of its rows (the diamonds and
+  a screen-reader text carry the level). The four tabs are a 2x2 grid of 40px targets above the tab bar.
 
