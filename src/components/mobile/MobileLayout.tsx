@@ -16,8 +16,11 @@ interface MobileLayoutProps {
 
 export function MobileLayout({ repos, stats }: MobileLayoutProps) {
   return (
-    <>
-      <main id="main" className="grid-backdrop bento-scroll h-screen overflow-y-scroll snap-y snap-mandatory text-contrast font-sans">
+    <div className="h-visible flex flex-col bg-base text-contrast font-sans">
+      <main
+        id="main"
+        className="grid-backdrop bento-scroll min-h-0 flex-1 overflow-y-scroll snap-y snap-mandatory"
+      >
         <ProfileSection />
         <AvailabilitySection />
         <ExperienceSection />
@@ -28,6 +31,6 @@ export function MobileLayout({ repos, stats }: MobileLayoutProps) {
       </main>
       <ScrollToTop />
       <BottomNav />
-    </>
+    </div>
   );
 }

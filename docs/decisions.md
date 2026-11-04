@@ -211,8 +211,8 @@ not documented. They are all `accepted` because the code implements them.
   desktop Hero has no mobile counterpart. The tab bar has five entries, and a sixth is cramped (11px between entries
   at 390px, 6px at 360px, touching at 320px).
 - **Decision:** a section `availability` right after Profile (not a tab bar entry, not in `SectionId`), same
-  `h-screen` and snap as its neighbours. The map fills it, under a head (title and mode switch) and a panel (the
-  summary and the cities) of fixed heights (128px and 240px, the bottom 56px of the panel clear the tab bar), so the
+  snap as its neighbours. The map fills it, under a head (title and mode switch) and a panel (the
+  summary and the cities) of fixed heights (128px and 184px), so the
   free area of the map never changes and the camera never jumps. It draws itself the first time 60% of it is on screen,
   once per browser session. The on-site view frames the 45 km circle, not the whole region (the cities are 18px apart
   at region scale, under a fingertip). A tap picks the nearest reachable city within 32px, and the cities are also a
@@ -224,7 +224,10 @@ not documented. They are all `accepted` because the code implements them.
 - **Alternatives considered:** a sixth tab bar entry (too tight on small phones); the map inside the profile card (no
   room); a per-dot tap (a finger misses at that scale); a mobile-only map with different data (duplicates the engine).
 - **Consequences:** desktop and mobile share the data, the engine, the renderer and `components/shared/availability`;
-  each owns its placement (`desktop/availabilityLayout.ts`, `mobile/availabilityLayout.ts`). The mobile sections still
-  use `h-screen` (`100vh`): on a phone with a collapsing address bar that is taller than the visible area, a point
-  left for a later pass over all sections (the tab bar stays fixed).
+  each owns its placement (`desktop/availabilityLayout.ts`, `mobile/availabilityLayout.ts`).
+  **Amendment, same day, after a real phone:** the first version kept the mobile sections at `h-screen` (`100vh`) with a
+  fixed tab bar. On a phone `100vh` is taller than the visible area (the address bar), so the bottom of each section
+  and the tab bar covered content. The mobile layout is now a column of the visible height (`.h-visible`: `100vh`, then
+  `100dvh`): the scrolling area takes what is left (`min-h-0 flex-1`), the sections are `h-full`, and the tab bar sits
+  after it (no longer fixed, no longer over anything). Sections need no bottom room for it (`pb-6`).
 

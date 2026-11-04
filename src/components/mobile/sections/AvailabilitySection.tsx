@@ -36,7 +36,7 @@ export function AvailabilitySection() {
       id="availability"
       ref={sectionRef}
       aria-label={t("title")}
-      className="relative isolate h-screen shrink-0 snap-start overflow-hidden"
+      className="relative isolate h-full shrink-0 snap-start overflow-hidden"
     >
       <AvailabilityMap
         scene={scene}

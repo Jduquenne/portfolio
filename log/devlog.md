@@ -3,6 +3,35 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-11-04: Mobile layout on the visible height, tab bar after the content
+
+**Done**
+- Found on a real phone by the owner: the fixed tab bar covered a lot of content. Cause: the mobile sections were `h-screen`
+  (`100vh`), taller than what a phone shows while the address bar is there, so the bottom of each section (and the tab
+  bar over it) was cut. This is the point left open in the previous entry, and the owner had already asked in the
+  prototype for the bar to come after the content.
+- Fix (D-015 amendment): `MobileLayout` is a column of the visible height (`.h-visible`: `100vh` then `100dvh`), `main` takes
+  the rest (`min-h-0 flex-1`), the sections are `h-full`, and `BottomNav` sits after `main`, no longer `fixed`. Bottom padding
+  of the sections `pb-14/16/20` becomes `pb-6`; the work location panel goes from 240px to 184px (`h-46`) and loses its room
+  for the bar. `ScrollToTop` is unchanged (it is fixed, 80px from the bottom).
+
+**Verified** (`lint`, `tsc`, `npx next build` pass; Chrome with an emulated phone on a production build served from `out/`)
+- At 390x844, 393x780, 390x700, 360x640 and 430x932: the root is exactly the window height, the bar's bottom is the window
+  bottom, the bar overlaps nothing, every section is as tall as the scrolling area, the first screen keeps 24px above the
+  bar (it scrolls inside itself at 640px, as before), the work location panel meets the bar with no gap, the page itself
+  does not scroll.
+- The mobile behaviour test (link, drawing, tap, row of cities, clear, remote, second visit, English, reduced motion, five
+  tab bar entries) and the desktop test give the same results as before.
+
+**Not verified**
+- The real phone again: an emulator cannot show an address bar that collapses, so `100dvh` is checked by what it computes to
+  (the window height), not by that behaviour. To be seen by the owner.
+
+**Observed, not investigated**
+- On a production build, the console shows 404s for `__next.$d$locale.cv.__PAGE__.txt` (the prefetch of the `/cv` page data,
+  which the static export does not put where the router asks). The link to `/cv` existed before this work on both
+  layouts, and the dev server shows none. Harmless to the visitor as far as seen.
+
 ## 2026-11-04: Availability map on mobile, and a new first screen
 
 **Done**
@@ -37,8 +66,7 @@ first. History before the migration is in `git log` (31 commits on 2026-10-27).
 - A short swipe (under half a screen) snaps back: that is the feed's `snap mandatory`, as before.
 
 **Still open**
-- The mobile sections use `h-screen` (`100vh`), taller than the visible area while the address bar shows. Moving all
-  sections to `dvh` is a separate pass.
+- (Done in the next entry: the mobile layout now follows the visible height.)
 - At 640px of height the first screen scrolls inside itself, as it already did.
 - A city label can disappear when it has no free side (the row and the tap still reach the city).
 - The tab bar has no entry for the section (decision), so nothing is highlighted while it is on screen, as for Profile.

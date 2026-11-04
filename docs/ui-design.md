@@ -110,14 +110,17 @@ are a dotted line that fades. Everything is accent on the base colour, no relief
 
 ## Mobile: first screen and work location section
 
+- **Mobile shell:** a column as tall as the visible area (`.h-visible`, `100dvh`), the scrolling `main` takes what is left,
+  the tab bar (`h-14`) comes after it and covers nothing. The sections are `h-full`, never `h-screen` or `100vh`, which on a
+  phone is taller than what the browser shows.
 - **First screen** (`ProfileSection`): `min-h-full` with `justify-between` over three groups, so the content ends 24px above
-  the tab bar (`pb-20`) whatever the height. Name in `text-2xl`, role and age in `text-sm` (the age at /70, not /50), the
+  the tab bar (`pb-6`) whatever the height. Name in `text-2xl`, role and age in `text-sm` (the age at /70, not /50), the
   role on two lines (split on " · "), the availability badge under the age. Height steps use the Tailwind scale only:
   the thesis goes from `text-xl` to `text-2xl` from 820px, the photo from `size-40` to `size-44`, the buttons from
   `min-h-10` to `min-h-12` and the link to `min-h-14` from 900px (`[@media(min-height:...)]`).
 - **Work location section:** `h-screen snap-start`, the map under everything (`z-0`), a fade from the base colour at the top
-  (`z-5`), the head and the panel on top (`z-10`). Both are `data-map-obstacle`, so labels step aside. The panel is `h-60`
-  with `pb-14` for the fixed tab bar, and its summary slot is `h-18`, so nothing moves when a trip appears.
+  (`z-5`), the head and the panel on top (`z-10`). Both are `data-map-obstacle`, so labels step aside. The panel is `h-46`
+  and sits right on the tab bar, and its summary slot is `h-18`, so nothing moves when a trip appears.
 - **Touch:** every target is at least 40px (`min-h-10`), the row of cities scrolls sideways with snap and no scrollbar,
   and the selected city is brought to the centre.
 

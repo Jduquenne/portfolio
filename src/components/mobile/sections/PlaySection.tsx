@@ -13,13 +13,13 @@ export function PlaySection() {
   return (
     <motion.section
       id="play"
-      className="h-screen snap-start overflow-y-auto shrink-0 bento-scroll"
+      className="h-full snap-start overflow-y-auto shrink-0 bento-scroll"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-48px" }}
     >
-      <div className="flex min-h-full flex-col justify-center gap-8 px-6 pt-12 pb-14">
+      <div className="flex min-h-full flex-col justify-center gap-8 px-6 pt-12 pb-6">
         <motion.div variants={fadeUp} className="flex items-center gap-4">
           <span className="font-mono text-xs text-accent tracking-widest uppercase shrink-0">
             {t("section_label")}

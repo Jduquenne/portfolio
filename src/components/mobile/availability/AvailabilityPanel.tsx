@@ -34,7 +34,7 @@ export function AvailabilityPanel({ scene, state }: AvailabilityPanelProps) {
     <div
       data-map-obstacle=""
       className={cn(
-        "absolute inset-x-0 bottom-0 z-10 flex flex-col gap-2 border-t border-white/8 bg-surface/95 px-6 pt-4 pb-14 transition-opacity",
+        "absolute inset-x-0 bottom-0 z-10 flex flex-col gap-2 border-t border-white/8 bg-surface/95 px-6 py-4 transition-opacity",
         PANEL_HEIGHT_CLASS,
         state.phase === "idle" && "invisible opacity-0",
       )}

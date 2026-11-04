@@ -25,8 +25,11 @@ focus here.
 - ✅ Availability map on the desktop Hero (2026-11-04): `lint`, `tsc` and `npx next build` pass, and the flows were driven
   in Chrome against the dev server (see the devlog). `npm run build` was not run, performance on a weak machine was not
   measured, and the owner has not looked at it on a real screen yet.
-- ✅ Availability on mobile (2026-11-04): a section after Profile and a reworked first screen (D-015), checked with an
-  emulated phone against the dev server (see the devlog). Not seen on a real phone, and `npm run build` was not run.
+- ✅ Availability on mobile (2026-11-04): a section after Profile and a reworked first screen (D-015). A first version
+  covered content on a real phone (sections in `100vh` under a fixed tab bar); the mobile layout now follows the visible height
+  with the tab bar after the content (see the devlog). Checked on an emulated phone; the owner has not seen the fix on a real
+  one yet, and `npm run build` was not run.
+- ⬜ On a production build the console shows 404s for the prefetch of the `/cv` page data (see the devlog). Not investigated.
 - ⬜ The design fixes, UX additions, cursor glow and command palette of 2026-10-27 were not looked
   at in a browser. The palette's keyboard flow and focus handling are untested by hand.
 

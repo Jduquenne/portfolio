@@ -18,7 +18,7 @@ export function BottomNav() {
   const activeId = useActiveSection(sectionIds);
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 h-14 bg-surface/90 backdrop-blur-sm border-t border-white/8 flex items-center justify-around px-6">
+    <nav className="relative z-10 flex h-14 shrink-0 items-center justify-around border-t border-white/8 bg-surface px-6">
       {sectionIds.map((id) => (
         <a
           key={id}

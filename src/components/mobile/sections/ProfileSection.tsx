@@ -22,13 +22,13 @@ export function ProfileSection() {
   return (
     <section
       id="profile"
-      className="h-screen snap-start overflow-y-auto shrink-0 bento-scroll"
+      className="h-full snap-start overflow-y-auto shrink-0 bento-scroll"
     >
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative flex min-h-full flex-col justify-between gap-6 px-6 pt-12 pb-20"
+        className="relative flex min-h-full flex-col justify-between gap-6 px-6 pt-12 pb-6"
       >
         <motion.div variants={fadeUp} className="absolute top-2 right-4">
           <LanguageSwitcher />

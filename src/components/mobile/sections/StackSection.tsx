@@ -14,13 +14,13 @@ export function StackSection() {
   return (
     <motion.section
       id="stack"
-      className="h-screen snap-start overflow-y-auto shrink-0 bento-scroll"
+      className="h-full snap-start overflow-y-auto shrink-0 bento-scroll"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-48px" }}
     >
-      <div className="flex flex-col gap-6 px-6 pt-12 pb-14">
+      <div className="flex flex-col gap-6 px-6 pt-12 pb-6">
         <motion.div
           variants={fadeUp}
           className="flex items-center gap-4"

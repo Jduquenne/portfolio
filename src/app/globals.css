@@ -193,3 +193,9 @@ body {
     linear-gradient(180deg, #000 0, #000 calc(100% - 240px), rgb(0 0 0 / 0.15) calc(100% - 140px));
   mask-composite: intersect;
 }
+
+/* The height a phone really shows: 100vh includes the address bar, 100dvh does not. */
+.h-visible {
+  height: 100vh;
+  height: 100dvh;
+}

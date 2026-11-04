@@ -24,13 +24,13 @@ export function ProjectsSection({ repos, stats }: ProjectsSectionProps) {
   return (
     <motion.section
       id="projects"
-      className="h-screen snap-start overflow-y-auto shrink-0 bento-scroll"
+      className="h-full snap-start overflow-y-auto shrink-0 bento-scroll"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-48px" }}
     >
-      <div className="flex flex-col gap-4 px-6 pt-12 pb-16">
+      <div className="flex flex-col gap-4 px-6 pt-12 pb-6">
         <motion.div variants={fadeUp} className="flex items-center gap-4">
           <span className="font-mono text-xs text-accent tracking-widest uppercase shrink-0">
             {t("projects_title")}

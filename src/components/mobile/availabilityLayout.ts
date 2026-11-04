@@ -4,12 +4,11 @@ import type { SceneConfig } from "@/hooks/useAvailabilityScene";
  * The head (title and mode switch) and the panel (summary and cities) have a
  * fixed height, so the free area of the map never changes while the visitor
  * picks a city and the camera never jumps. Each class sits next to its number.
- * The bottom 56px of the panel clear the tab bar.
  */
 export const HEAD_HEIGHT_CLASS = "h-32";
-export const PANEL_HEIGHT_CLASS = "h-60";
+export const PANEL_HEIGHT_CLASS = "h-46";
 const HEAD_HEIGHT_PX = 128;
-const PANEL_HEIGHT_PX = 240;
+const PANEL_HEIGHT_PX = 184;
 const MAX_PANEL_SHARE = 0.5;
 
 /** A fingertip is wider than the gap between two cities: the nearest one wins. */
