@@ -18,7 +18,8 @@ out of sight when the page opens. The `cv.identity.description` thesis in Geist 
 activity" readout from the GitHub data, two entry points (the command palette `Ctrl K` and the game),
 and a section nav at the bottom (`HeroSectionNav`): Experience, Projects, Passions, each with one real figure
 (roles and first year from `cv.ts`, public repo count, number of passions), jumping with `scrollToSection`. It is
-visible only while the whole Hero is on screen (`useFullyVisible`).
+visible only while the whole Hero is on screen (`useFullyVisible`). The browser Back button returns to the Hero:
+leaving it adds one history entry, and going back to the entry before scrolls to the top (`useBackToHero`).
 Test in progress: more content is planned for the free space.
 
 ## Rules

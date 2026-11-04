@@ -20,6 +20,12 @@ first. History before the migration is in `git log` (31 commits on 2026-10-27).
 - The scroll root id (`SCROLL_ROOT_ID`) and the desktop padding that must match the scroll padding
   (`DESKTOP_SCROLL_INSET_Y`, `py-12 scroll-pt-12`) live in `src/lib/scroll.ts`; `useActiveSection` stopped keeping its
   own copy of the id. Other layouts still write `id="main"` as the skip link target.
+- Fixed: the browser Back button left the site instead of returning to the Hero, because scrolling creates no
+  history entry. `useBackToHero` pushes one entry (state `awayFromHero`, same URL) the first time the Hero is left,
+  and a `popstate` to the entry before scrolls `#main` to the top. Works for the nav, the palette and plain
+  scrolling. Checked in Chrome against the dev server (click then Back, wheel then Back): top reached, no reload,
+  URL unchanged. Known quirk: if the visitor scrolls back up by hand, the extra entry stays, so the first Back does
+  nothing visible and the second one leaves.
 - The nav only shows while the whole Hero is on screen (`useFullyVisible`: an `IntersectionObserver` rooted on
   `#main`, read through `useSyncExternalStore`). It fades out (200ms) and leaves the tab order and the
   accessibility tree (`inert`, `aria-hidden`) once the page is scrolled by about 48px, and comes back at the top.

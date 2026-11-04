@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Command, Dice5 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { HeroSectionNav } from "@/components/desktop/HeroSectionNav";
+import { useBackToHero } from "@/hooks/useBackToHero";
 import { useFullyVisible } from "@/hooks/useFullyVisible";
 import { cv, localize } from "@/lib/data/cv";
 import { fadeUp, stagger } from "@/lib/motion";
@@ -33,6 +34,7 @@ export function Hero({
   const tPalette = useTranslations("palette");
   const heroRef = useRef<HTMLElement>(null);
   const onHero = useFullyVisible(heroRef, SCROLL_ROOT_ID);
+  useBackToHero(onHero);
 
   return (
     <motion.header
