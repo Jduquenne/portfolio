@@ -1,11 +1,14 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
-import { Command, Dice5 } from "lucide-react";
+import { ArrowDown, Command, Dice5 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import { useFullyVisible } from "@/hooks/useFullyVisible";
 import { cv, localize } from "@/lib/data/cv";
 import { fadeUp, stagger } from "@/lib/motion";
-import { relativeTime } from "@/lib/utils";
+import { SCROLL_ROOT_ID, scrollToSection } from "@/lib/scroll";
+import { cn, relativeTime } from "@/lib/utils";
 import type { GitHubRepo } from "@/types";
 
 const containerVariants = stagger(0.1, 0.1);
@@ -21,13 +24,16 @@ export function Hero({ latestRepo, onPlay, onOpenPalette }: HeroProps) {
   const t = useTranslations("hero");
   const tToy = useTranslations("toy");
   const tPalette = useTranslations("palette");
+  const heroRef = useRef<HTMLElement>(null);
+  const onHero = useFullyVisible(heroRef, SCROLL_ROOT_ID);
 
   return (
     <motion.header
+      ref={heroRef}
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="flex flex-col gap-8"
+      className="flex min-h-full flex-col justify-between gap-8"
     >
       <div className="flex flex-wrap items-start justify-between gap-x-8 gap-y-4">
         <motion.p
@@ -54,33 +60,58 @@ export function Hero({ latestRepo, onPlay, onOpenPalette }: HeroProps) {
         )}
       </div>
 
-      <motion.div
-        variants={fadeUp}
-        className="flex items-center gap-4"
-      >
-        <div className="h-px flex-1 bg-white/8" />
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={onOpenPalette}
-            className="inline-flex items-center gap-2 border border-white/8 px-4 py-2 font-mono text-xs uppercase tracking-widest text-contrast/70 transition-colors hover:border-accent/40 hover:text-accent"
+      <div className="flex flex-col gap-8">
+        <motion.div
+          variants={fadeUp}
+          className="flex items-center gap-4"
+        >
+          <div className="h-px flex-1 bg-white/8" />
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={onOpenPalette}
+              className="inline-flex items-center gap-2 border border-white/8 px-4 py-2 font-mono text-xs uppercase tracking-widest text-contrast/70 transition-colors hover:border-accent/40 hover:text-accent"
+            >
+              <Command size={16} />
+              {tPalette("open")}
+              <kbd className="border border-white/8 px-1 text-contrast/50">
+                {tPalette("shortcut")}
+              </kbd>
+            </button>
+            <button
+              type="button"
+              onClick={onPlay}
+              className="inline-flex items-center gap-2 border border-white/8 px-4 py-2 font-mono text-xs uppercase tracking-widest text-contrast/70 transition-colors hover:border-accent/40 hover:text-accent"
+            >
+              <Dice5 size={16} />
+              {tToy("play")}
+            </button>
+          </div>
+        </motion.div>
+
+        <motion.div variants={fadeUp} className="flex justify-center">
+          <div
+            aria-hidden={!onHero}
+            inert={!onHero}
+            className={cn(
+              "transition-opacity",
+              !onHero && "pointer-events-none opacity-0",
+            )}
           >
-            <Command size={16} />
-            {tPalette("open")}
-            <kbd className="border border-white/8 px-1 text-contrast/50">
-              {tPalette("shortcut")}
-            </kbd>
-          </button>
-          <button
-            type="button"
-            onClick={onPlay}
-            className="inline-flex items-center gap-2 border border-white/8 px-4 py-2 font-mono text-xs uppercase tracking-widest text-contrast/70 transition-colors hover:border-accent/40 hover:text-accent"
-          >
-            <Dice5 size={16} />
-            {tToy("play")}
-          </button>
-        </div>
-      </motion.div>
+            <button
+              type="button"
+              onClick={() => scrollToSection("experience")}
+              className="group inline-flex items-center gap-2 border border-white/8 px-4 py-2 font-mono text-xs uppercase tracking-widest text-contrast/50 transition-colors hover:border-accent/40 hover:text-accent"
+            >
+              {t("scroll_cue")}
+              <ArrowDown
+                size={16}
+                className="transition-transform group-hover:translate-y-1"
+              />
+            </button>
+          </div>
+        </motion.div>
+      </div>
     </motion.header>
   );
 }

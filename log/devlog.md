@@ -3,6 +3,35 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-11-04: Desktop Hero fills the first screen, with a scroll cue (test)
+
+**Done**
+- The Hero now fills the height of the main area (`min-h-full`, thesis at the top, entry points at the bottom), so
+  Experience is hidden on opening. A 65vh version was tried first and dropped: the visible slice of Experience
+  looked wrong (owner).
+- Added a scroll cue under the entry points: a one-row button labelled "Experience" / "Expérience" with a down arrow
+  (`hero.scroll_cue`) that scrolls to `#experience`, same box as the palette and game buttons (Geist Mono, hairline
+  border, accent on hover and focus, arrow nudges down on hover, no loop). A first stacked version (label above a
+  square arrow, "See experience") took too much height (owner).
+- Fixed: scrolling to a section put its title against the top edge of the scroll area. `main` now has
+  `scroll-pt-12`, the same 48px as its top padding, so every section jump (cue and command palette) lands with the
+  title in the clear.
+- The scroll root id (`SCROLL_ROOT_ID`) and the desktop padding that must match the scroll padding
+  (`DESKTOP_SCROLL_INSET_Y`, `py-12 scroll-pt-12`) live in `src/lib/scroll.ts`; `useActiveSection` stopped keeping its
+  own copy of the id. Other layouts still write `id="main"` as the skip link target.
+- The cue only shows while the whole Hero is on screen (`useFullyVisible`: an `IntersectionObserver` rooted on
+  `#main`, read through `useSyncExternalStore`). It fades out (200ms) and leaves the tab order and the
+  accessibility tree (`inert`, `aria-hidden`) once the page is scrolled by about 48px, and comes back at the top.
+- `scrollToSection` and `scrollToTop` moved from `CommandPalette` to `src/lib/scroll.ts` so the palette and the
+  Hero share them (reduced motion still switches to instant scrolling).
+- `lint` and `tsc` clean, EN and FR keys identical. Not looked at in a browser, `npm run build` not run.
+
+**Still open**
+- The Hero is mostly empty for now: content to be decided (figures from `cv.ts` and GitHub, a bigger thesis, the
+  palette as a prompt). Three.js is kept for later, in Passions, loaded on approach (needs a dependency decision).
+- Record the full-height Hero in `docs/decisions.md` once the test is validated.
+- A music radio idea was dropped (copyright and cookie risk).
+
 ## 2026-11-04: Experience projects as a list, Artemis FoodLab described as it is
 
 **Done**

@@ -10,6 +10,8 @@ import { Sidebar } from "@/components/desktop/Sidebar";
 import { ExperienceSection } from "@/components/desktop/sections/ExperienceSection";
 import { ProjectsSection } from "@/components/desktop/sections/ProjectsSection";
 import { SpecialtiesSection } from "@/components/desktop/sections/SpecialtiesSection";
+import { DESKTOP_SCROLL_INSET_Y, SCROLL_ROOT_ID } from "@/lib/scroll";
+import { cn } from "@/lib/utils";
 import type { GitHubRepo, RepoStats } from "@/types";
 
 interface DesktopLayoutProps {
@@ -26,7 +28,13 @@ export function DesktopLayout({ repos, stats }: DesktopLayoutProps) {
       <CursorGlow />
       <StackFocusProvider>
         <Sidebar />
-        <main id="main" className="flex-1 overflow-y-auto bento-scroll px-16 py-12 flex flex-col gap-16">
+        <main
+          id={SCROLL_ROOT_ID}
+          className={cn(
+            "flex-1 overflow-y-auto bento-scroll px-16 flex flex-col gap-16",
+            DESKTOP_SCROLL_INSET_Y,
+          )}
+        >
           <Hero
             latestRepo={repos[0]}
             onPlay={() => setPlayOpen(true)}

@@ -78,6 +78,7 @@ src/
 │   ├── data/cv.ts                # CV content, LocalizedString fields, localize()
 │   ├── github.ts                 # build-time GitHub fetch
 │   ├── motion.ts                 # shared Framer Motion presets
+│   ├── scroll.ts                 # scrollToSection, scrollToTop, scroll root id and desktop inset (one place)
 │   ├── site.ts                   # SITE_URL, the one place the public URL is written
 │   ├── stack.ts                  # where a technology is used, from the experiences of cv.ts
 │   ├── previews.ts               # matches public/previews/<repo>.* files to the listed repos (build time)

@@ -15,7 +15,8 @@
     "available": "Available for work",
     "contact": "Contact",
     "latest_activity": "Latest activity",
-    "back_to_top": "Back to top"
+    "back_to_top": "Back to top",
+    "scroll_cue": "Experience"
   },
   "logic": {
     "section_label": "// logic",

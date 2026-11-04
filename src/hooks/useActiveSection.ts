@@ -1,9 +1,9 @@
 "use client";
 
 import { useMemo, useSyncExternalStore } from "react";
+import { SCROLL_ROOT_ID } from "@/lib/scroll";
 import type { SectionId } from "@/types";
 
-const SCROLL_ROOT_ID = "main";
 const VISIBLE_THRESHOLDS = [0.25, 0.5, 0.75];
 
 function createActiveSectionStore(ids: readonly SectionId[]) {

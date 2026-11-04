@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useLocale, useTranslations, type Locale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { cv } from "@/lib/data/cv";
+import { scrollToSection, scrollToTop } from "@/lib/scroll";
 import { cn } from "@/lib/utils";
 
 type CommandGroup = "navigate" | "actions" | "links";
@@ -45,24 +46,6 @@ const panelVariants = {
   },
   exit: { opacity: 0, y: -8, transition: { duration: 0.2 } },
 };
-
-function scrollBehavior(): ScrollBehavior {
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ? "auto"
-    : "smooth";
-}
-
-function scrollToSection(id: string) {
-  document
-    .getElementById(id)
-    ?.scrollIntoView({ behavior: scrollBehavior(), block: "start" });
-}
-
-function scrollToTop() {
-  document
-    .getElementById("main")
-    ?.scrollTo({ top: 0, behavior: scrollBehavior() });
-}
 
 function openExternal(url: string) {
   window.open(url, "_blank", "noopener,noreferrer");
