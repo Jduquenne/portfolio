@@ -22,6 +22,10 @@ focus here.
 - ⬜ Mobile LCP is 2.6 s on the deployed site (good is 2.5 s): the hero text only renders after the JavaScript has loaded,
   because the layout is chosen in the browser. Going lower means changing that (see D-009 alternatives).
 - ⬜ No automated tests exist (no test script in `package.json`).
+- ✅ Availability map on the desktop Hero (2026-11-04): `lint`, `tsc` and `npx next build` pass, and the flows were driven
+  in Chrome against the dev server (see the devlog). `npm run build` was not run, performance on a weak machine was not
+  measured, and the owner has not looked at it on a real screen yet.
+- ⬜ Availability on mobile: not started. A prototype comes first.
 - ⬜ The design fixes, UX additions, cursor glow and command palette of 2026-10-27 were not looked
   at in a browser. The palette's keyboard flow and focus handling are untested by hand.
 
@@ -78,4 +82,5 @@ short transitions) were fixed on 2026-10-27, see the devlog.
 
 ## Ideas / later
 
-TODO(owner): none documented before the migration.
+- Three.js scene in the Passions section, loaded when it approaches the screen (needs a dependency decision).
+- A one-sentence availability summary visible without opening anything, if the permanent map ever proves too heavy.

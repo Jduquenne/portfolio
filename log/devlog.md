@@ -3,6 +3,50 @@
 Entry format: date, what was done, figures if any, problems, **Still open**. Most recent
 first. History before the migration is in `git log` (31 commits on 2026-10-27).
 
+## 2026-11-04: Availability map on the desktop Hero
+
+**Done**
+- A map behind the Hero and an availability card in its middle (D-012, D-013, D-014). A glowing point draws France
+  and Corsica, the camera zooms in, and it draws Hauts-de-France, Bailleul and a 45 km radius. Choosing one of the
+  eight cities in range (a chip in the card, or the dot on the map) zooms to the trip, draws the road route, and
+  shows "about N min by car, N km, without traffic". Clearing it crumples the line into a paper ball that flies into
+  the card. A second mode shows "anywhere in France" (remote).
+- Architecture in five layers under `src/lib/availability` (data, geo, engine, render) and
+  `src/components/shared/availability` + `desktop/` (UI). The engine and the geometry have no React and no DOM;
+  `applyFrame` writes each frame to the SVG, so React never re-renders per frame. No dependency added.
+- Data: outlines hand-written; 28 cities with names in both languages (Dunkirk / Dunkerque); eight road routes
+  from a one-off computation outside the repo (about 3.5 KB), credited to OpenStreetMap contributors in the card and
+  in a new desktop footer (`OsmCredit`). The no-JavaScript fallback states the availability in one sentence.
+- The Hero is now three zones (thesis, card, bottom row), the thesis drops to `text-xl` under 800px of height, the
+  Hero rows no longer catch clicks meant for the map (`pointer-events`), and `Escape` clears a route only when no
+  dialog is open (`useDismissOnEscape`). Layout contracts are written once: `DESKTOP_SCROLL_INSET_X/Y` and
+  `DESKTOP_HERO_BLEED` in `lib/scroll.ts`, `reservedLeft` and the card width in `desktop/availabilityLayout.ts`.
+- Labels pick a free side among four and are hidden when none is free, and they never go under 55% opacity.
+- Strings under `availability.*` in both message files (111 keys each). Wording: the card is titled "Lieu de travail" / "Work location" (the sidebar already says "Disponible"), and the remote mode is "À distance" in French, the pair of "Sur site" and the term LinkedIn France uses.
+
+**Verified** (`lint`, `tsc`, `npx next build` pass; Chrome driven from outside the repo against the dev server)
+- Opening drawing at 1440x900, the on-site and remote views, a click on a city dot and on a chip, the route text in
+  French and English, `Escape` with and without a dialog, the Hero buttons still clickable under the layers, the Back
+  button after scrolling away, a reload showing the map already drawn, the footer credit, reduced motion (drawn at
+  once), and a 1100x700 window (the route summary is above the chips so it stays visible).
+- No error in the browser console in any of these runs.
+
+**Not verified**
+- `npm run build` (with `build:cv` and `build:og`) was not run, only `next build`. Nothing in the CV or the social
+  image changed.
+- Performance on a weak machine: the mask over the map was measured in headless Chrome (no cost seen at 60 fps),
+  which says nothing about a low-end GPU. Not looked at on a real screen by the owner yet.
+- No automated tests (owner decision: checks stay outside the repo).
+- Keyboard-only use of the card was not tried by hand, and no screen reader was used.
+
+**Still open**
+- Mobile: the map needs its own design (a prototype first, as for the desktop). The data, the engine and the shared
+  components are meant to be reused.
+- A city label can disappear when it has no free side (the chip and the hover bubble still give its name).
+- Under about 700px of Hero height the card scrolls inside itself.
+- `Escape` also releases a pinned technology (`StackFocus`): both can react to one press.
+- The mobile Hero has no availability beyond the sidebar-style badge.
+
 ## 2026-11-04: Desktop Hero fills the first screen, with a section nav (test)
 
 **Done**

@@ -146,3 +146,60 @@ not documented. They are all `accepted` because the code implements them.
 - **Consequences:** a project is now data, so a new one means one entry in `projects` in both languages. Links are
   not printed in the PDF (they were not before). The CV keeps only the names: four projects with a description
   each made both CVs two pages.
+
+## D-012: The availability map is written in-house, only the routes come from OpenStreetMap
+
+- **Date:** 2026-11-04
+- **Status:** accepted
+- **Context:** the Hero has a free area, and "available for work" does not say where or how. A map answers it, and
+  a click on a city can show the trip from Bailleul.
+- **Decision:** the outlines (France, Corsica, Hauts-de-France) are hand-written, stylised polylines in
+  `src/lib/availability/data/geography.ts`: a faceted silhouette, not a cartographic one. The projection (Mercator,
+  so that a 45 km radius stays a true circle), the camera, the toolpath animation and the paper crumple are all
+  code of this repo. The only external data is the road route from Bailleul to each city inside the radius,
+  computed once outside the project, simplified, and kept as plain output in `data/routes.ts`. Nothing of the
+  tool that produced it is in the repo. The licence (ODbL) asks for attribution: a line shown with the route and in
+  a footer (`OsmCredit`).
+- **Alternatives considered:** a map library or a GeoJSON dataset from another repo (rejected: owner wants the
+  component fully in-house); straight lines or right-angle "toolpath" routes (rejected: not credible); a routing
+  service called at runtime (rejected: static export, no server).
+- **Consequences:** routes are a snapshot. Durations are typical car times without traffic, rounded to 5 minutes.
+  Changing the radius or the origin means recomputing the routes outside the project. Only cities inside the
+  radius have a route; the others are context.
+
+## D-013: An imperative scene engine under a thin React shell
+
+- **Date:** 2026-11-04
+- **Status:** accepted
+- **Context:** the map is about 200 SVG elements animated at 60 frames per second (a head drawing the outlines, a
+  camera zoom, a crumple), with state that React should also know about (mode, selected city, phase).
+- **Decision:** five layers that do not mix. Data (`src/lib/availability/data`), geometry (`geo`, pure functions),
+  engine (`engine`: world, tweens, toolpath, crumple, scene, no React, no DOM), render (`render`: writes a frame to
+  the SVG, collision-free labels) and UI (`components/shared/availability`, `components/desktop`). The scene produces
+  a plain `SceneFrame` per tick; `applyFrame` writes it to the elements through refs, so React never re-renders per
+  frame. React only subscribes to the discrete state (`useSyncExternalStore`). The map layer is loaded with
+  `next/dynamic` (no SSR) after the Hero is on screen. The refs are filled through a registry of callbacks, because
+  components may not mutate what they receive.
+- **Alternatives considered:** driving the SVG from React state (a re-render of every element per frame); a canvas
+  (loses the crisp strokes and the easy a11y split); an animation library (a new dependency, and the toolpath
+  semantics are specific).
+- **Consequences:** the engine and the geometry are testable without a browser, but no test runner is installed
+  (owner decision): checks are made outside the repo. A mobile layer reuses the engine and the data and brings its own
+  UI.
+
+## D-014: The map is permanent, and the Hero fills the first screen
+
+- **Date:** 2026-11-04
+- **Status:** accepted
+- **Context:** a toggle button made the map optional, but most visitors would not press it, and without it the Hero
+  is an empty screen. A full-height Hero was tested first (a 65% version was dropped).
+- **Decision:** the Hero fills the visible height, with three zones (thesis, availability card, bottom row). The map
+  draws itself about a second after the Hero is in, once per browser session (`sessionStorage`); later views, and
+  language switches, show it already drawn. It opens on the on-site view, after drawing the whole of France first.
+  There is no way to hide it. Clearing a route crumples the line into a paper ball that flies into the card.
+- **Alternatives considered:** the map behind a button (hidden for most visitors); the map hidden by default with a
+  one-line summary visible (kept as a fallback, not needed).
+- **Consequences:** the first screen carries the most visual weight of the site, so it must stay legible at small
+  sizes (the card scrolls inside itself under about 700px of height, and the map is faded under text and buttons).
+  `Escape` clears a route only when no dialog is open.
+

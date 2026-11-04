@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { Command, Dice5 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { HeroSectionNav } from "@/components/desktop/HeroSectionNav";
@@ -14,6 +15,14 @@ import { cn, relativeTime } from "@/lib/utils";
 import type { GitHubRepo } from "@/types";
 
 const containerVariants = stagger(0.1, 0.1);
+
+const HeroAvailability = dynamic(
+  () =>
+    import("@/components/desktop/HeroAvailability").then(
+      (module) => module.HeroAvailability,
+    ),
+  { ssr: false, loading: () => <div className="flex-1" /> },
+);
 
 interface HeroProps {
   latestRepo?: GitHubRepo;
@@ -42,12 +51,13 @@ export function Hero({
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="flex min-h-full flex-col justify-between gap-8"
+      className="pointer-events-none relative isolate flex min-h-full flex-col justify-between gap-8"
     >
       <div className="flex flex-wrap items-start justify-between gap-x-8 gap-y-4">
         <motion.p
           variants={fadeUp}
-          className="min-w-0 max-w-[26ch] font-mono text-3xl tracking-tight text-balance text-contrast"
+          data-map-obstacle=""
+          className="pointer-events-auto min-w-0 max-w-[26ch] font-mono text-2xl [@media(max-height:800px)]:text-xl tracking-tight text-balance text-contrast"
         >
           {localize(cv.identity.description, locale)}
           <span className="hero-caret" aria-hidden="true" />
@@ -56,7 +66,8 @@ export function Hero({
         {latestRepo && (
           <motion.dl
             variants={fadeUp}
-            className="text-right font-mono text-xs leading-relaxed"
+            data-map-obstacle=""
+            className="pointer-events-auto text-right font-mono text-xs leading-relaxed"
           >
             <dt className="text-contrast/50 tracking-widest uppercase">
               {t("latest_activity")}
@@ -69,6 +80,8 @@ export function Hero({
         )}
       </div>
 
+      <HeroAvailability />
+
       <div className="flex flex-col gap-8">
         <motion.div
           variants={fadeUp}
@@ -79,7 +92,8 @@ export function Hero({
             <button
               type="button"
               onClick={onOpenPalette}
-              className="inline-flex items-center gap-2 border border-white/8 px-4 py-2 font-mono text-xs uppercase tracking-widest text-contrast/70 transition-colors hover:border-accent/40 hover:text-accent"
+              data-map-obstacle=""
+              className="pointer-events-auto inline-flex items-center gap-2 border border-white/8 px-4 py-2 font-mono text-xs uppercase tracking-widest text-contrast/70 transition-colors hover:border-accent/40 hover:text-accent"
             >
               <Command size={16} />
               {tPalette("open")}
@@ -90,7 +104,8 @@ export function Hero({
             <button
               type="button"
               onClick={onPlay}
-              className="inline-flex items-center gap-2 border border-white/8 px-4 py-2 font-mono text-xs uppercase tracking-widest text-contrast/70 transition-colors hover:border-accent/40 hover:text-accent"
+              data-map-obstacle=""
+              className="pointer-events-auto inline-flex items-center gap-2 border border-white/8 px-4 py-2 font-mono text-xs uppercase tracking-widest text-contrast/70 transition-colors hover:border-accent/40 hover:text-accent"
             >
               <Dice5 size={16} />
               {tToy("play")}
@@ -104,7 +119,7 @@ export function Hero({
             inert={!onHero}
             className={cn(
               "transition-opacity",
-              !onHero && "pointer-events-none opacity-0",
+              onHero ? "pointer-events-auto" : "pointer-events-none opacity-0",
             )}
           >
             <HeroSectionNav repoCount={repoCount} />

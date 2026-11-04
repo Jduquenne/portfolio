@@ -124,5 +124,22 @@
   "stack": {
     "hint": "Hover a tech",
     "used": "{count, plural, one {# role} other {# roles}} · since {year}"
+  },
+  "availability": {
+    "title": "// work location",
+    "mode_label": "Work mode",
+    "mode_onsite": "On site · hybrid",
+    "mode_remote": "Remote",
+    "onsite_title": "Up to {km} km around {city}.",
+    "remote_title": "Anywhere in France.",
+    "remote_text": "Available to work remotely across the whole country.",
+    "cities_label": "Cities within range",
+    "hint": "Pick a city, here or on the map, to see the trip.",
+    "route_title": "{from} → {to}",
+    "route_info": "About {minutes} min by car, {km} km, without traffic.",
+    "route_clear": "Clear",
+    "tooltip": "{city} · {km} km · about {minutes} min",
+    "credit": "Routes © <link>OpenStreetMap contributors</link>",
+    "noscript": "Available on site or hybrid within {km} km of {city}, and remote anywhere in France."
   }
 }

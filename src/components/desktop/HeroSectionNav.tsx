@@ -41,6 +41,7 @@ export function HeroSectionNav({ repoCount }: HeroSectionNavProps) {
           key={id}
           type="button"
           onClick={() => scrollToSection(id)}
+          data-map-obstacle=""
           className="group flex items-start justify-between gap-2 border border-white/8 px-4 py-2 text-left font-mono text-xs transition-colors hover:border-accent/40"
         >
           <span className="flex flex-col gap-1">

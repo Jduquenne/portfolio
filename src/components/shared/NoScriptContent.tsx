@@ -1,5 +1,6 @@
 import fr from "../../../messages/fr.json";
 import en from "../../../messages/en.json";
+import { ORIGIN, RADIUS_KM } from "@/lib/availability/data/config";
 import { cv, localize } from "@/lib/data/cv";
 import type { GitHubRepo, Locale } from "@/types";
 
@@ -34,6 +35,11 @@ export function NoScriptContent({ locale, repos }: NoScriptContentProps) {
             {localize(cv.identity.subtitle, locale)}
           </p>
           <p>{localize(cv.identity.description, locale)}</p>
+          <p className="text-contrast/70">
+            {messages.availability.noscript
+              .replace("{km}", String(RADIUS_KM))
+              .replace("{city}", localize(ORIGIN.name, locale))}
+          </p>
           <p className="flex flex-wrap gap-4 font-mono text-sm">
             <a className={LINK} href={`mailto:${cv.contact.email}`}>
               {cv.contact.email}

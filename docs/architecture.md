@@ -65,20 +65,29 @@ src/
 │   ├── globals.css
 │   └── icon.svg
 ├── components/
-│   ├── desktop/                  # DesktopLayout, Hero, HeroSectionNav, Sidebar (+ SidebarContact, SidebarLink, SidebarSection, LocaleToggle, StackChip, StackReadout, StackFocus), PlayModal, CursorGlow, CommandPalette, ProjectPreview, sections/
+│   ├── desktop/                  # DesktopLayout, Hero, HeroAvailability, AvailabilityCard, availabilityLayout, Footer, HeroSectionNav, Sidebar (+ SidebarContact, SidebarLink, SidebarSection, LocaleToggle, StackChip, StackReadout, StackFocus), PlayModal, CursorGlow, CommandPalette, ProjectPreview, sections/
 │   │   └── sections/             # Experience, Projects, Specialties
 │   ├── mobile/                   # MobileLayout, BottomNav, ScrollToTop, ProjectPoster, sections/
 │   │   └── sections/             # Profile, Experience, Stack, Projects, Passions, Play
 │   ├── shared/                   # AdventureRouter, AdventureSkeleton, AvailabilityBadge, ContactAction (mobile), NoScriptContent, ExperienceProjects,
 │   │                             #   LanguageSwitcher, LightsOut, RepoStatsReadout
+│   │   └── availability/         # AvailabilityMap + MapOutlines, MapRoutes, MapCities, MapOrigin, MapPen, MapCrumples, CityTooltip,
+│   │                             #   ModeSwitch, CityChips, RouteSummary, OsmCredit (shared by desktop and, later, mobile)
 │   └── cv/                       # CvDocument (react-pdf), cvData (cv.ts -> plain strings), Cv (page UI)
-├── hooks/                        # useDevice, useCountUp, useActiveSection, useCopyEmail
+├── hooks/                        # useDevice, useCountUp, useActiveSection, useCopyEmail, useFullyVisible, useBackToHero,
+│                                 #   useAvailabilityScene, useSceneLoop, useDismissOnEscape
 ├── i18n/                         # routing, navigation, request (next-intl)
 ├── lib/
 │   ├── data/cv.ts                # CV content, LocalizedString fields, localize()
 │   ├── github.ts                 # build-time GitHub fetch
 │   ├── motion.ts                 # shared Framer Motion presets
-│   ├── scroll.ts                 # scrollToSection, scrollToTop, scroll root id and desktop inset (one place)
+│   ├── scroll.ts                 # scrollToSection, scrollToTop, scroll root id and desktop insets (one place)
+│   ├── availability/             # the availability map, see "Availability map" below
+│   │   ├── data/                 #   geography, cities, routes (generated output), config (origin, radius, motion)
+│   │   ├── geo/                  #   math, projection, shape, camera (pure functions)
+│   │   ├── engine/               #   world, tweens, toolpath, crumple, scene (no React, no DOM)
+│   │   ├── render/               #   handles + registry, applyFrame, obstacles (writes a frame to the SVG)
+│   │   ├── types.ts · visit.ts   #   shared types, first-visit flag
 │   ├── site.ts                   # SITE_URL, the one place the public URL is written
 │   ├── stack.ts                  # where a technology is used, from the experiences of cv.ts
 │   ├── previews.ts               # matches public/previews/<repo>.* files to the listed repos (build time)
@@ -137,3 +146,25 @@ messages/{en,fr}.json ──► next-intl (useTranslations)
   skeleton when scripts are off. With scripts on, the browser does not build the `<noscript>` content.
 - **Static pages:** `[locale]/page.tsx` is `force-static`. Anything that must stay fresh
   requires a redeploy.
+
+## Availability map
+
+```
+data ──► World (projected once) ──► Scene (state machine, tweens, toolpath) ──► SceneFrame (plain data)
+                                          ▲                                        │
+        React: useAvailabilityScene ──────┘                                        ▼
+        (useSyncExternalStore: phase, mode, selected city)              applyFrame ──► SVG elements (via refs)
+                                                                                       ▲
+ DesktopLayout ► Hero ► HeroAvailability (dynamic, no SSR) ► AvailabilityMap + AvailabilityCard
+```
+
+- The **scene** knows nothing of React or the DOM. It takes a viewport and a clock, and returns a frame. The
+  **renderer** knows the SVG and the content drawn over it (elements marked `data-map-obstacle`, so labels step
+  aside), and nothing of the scene's rules.
+- **Layout contracts** live in one place each: `DESKTOP_SCROLL_INSET_*` and `DESKTOP_HERO_BLEED` in `lib/scroll.ts`
+  (the layer reaches the edges of the scroll area), `reservedLeft` and the card width in
+  `components/desktop/availabilityLayout.ts` (the map keeps the card's width free).
+- **Adding a city:** an entry in `data/cities.ts` (both languages). With a route in `data/routes.ts` and inside the
+  radius, it becomes clickable.
+- Mobile will reuse `lib/availability`, the hooks and `components/shared/availability`, with its own placement.
+

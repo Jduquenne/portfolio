@@ -124,5 +124,22 @@
   "stack": {
     "hint": "Survoler une techno",
     "used": "{count, plural, one {# expérience} other {# expériences}} · depuis {year}"
+  },
+  "availability": {
+    "title": "// lieu de travail",
+    "mode_label": "Mode de travail",
+    "mode_onsite": "Sur site · hybride",
+    "mode_remote": "À distance",
+    "onsite_title": "Jusqu’à {km} km autour de {city}.",
+    "remote_title": "Partout en France.",
+    "remote_text": "Disponible à distance, sur l’ensemble du territoire.",
+    "cities_label": "Villes dans le rayon",
+    "hint": "Choisir une ville, ici ou sur la carte, pour voir le trajet.",
+    "route_title": "{from} → {to}",
+    "route_info": "Environ {minutes} min en voiture, {km} km, hors trafic.",
+    "route_clear": "Effacer",
+    "tooltip": "{city} · {km} km · environ {minutes} min",
+    "credit": "Itinéraires © <link>contributeurs d’OpenStreetMap</link>",
+    "noscript": "Disponible sur site ou en hybride jusqu’à {km} km autour de {city}, et à distance partout en France."
   }
 }

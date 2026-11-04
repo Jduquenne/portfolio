@@ -92,6 +92,22 @@ or PDF, GitHub, LinkedIn.
 - The Hero owns no state any more: `DesktopLayout` holds `playOpen` and `paletteOpen`, and renders
   `PlayModal` and `CommandPalette`.
 
+## Desktop signature: availability map
+
+The map behind the Hero (`components/shared/availability`, `components/desktop/HeroAvailability`) is drawn by a
+glowing point, like a printer head or a CNC toolpath: print moves leave an accent line, rapid moves between shapes
+are a dotted line that fades. Everything is accent on the base colour, no relief, no fill beyond a few percent.
+
+- **Layers:** the SVG sits under the content (`-z-10` in an `isolate`d Hero), `pointer-events-none` on the Hero rows
+  and `pointer-events-auto` on what is interactive, so the cities receive the clicks. Content over the map carries
+  `data-map-obstacle`, which makes labels step aside.
+- **Veil:** `.availability-veil` (globals.css) fades the map to a few percent on the left (the card) and at the bottom
+  (the buttons), so no text has a line behind it.
+- **Labels** are at least 55% opaque (the text rule), try four sides, and are hidden rather than overlapped.
+- **Motion:** only transform, opacity and stroke dash offsets, driven by the engine. Reduced motion draws everything
+  at once and skips the crumple. No loops: the scene stops asking for frames when it has nothing to animate.
+- **Card:** 352px wide (304px under a 1188px window), scrolls inside itself when the Hero is short.
+
 ## Project previews (desktop clip on hover, still on mobile)
 
 A project card shows media only when files named after its repo exist in `public/previews/`

@@ -8,6 +8,14 @@ export const SCROLL_ROOT_ID = "main";
  */
 export const DESKTOP_SCROLL_INSET_Y = "py-12 scroll-pt-12";
 
+export const DESKTOP_SCROLL_INSET_X = "px-16";
+
+/**
+ * Lets a layer inside the Hero reach the edges of the scroll area: the negative
+ * of the two insets above.
+ */
+export const DESKTOP_HERO_BLEED = "-inset-x-16 -inset-y-12";
+
 function scrollBehavior(): ScrollBehavior {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ? "auto"

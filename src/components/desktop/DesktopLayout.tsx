@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CommandPalette } from "@/components/desktop/CommandPalette";
 import { CursorGlow } from "@/components/desktop/CursorGlow";
+import { Footer } from "@/components/desktop/Footer";
 import { Hero } from "@/components/desktop/Hero";
 import { PlayModal } from "@/components/desktop/PlayModal";
 import { StackFocusProvider } from "@/components/desktop/StackFocus";
@@ -10,7 +11,11 @@ import { Sidebar } from "@/components/desktop/Sidebar";
 import { ExperienceSection } from "@/components/desktop/sections/ExperienceSection";
 import { ProjectsSection } from "@/components/desktop/sections/ProjectsSection";
 import { SpecialtiesSection } from "@/components/desktop/sections/SpecialtiesSection";
-import { DESKTOP_SCROLL_INSET_Y, SCROLL_ROOT_ID } from "@/lib/scroll";
+import {
+  DESKTOP_SCROLL_INSET_X,
+  DESKTOP_SCROLL_INSET_Y,
+  SCROLL_ROOT_ID,
+} from "@/lib/scroll";
 import { cn } from "@/lib/utils";
 import type { GitHubRepo, RepoStats } from "@/types";
 
@@ -31,7 +36,8 @@ export function DesktopLayout({ repos, stats }: DesktopLayoutProps) {
         <main
           id={SCROLL_ROOT_ID}
           className={cn(
-            "flex-1 overflow-y-auto bento-scroll px-16 flex flex-col gap-16",
+            "flex-1 overflow-y-auto bento-scroll flex flex-col gap-16",
+            DESKTOP_SCROLL_INSET_X,
             DESKTOP_SCROLL_INSET_Y,
           )}
         >
@@ -44,6 +50,7 @@ export function DesktopLayout({ repos, stats }: DesktopLayoutProps) {
           <ExperienceSection />
           <ProjectsSection repos={repos} stats={stats} />
           <SpecialtiesSection />
+          <Footer />
         </main>
       </StackFocusProvider>
 
